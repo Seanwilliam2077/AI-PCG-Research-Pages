@@ -2,7 +2,7 @@
 
 两条 UE 程序化内容生成管线的成果展示。
 
-**→ https://seanwilliam2077.github.io/world-model-whitebox/**
+**→ https://seanwilliam2077.github.io/AI-PCG-Research-Pages/**
 
 - `index.html` —— 两条管线的落地页
 - `world-model.html` —— PCG + AIGC 世界模型白盒生成
