@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<!-- 自包含单文件版本,由画布导出编译而来:无 React、无 CDN、无同目录依赖,双击即可打开。可编辑原件见 source/。 -->
+<title>工作总结 — SeanZJX · 2026.05–08</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&amp;display=swap" rel="stylesheet" />
+<style>/* dc-runtime BASE_CSS */
+
+    .sc-placeholder{background:color-mix(in srgb,currentColor 8%,transparent);
+      border:1px solid color-mix(in srgb,currentColor 50%,transparent);
+      border-radius:2px;box-sizing:border-box;overflow:hidden}
+    @keyframes sc-shine{0%{background-position:100% 50%}100%{background-position:0% 50%}}
+    html.sc-dc-streaming .sc-placeholder,
+    html.sc-dc-streaming .sc-interp.sc-missing{position:relative;
+      background:color-mix(in srgb,currentColor 5%,transparent);
+      border-color:transparent}
+    html.sc-dc-streaming .sc-placeholder::before,
+    html.sc-dc-streaming .sc-interp.sc-missing::before{content:'';
+      position:absolute;inset:0;pointer-events:none;
+      background:linear-gradient(90deg,rgba(217,119,87,0) 25%,rgba(247,225,211,.95) 37%,rgba(217,119,87,0) 63%);
+      background-size:400% 100%;animation:sc-shine 1.4s ease infinite}
+    html.sc-dc-streaming .sc-placeholder:nth-child(n+9 of .sc-placeholder)::before,
+    html.sc-dc-streaming .sc-interp.sc-missing:nth-child(n+9 of .sc-interp.sc-missing)::before{animation:none;
+      background:color-mix(in srgb,currentColor 8%,transparent)}
+    .sc-placeholder-error{padding:4px 8px;font:11px/1.4 ui-monospace,monospace;
+      color:color-mix(in srgb,currentColor 70%,transparent);word-break:break-word}
+    .sc-interp.sc-missing{display:inline-block;width:2em;height:1em;overflow:hidden;
+      vertical-align:text-bottom;background:rgba(255,255,255,.3);border:1px solid rgba(0,0,0,.5);
+      border-radius:2px;box-sizing:border-box;color:transparent;
+      user-select:none}
+    .sc-interp.sc-unresolved{font-family:ui-monospace,monospace;font-size:.85em;
+      color:color-mix(in srgb,currentColor 50%,transparent);
+      background:color-mix(in srgb,currentColor 10%,transparent);border-radius:3px;
+      padding:0 3px}
+    .sc-host.sc-has-error{position:relative}
+    .sc-logic-error{position:absolute;top:8px;left:8px;z-index:2147483647;max-width:60ch;
+      padding:6px 10px;background:#b00020;color:#fff;font:12px/1.4 ui-monospace,monospace;
+      border-radius:4px;white-space:pre-wrap;pointer-events:none}
+    /* Mirrors PRINT_BASELINE_CSS in apps/web deck-stage-export.ts \u2014 keep both
+       in sync until dc-runtime regains a build step. */
+    @media print {
+      @page { margin: 0.5cm; }
+      figure, table { break-inside: avoid; }
+      #dc-root, #dc-root > .sc-host { height: auto; }
+      *, *::before, *::after {
+        print-color-adjust: exact; -webkit-print-color-adjust: exact;
+        backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+        animation-delay: -99s !important; animation-duration: .001s !important;
+        animation-iteration-count: 1 !important; animation-fill-mode: both !important;
+        animation-play-state: running !important; transition-duration: 0s !important;
+      }
+    }
+  </style>
+<style>/* dc-runtime FULL_PAGE_CSS */html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}</style>
+<style>/* design system: _ds/classical-97bb5310-2b84-4277-8bea-7f1d4ffc2ed3/styles.css */
+/* Classical — design-system tokens and component classes. This file is the source of truth for the system's look; retune it here and see readme.md. */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Lora:wght@400;600&display=swap');
+
+:root {
+  --color-bg: #f3f2f2;
+  --color-surface: #eae9e9;
+  --color-text: #201f1d;
+  --color-accent: #b68235;
+  --color-accent-2: #ac803e;
+  --color-divider: color-mix(in srgb, #201f1d 16%, transparent);
+
+  /* Tonal ramps — generated in OKLCH on one shared lightness scale, so the
+     same step of any role matches the others in visual value. */
+  --color-neutral-100: #f8f4f4;
+  --color-neutral-200: #eae7e7;
+  --color-neutral-300: #d7d3d3;
+  --color-neutral-400: #bab6b6;
+  --color-neutral-500: #9b9797;
+  --color-neutral-600: #7d7979;
+  --color-neutral-700: #605d5d;
+  --color-neutral-800: #444141;
+  --color-neutral-900: #2d2b2b;
+
+  --color-accent-100: #fff3e4;
+  --color-accent-200: #ffe3bf;
+  --color-accent-300: #facb8d;
+  --color-accent-400: #e1ad66;
+  --color-accent-500: #c28d41;
+  --color-accent-600: #a06f24;
+  --color-accent-700: #7d5411;
+  --color-accent-800: #5a3b0a;
+  --color-accent-900: #3a270d;
+
+  --color-accent-2-100: #fff3e4;
+  --color-accent-2-200: #ffe3be;
+  --color-accent-2-300: #f5cd96;
+  --color-accent-2-400: #dbaf70;
+  --color-accent-2-500: #bc8f4e;
+  --color-accent-2-600: #9b7232;
+  --color-accent-2-700: #79561f;
+  --color-accent-2-800: #573d14;
+  --color-accent-2-900: #382810;
+
+  --font-heading: "Cormorant Garamond", system-ui, sans-serif;
+  --font-heading-weight: 600; /* review round 3: bold retired — semibold is the
+     interface headings' ceiling (they need the weight at small sizes); display
+     text goes lighter still, to the normal cut (see the deck) */
+  --font-body: "Lora", system-ui, sans-serif;
+
+  --space-1: 4.6px;
+  --space-2: 9.2px;
+  --space-3: 13.8px;
+  --space-4: 18.4px;
+  --space-6: 27.6px;
+  --space-8: 36.8px;
+
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 7px;
+
+  /* Elevation — derived from the ground: soft ink-tinted shadows on a
+     light theme, a hairline edge + ambient darkness on a dark one. */
+  --shadow-sm: 0 1px 2px color-mix(in srgb, #2d2b2b 14%, transparent);
+  --shadow-md: 0 3px 10px color-mix(in srgb, #2d2b2b 16%, transparent);
+  --shadow-lg: 0 12px 32px color-mix(in srgb, #2d2b2b 22%, transparent);
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: var(--font-heading-weight); }
+
+.plate{filter:sepia(0.22) saturate(0.82) contrast(1.05);box-sizing:border-box;
+  border:6px solid var(--color-surface);outline:1px solid var(--color-divider)}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Components — built with the tokens above. Plain CSS
+   on plain HTML: no JavaScript, no build step. Each class is documented in
+   readme.md and demonstrated in foundations/ and components/.
+   ══════════════════════════════════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-size: 15px; line-height: 1.55; font-weight: 400; }
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  line-height: 1.12; letter-spacing: -0.015em; margin: 0 0 var(--space-2);
+}
+h1 { font-size: 42px; }
+h2 { font-size: 32px; }
+h3 { font-size: 25px; }
+h4 { font-size: 20px; }
+h5 { font-size: 16px; }
+h6 { font-size: 13px; }
+h6 { letter-spacing: 0.08em; text-transform: uppercase; }
+p { margin: 0 0 var(--space-3); }
+a { color: var(--color-accent); text-underline-offset: 3px; }
+img { display: block; max-width: 100%; }
+figure { margin: 0; }
+figcaption {
+  font-size: 11px; margin-top: var(--space-1);
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+}
+.text-muted { color: color-mix(in srgb, var(--color-text) 55%, transparent); }
+:focus { outline: none; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+::selection { background: color-mix(in srgb, var(--color-accent) 30%, transparent); }
+
+/* — rules — */
+.hr {
+  height: 1px; border: 0; margin: var(--space-4) 0;
+  background: var(--color-divider);
+}
+
+/* — buttons — */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  cursor: pointer; text-decoration: none;
+  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  font-size: 14px; line-height: 1.2; color: var(--color-text); /* matches the .input's 14px —
+     the pair sits side by side in sign-up rows */
+  background: transparent; border: 1px solid transparent;
+  padding: var(--space-2) calc(var(--space-3) * 1.2);
+  border-radius: var(--radius-md);
+}
+.btn svg { display: block; }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn-primary { color: var(--color-accent); border-color: var(--color-accent); }
+.btn-primary:hover { background: color-mix(in srgb, var(--color-accent) 12%, transparent); }
+.btn-primary:active { background: color-mix(in srgb, var(--color-accent) 22%, transparent); }
+.btn-secondary { border-color: var(--color-divider); }
+.btn-secondary:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
+.btn-secondary:active { background: color-mix(in srgb, var(--color-text) 14%, transparent); }
+.btn-ghost { color: var(--color-accent); padding-inline: var(--space-1); }
+.btn-ghost:hover { background: color-mix(in srgb, var(--color-accent) 10%, transparent); }
+.btn-ghost:active { background: color-mix(in srgb, var(--color-accent) 18%, transparent); }
+.btn-icon { width: 36px; height: 36px; padding: 0; }
+.btn-block { width: 100%; margin-top: var(--space-2); }
+
+/* — forms — */
+.field > label {
+  display: block; font-size: 12px; margin-bottom: 5px;
+  color: color-mix(in srgb, var(--color-text) 70%, transparent);
+}
+.input {
+  width: 100%; min-height: 36px; padding: 6px 10px; font: inherit;
+  font-size: 14px; color: var(--color-text); caret-color: var(--color-accent);
+  background: transparent;
+  border: 1px solid var(--color-divider); border-radius: var(--radius-md);
+}
+.input:hover { border-color: color-mix(in srgb, var(--color-text) 45%, transparent); }
+.input:focus-visible { border-color: var(--color-accent); outline-offset: 0; }
+textarea.input { min-height: 90px; resize: vertical; }
+.radio { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; }
+.radio input, .seg-opt input {
+  position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none;
+}
+.radio .dot {
+  width: 16px; height: 16px; flex: none; border-radius: 50%;
+  border: 1.5px solid var(--color-divider);
+}
+.radio:hover .dot { border-color: var(--color-accent); }
+.radio input:checked + .dot {
+  border-color: var(--color-accent); background: var(--color-accent);
+  box-shadow: inset 0 0 0 4px var(--color-bg);
+}
+.radio input:focus-visible + .dot { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.seg {
+  display: inline-flex; overflow: hidden;
+  border: 1px solid var(--color-divider); border-radius: var(--radius-md);
+}
+.seg-opt {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 12px; font-size: 13px; cursor: pointer;
+}
+.seg-opt + .seg-opt { border-left: 1px solid var(--color-divider); }
+.seg-opt:has(input:checked) { color: var(--color-accent); box-shadow: inset 0 0 0 1px var(--color-accent); }
+.seg-opt:not(:has(input:checked)):hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
+.seg-opt:has(input:focus-visible) { outline: 2px solid var(--color-accent); outline-offset: -2px; }
+
+/* — cards — */
+.card {
+  display: flex; flex-direction: column; gap: var(--space-2);
+  padding: var(--space-3); border-radius: var(--radius-md); background: transparent; border: 1px solid var(--color-divider);
+}
+.card-kicker { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); }
+.card-title {
+  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  font-size: 17px; line-height: 1.2;
+}
+.card-body { margin: 0; font-size: 13px; opacity: 0.8; flex: 1; }
+.card-meta {
+  display: flex; align-items: center; gap: 6px; font-size: 11px;
+  color: color-mix(in srgb, var(--color-text) 50%, transparent);
+}
+.elev-sm { box-shadow: var(--shadow-sm); }
+.elev-md { box-shadow: var(--shadow-md); }
+.elev-lg { box-shadow: var(--shadow-lg); }
+
+/* — tags — */
+.tag {
+  display: inline-flex; align-items: center; font-size: 11px;
+  letter-spacing: 0.02em; padding: 3px 10px;
+  border-radius: calc(var(--radius-md) * 0.75);
+}
+.tag-accent { background: var(--color-accent-100); color: var(--color-accent-800); }
+.tag-accent-2 { background: var(--color-accent-2-100); color: var(--color-accent-2-800); }
+.tag-neutral { background: var(--color-neutral-100); color: var(--color-neutral-800); }
+.tag-outline { border: 1px solid var(--color-accent); color: var(--color-accent); }
+
+/* — navigation — */
+.nav {
+  display: flex; align-items: center; gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-divider);
+}
+.nav-brand {
+  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  font-size: 18px; margin-right: auto;
+}
+.nav a { color: inherit; text-decoration: none; font-size: 14px; }
+.nav a:hover, .nav a[aria-current='page'] { color: var(--color-accent); }
+
+/* — tables — */
+.table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.table th {
+  text-align: left; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+  padding: var(--space-2); border-bottom: 1px solid var(--color-divider);
+}
+.table td {
+  padding: var(--space-2);
+  border-bottom: 1px solid var(--color-divider);
+}
+.table tbody tr:hover { background: color-mix(in srgb, var(--color-text) 4%, transparent); }
+
+/* — dialog — */
+.dialog-backdrop {
+  position: fixed; inset: 0; display: grid; place-items: center;
+  padding: var(--space-4);
+  background: color-mix(in srgb, var(--color-neutral-900) 50%, transparent);
+}
+.dialog {
+  width: min(440px, 100%); display: flex; flex-direction: column; gap: var(--space-3);
+  padding: var(--space-4); border-radius: var(--radius-lg);
+  background: var(--color-surface); box-shadow: var(--shadow-lg); border: 1px solid var(--color-divider);
+}
+.dialog-title {
+  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  font-size: 20px;
+}
+.dialog-body { font-size: 14px; opacity: 0.85; }
+.dialog-actions { display: flex; justify-content: flex-end; gap: var(--space-2); margin-top: var(--space-2); }
+
+</style>
+<style>/* page styles (from <helmet>) */
+
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--color-bg); color: var(--color-text);
+  font-family: var(--font-body), "Noto Serif SC", serif; }
+h1, h2, h3 { font-family: var(--font-heading), "Noto Serif SC", serif; }
+a { color: var(--color-accent-700); text-decoration: none; }
+a:hover { color: var(--color-accent-600); text-decoration: underline; text-underline-offset: 3px; }
+</style>
+</head>
+<body>
+<div id="dc-root"><div class="sc-host" data-sc-name="index">
+
+<nav class="nav" style="position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--color-bg) 92%, transparent); backdrop-filter: blur(8px)">
+  <span class="nav-brand">工作总结</span>
+  <div style="display: flex; gap: 28px; font-size: 14px; align-items: baseline">
+    <a href="#s1">白盒管线</a>
+    <a href="#s2">GeoGen</a>
+    <a href="#s3">世界模型</a>
+    <a href="#s4">前沿探索</a>
+    <a href="#s5">里程碑</a>
+    <span aria-hidden="true" style="color: var(--color-divider)">|</span>
+    <a href="deck.html">幻灯版</a>
+    <a href="deck-detailed.html">详细版</a>
+  </div>
+</nav>
+
+<header style="max-width: 1080px; margin: 0 auto; padding: 96px 32px 72px">
+  <p style="margin: 0; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent); font-feature-settings: 'tnum' 1">SeanZJX · 2026.05.25 — 08.10</p>
+  <h1 style="margin: 20px 0 0; font-size: 76px; font-weight: 400; line-height: 1.12; letter-spacing: -0.01em">工作总结</h1>
+  <p style="margin: 28px 0 0; font-size: 21px; line-height: 1.7; max-width: 46em; color: color-mix(in srgb, var(--color-text) 78%, transparent)">AI PCG 编辑器 · 世界模型数据管线 · 神经渲染前沿探索——三个月,把「能跑通」的原型推进到「能生产」的管线。</p>
+  <div style="display: flex; gap: 0; margin-top: 56px; border-top: 1px solid var(--color-divider)">
+    <a href="#s1" style="flex: 1; display: flex; gap: 18px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--color-divider); color: inherit"><span style="font-size: 13px; color: var(--color-accent); font-feature-settings: 'tnum' 1">01</span><span style="font-size: 17px">白盒生成管线与批量生产</span></a>
+  </div>
+  <div style="display: flex; gap: 0; border-top: 0">
+    <a href="#s2" style="flex: 1; display: flex; gap: 18px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--color-divider); color: inherit"><span style="font-size: 13px; color: var(--color-accent); font-feature-settings: 'tnum' 1">02</span><span style="font-size: 17px">GeoGen — 山体与植被生成</span></a>
+  </div>
+  <div style="display: flex">
+    <a href="#s3" style="flex: 1; display: flex; gap: 18px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--color-divider); color: inherit"><span style="font-size: 13px; color: var(--color-accent); font-feature-settings: 'tnum' 1">03</span><span style="font-size: 17px">世界模型 — 数据采集与视频批产</span></a>
+  </div>
+  <div style="display: flex">
+    <a href="#s4" style="flex: 1; display: flex; gap: 18px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--color-divider); color: inherit"><span style="font-size: 13px; color: var(--color-accent); font-feature-settings: 'tnum' 1">04</span><span style="font-size: 17px">前沿探索 — 游戏场景 3DGS 重建</span></a>
+  </div>
+</header>
+
+<section id="s1" style="max-width: 1080px; margin: 0 auto; padding: 48px 32px 24px">
+  <div style="display: flex; align-items: baseline; gap: 24px">
+    <span style="font-family: var(--font-heading), 'Noto Serif SC', serif; font-size: 64px; color: var(--color-accent); font-feature-settings: 'tnum' 1">01</span>
+    <h2 style="margin: 0; font-size: 44px; font-weight: 400">白盒生成管线与批量生产</h2>
+  </div>
+  <p style="margin: 24px 0 0; font-size: 18px; line-height: 1.85; max-width: 62em; text-align: justify">这条管线的目标是把关卡白盒搭建从纯手工变成 AI 生成为主、人工调整为辅:一张概念图进,一个可游走的白盒关卡出,把前期搭建从天级压缩到分钟级——再把它变成夜跑几百个场景的生产线,让白盒从单个 demo 变成可规模化供给的资产来源。</p>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px; margin-top: 48px; position: relative">
+    <div>
+      <p style="margin: 0; font-size: 13px; letter-spacing: 0.08em; color: var(--color-accent); font-feature-settings: 'tnum' 1">① 生图</p>
+      <h3 style="margin: 10px 0 0; font-size: 26px; font-weight: 400">三图供给</h3>
+      <p style="margin: 12px 0 0; font-size: 16px; line-height: 1.8; text-align: justify">文生图双通道产写实航拍、语义分块、灰度高度三图;提示词模板锁定 90° 正交顶视,支持笔刷蒙版 + 文字指令的局部重绘。</p>
+    </div>
+    <div style="border-left: 1px solid var(--color-divider); padding-left: 48px">
+      <p style="margin: 0; font-size: 13px; letter-spacing: 0.08em; color: var(--color-accent); font-feature-settings: 'tnum' 1">② 矢量化</p>
+      <h3 style="margin: 10px 0 0; font-size: 26px; font-weight: 400">语义图 → 布局数据</h3>
+      <p style="margin: 12px 0 0; font-size: 16px; line-height: 1.8; text-align: justify">按语义色提取建筑 / 道路 / 植被 / 水体 / 边界轮廓;另有精度优先通路直接产内存布局文档;角色比例节点推算真实世界尺度。</p>
+    </div>
+    <div style="border-left: 1px solid var(--color-divider); padding-left: 48px">
+      <p style="margin: 0; font-size: 13px; letter-spacing: 0.08em; color: var(--color-accent); font-feature-settings: 'tnum' 1">③ 落地</p>
+      <h3 style="margin: 10px 0 0; font-size: 26px; font-weight: 400">Create PCG Data</h3>
+      <p style="margin: 12px 0 0; font-size: 16px; line-height: 1.8; text-align: justify">高度图写入 Landscape,布局数据生成街区、地块与建筑白盒;统一摆放节点生成植物、围墙与道路。地形与街区共用同一标定,严格对齐。</p>
+    </div>
+  </div>
+
+  <h3 style="margin: 56px 0 0; font-size: 26px; font-weight: 400">工程要点</h3>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 64px; margin-top: 8px">
+    <p style="margin: 16px 0 0; font-size: 16px; line-height: 1.8; text-align: justify; border-top: 1px solid var(--color-divider); padding-top: 16px"><strong style="font-weight: 600">分帧执行。</strong>写高度、生成街区、贴回地形分帧进行,等碰撞就绪才吸附地块——编辑器全程可重绘不假死。</p>
+    <p style="margin: 16px 0 0; font-size: 16px; line-height: 1.8; text-align: justify; border-top: 1px solid var(--color-divider); padding-top: 16px"><strong style="font-weight: 600">统一标定。</strong>一个目标宽度同时推导地形缩放与布局单位,街区与地形像素级对齐,且与高度图分辨率解耦。</p>
+    <p style="margin: 16px 0 0; font-size: 16px; line-height: 1.8; text-align: justify; border-top: 1px solid var(--color-divider); padding-top: 16px"><strong style="font-weight: 600">失败隔离。</strong>高度图与街区两路互不阻塞,状态聚合后统一广播;材质层资产缺失时自动创建。</p>
+    <p style="margin: 16px 0 0; font-size: 16px; line-height: 1.8; text-align: justify; border-top: 1px solid var(--color-divider); padding-top: 16px"><strong style="font-weight: 600">统一摆放。</strong>植物 / 围墙 / 道路一个节点分派,规则可按 job 覆盖:贴地、坡向对齐、陡坡 30° 禁植、崖边禁植。</p>
+  </div>
+
+  <h3 style="margin: 56px 0 0; font-size: 26px; font-weight: 400">BatchPCG — 无人值守批量</h3>
+  <p style="margin: 16px 0 0; font-size: 17px; line-height: 1.85; max-width: 62em; text-align: justify">关键节点全部无头化(五个 Python 入口 + 重置与收敛轮询),三阶段编排:云端生图 → 编辑器内状态机 → 汇总报告。每 25 个 job 重启编辑器规避内存累积,断点续跑、失败熔断、启动预检、离屏后台真 GPU 渲染——维护一份 prompt 清单即可夜跑。「万能顶视图框架」由 LLM 按主题产异质化组合,近无限 prompt 供给。</p>
+  <table class="table" style="margin-top: 32px; font-feature-settings: 'tnum' 1">
+    <thead>
+      <tr><th>产物</th><th>规格</th><th>说明</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>生成图与布局</td><td style="white-space: nowrap">3 图 + JSON</td><td>写实航拍 / 语义分块 / 高度图,布局文档随批落盘</td></tr>
+      <tr><td>地形文件</td><td style="white-space: nowrap">r16 + 16-bit PNG</td><td>附世界尺寸与高度标定、UE Landscape 导入四参数</td></tr>
+      <tr><td>整景白模</td><td style="white-space: nowrap">scene.obj</td><td>地形 / 地块 / 建筑 / 植物 / 围墙 / 道路六类分组,质量档可调</td></tr>
+      <tr><td>磁盘预算</td><td style="white-space: nowrap">20 – 35 GB</td><td>300 job 夜跑总量(Low 档);语义纯度低于 0.90 告警</td></tr>
+    </tbody>
+  </table>
+
+</section>
+
+<section id="s2" style="max-width: 1080px; margin: 0 auto; padding: 96px 32px 24px">
+  <div style="display: flex; align-items: baseline; gap: 24px; border-top: 1px solid var(--color-divider); padding-top: 56px">
+    <span style="font-family: var(--font-heading), 'Noto Serif SC', serif; font-size: 64px; color: var(--color-accent); font-feature-settings: 'tnum' 1">02</span>
+    <h2 style="margin: 0; font-size: 44px; font-weight: 400">GeoGen — 山体与植被生成</h2>
+  </div>
+  <p style="margin: 24px 0 0; font-size: 18px; line-height: 1.85; max-width: 62em; text-align: justify">GeoGen 补齐大世界的地形与生态环节:白盒解决街区,山体与植被此前仍靠手工雕刻。地形 / 蒙版 / 城市 / 工具四套面板收进一个编辑器模式——观感对齐 Modeling Mode,机制自绘,三套既有业务逻辑一行未改;近中景与远景两条路线各持一套流水线节点,反复调远山不会覆盖近景结果。</p>
+
+  <h3 style="margin: 56px 0 0; font-size: 26px; font-weight: 400">山体 — 一键生成链</h3>
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px; margin-top: 24px">
+    <div style="border-top: 1px solid var(--color-divider); padding-top: 16px">
+      <p style="margin: 0; font-size: 13px; letter-spacing: 0.08em; color: var(--color-accent)">STEP 1 · 环绕参考图</p>
+      <p style="margin: 12px 0 0; font-size: 16px; line-height: 1.8; text-align: justify">多张参考图 AI 合成「中央平地、四周环山」俯视图;笔刷蒙版 + 文字指令局部重绘,未涂抹像素逐字节保真。</p>
+    </div>
+    <div style="border-top: 1px solid var(--color-divider); padding-top: 16px">
+      <p style="margin: 0; font-size: 13px; letter-spacing: 0.08em; color: var(--color-accent)">STEP 2 · AI 高度图</p>
+      <p style="margin: 12px 0 0; font-size: 16px; line-height: 1.8; text-align: justify">让图像模型按海拔推理成图:雪线读作高地、河谷读作最低;多图按生态特征排序,要求产出一块连续地形而非拼贴。</p>
+    </div>
+    <div style="border-top: 1px solid var(--color-divider); padding-top: 16px">
+      <p style="margin: 0; font-size: 13px; letter-spacing: 0.08em; color: var(--color-accent)">STEP 3 · 侵蚀与生态蒙版</p>
+      <p style="margin: 12px 0 0; font-size: 16px; line-height: 1.8; text-align: justify">服务器侵蚀(1K 约 20 秒 / 2K 约 90 秒);生态蒙版刻意排在侵蚀后,沿真实冲刷纹理划分植被、岩石与积雪。</p>
+    </div>
+  </div>
+  <p style="margin: 24px 0 0; font-size: 15px; color: color-mix(in srgb, var(--color-text) 62%, transparent)">四步产物全是图片、零副作用可无限重来;写地形、放图章、交接 Genesis 都刻意留在链外。</p>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; margin-top: 48px">
+    <div>
+      <h3 style="margin: 0; font-size: 26px; font-weight: 400">近中景落地</h3>
+      <p style="margin: 14px 0 0; font-size: 16px; line-height: 1.85; text-align: justify">地形面积由用户直接指定(上限 2500 km²),每格尺度在生成那一刻现算,切分辨率档不再让面积漂移;幂等备好尺寸缩放都对的空地形,高度落差靠 Scale.Z 兑现;边界包络坡角只削戳破包络处、内部分毫不动;交接 Genesis 时高度图与 16 色生态蒙版按地形顶点数对齐导出,省掉破坏性确认框。</p>
+    </div>
+    <div style="border-left: 1px solid var(--color-divider); padding-left: 64px">
+      <h3 style="margin: 0; font-size: 26px; font-weight: 400">远景产物</h3>
+      <p style="margin: 14px 0 0; font-size: 16px; line-height: 1.85; text-align: justify">默认烘成单一连续静态网格,移动旋转复制全是引擎原生行为;可选独立 Landscape 或地形图章(挪动自动重刻、删除自动还高度);「提取山峰」逐座抠峰散布地平线;显存策略用尺度换覆盖——同顶点数从 2 km 拉到 8 km,显存完全不变。</p>
+    </div>
+  </div>
+
+  <h3 style="margin: 56px 0 0; font-size: 26px; font-weight: 400">植被生成</h3>
+  <p style="margin: 16px 0 0; font-size: 17px; line-height: 1.85; max-width: 62em; text-align: justify">生态分布图双来源(近中景 / 远景山)各持独立结果;16 色蒙版一键导入 Genesis 为每层绑定 PCG Graph,缺图登记直接在面板显示;植被生成只跑 VegetationOnly 阶段、不改地形高度,与山体侧「只跑权重图章」互为镜像。摆放规则与批量管线同源:贴地、陡坡 30° 禁植、崖边台缘禁植。</p>
+
+</section>
+
+<section id="s3" style="max-width: 1080px; margin: 0 auto; padding: 96px 32px 24px">
+  <div style="display: flex; align-items: baseline; gap: 24px; border-top: 1px solid var(--color-divider); padding-top: 56px">
+    <span style="font-family: var(--font-heading), 'Noto Serif SC', serif; font-size: 64px; color: var(--color-accent); font-feature-settings: 'tnum' 1">03</span>
+    <h2 style="margin: 0; font-size: 44px; font-weight: 400">世界模型 — 数据采集与视频批产</h2>
+  </div>
+  <p style="margin: 24px 0 0; font-size: 18px; line-height: 1.85; max-width: 62em; text-align: justify">出发点是把批量白盒变成世界模型的训练数据:在白盒之上自动运镜、无损渲染、坐标转换,产物按数据集契约落盘,连成一条无人值守生产线。五阶段全部用编辑器内 Python 实现,不动 C++、不碰节点管线。</p>
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px; margin-top: 40px">
+    <div style="border-top: 1px solid var(--color-divider); padding-top: 16px">
+      <p style="margin: 0; font-size: 13px; letter-spacing: 0.08em; color: var(--color-accent)">程序化运镜</p>
+      <p style="margin: 12px 0 0; font-size: 16px; line-height: 1.8; text-align: justify">建筑群包围盒定轨道,orbit / dolly / crane 模版按 job 随机;内参与对焦显式固定,位姿按轨迹参数解析重算,无采样误差。</p>
+    </div>
+    <div style="border-top: 1px solid var(--color-divider); padding-top: 16px">
+      <p style="margin: 0; font-size: 13px; letter-spacing: 0.08em; color: var(--color-accent)">MRQ 无损渲染</p>
+      <p style="margin: 12px 0 0; font-size: 16px; line-height: 1.8; text-align: justify">固定曝光、关运动模糊、空间采样抗锯齿;RGB 之外输出 32 位深度与法线,逐帧位姿写入 cameras.json 作数据真源。</p>
+    </div>
+    <div style="border-top: 1px solid var(--color-divider); padding-top: 16px">
+      <p style="margin: 0; font-size: 13px; letter-spacing: 0.08em; color: var(--color-accent)">坐标转换与打包</p>
+      <p style="margin: 12px 0 0; font-size: 16px; line-height: 1.8; text-align: justify">UE 约定转 OpenCV 相机约定并以合成位姿单测;深度换米、内参换算 K;全部产物校验后按目录契约落盘,下游直接组装。</p>
+    </div>
+  </div>
+  <div style="display: flex; align-items: baseline; gap: 40px; margin-top: 56px; border-top: 1px solid var(--color-divider); border-bottom: 1px solid var(--color-divider); padding: 32px 0">
+    <span style="font-family: var(--font-heading), 'Noto Serif SC', serif; font-size: 96px; line-height: 1; color: var(--color-accent); font-feature-settings: 'tnum' 1; white-space: nowrap; flex: none">47.5 s</span>
+    <p style="margin: 0; font-size: 16px; line-height: 1.8; max-width: 40em">单场景「生图 → 白盒 → 运镜 → 成片」全链耗时——离屏无人值守实测(2026.07.22),48 帧 mp4 落盘、截图非黑。一键视频批产:浏览器输入 fps / 数量 / 时长即自动跑完全链,动态容量按质检现算,拍满即切、拍够即停。</p>
+  </div>
+</section>
+
+<section id="s4" style="max-width: 1080px; margin: 0 auto; padding: 96px 32px 24px">
+  <div style="display: flex; align-items: baseline; gap: 24px; border-top: 1px solid var(--color-divider); padding-top: 56px">
+    <span style="font-family: var(--font-heading), 'Noto Serif SC', serif; font-size: 64px; color: var(--color-accent); font-feature-settings: 'tnum' 1">04</span>
+    <h2 style="margin: 0; font-size: 44px; font-weight: 400">前沿探索 — 游戏场景 3DGS 重建</h2>
+  </div>
+  <p style="margin: 24px 0 0; font-size: 18px; line-height: 1.85; max-width: 62em; text-align: justify">探索把游戏场景变成 3DGS 表达:不涉及真实设备,数据全部来自引擎内——沿烘焙 probe 点连线生成采集路径自动采数据,重建为可在编辑器内查看的 3DGS 资产,并完成定制引擎的渲染集成验证。采集管线已迭代约 20 次,单轮采集很快;当前重建质量还不够好,瓶颈集中在两处,仍在迭代。</p>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; margin-top: 48px">
+    <div style="border-top: 1px solid var(--color-divider); padding-top: 16px">
+      <p style="margin: 0; font-size: 13px; letter-spacing: 0.08em; color: var(--color-accent); font-feature-settings: 'tnum' 1">问题 1 · 曝光一致性</p>
+      <p style="margin: 12px 0 0; font-size: 16px; line-height: 1.85; text-align: justify">暗区场景明暗差距大:统一曝光会让暗部死黑、看不清细节纹理;自动曝光又会让同一区域在不同帧曝光不一致,重建质量更差。暂定思路是采下 HDR 数据后做统一后处理——同一套曝光,把暗部拉亮一些、亮部稍微压缩。</p>
+      <p style="margin: 20px 0 0; font-size: 14.5px; line-height: 1.9; color: color-mix(in srgb, var(--color-text) 70%, transparent)">HDR 采集 <span style="color: var(--color-accent)">→</span> exposure 调整整体亮度 <span style="color: var(--color-accent)">→</span> tone mapping 压缩动态范围 <span style="color: var(--color-accent)">→</span> gamma / sRGB 转换</p>
+    </div>
+    <div style="border-top: 1px solid var(--color-divider); padding-top: 16px">
+      <p style="margin: 0; font-size: 13px; letter-spacing: 0.08em; color: var(--color-accent); font-feature-settings: 'tnum' 1">问题 2 · probe 采集路径</p>
+      <p style="margin: 12px 0 0; font-size: 16px; line-height: 1.85; text-align: justify">部分 probe 点离墙面过近,影响重建质量。优化方向是按 probe 特性把点整体向后拉,尚未完成最终调整;计划先采完暗区场景再统一对齐,预计还需几轮迭代。</p>
+    </div>
+  </div>
+</section>
+
+<section id="s5" style="max-width: 1080px; margin: 0 auto; padding: 96px 32px 64px">
+  <div style="display: flex; align-items: baseline; gap: 24px; border-top: 1px solid var(--color-divider); padding-top: 56px">
+    <span style="font-family: var(--font-heading), 'Noto Serif SC', serif; font-size: 64px; color: var(--color-accent); font-feature-settings: 'tnum' 1">05</span>
+    <h2 style="margin: 0; font-size: 44px; font-weight: 400">三个月里程碑</h2>
+  </div>
+  <div style="margin-top: 40px; border-top: 1px solid var(--color-divider)">
+    <div style="display: grid; grid-template-columns: 140px 220px 1fr; gap: 32px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid var(--color-divider)">
+      <span style="font-size: 14px; letter-spacing: 0.08em; color: color-mix(in srgb, var(--color-text) 55%, transparent); font-feature-settings: 'tnum' 1">05 月下</span>
+      <span style="font-size: 20px">白盒管线</span>
+      <span style="font-size: 16px; color: color-mix(in srgb, var(--color-text) 70%, transparent)">节点图与无头化</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 140px 220px 1fr; gap: 32px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid var(--color-divider)">
+      <span style="font-size: 14px; letter-spacing: 0.08em; color: color-mix(in srgb, var(--color-text) 55%, transparent); font-feature-settings: 'tnum' 1">06 月</span>
+      <span style="font-size: 20px">GeoGen</span>
+      <span style="font-size: 16px; color: color-mix(in srgb, var(--color-text) 70%, transparent)">山体与植被两条路线</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 140px 220px 1fr; gap: 32px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid var(--color-divider)">
+      <span style="font-size: 14px; letter-spacing: 0.08em; color: color-mix(in srgb, var(--color-text) 55%, transparent); font-feature-settings: 'tnum' 1">07 月</span>
+      <span style="font-size: 20px">批量生产</span>
+      <span style="font-size: 16px; color: color-mix(in srgb, var(--color-text) 70%, transparent)">夜跑批产 · 视频全链</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 140px 220px 1fr; gap: 32px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid var(--color-divider)">
+      <span style="font-size: 14px; letter-spacing: 0.08em; color: var(--color-accent-700); font-feature-settings: 'tnum' 1">08 月</span>
+      <span style="font-size: 20px">数据采集</span>
+      <span style="font-size: 16px; color: color-mix(in srgb, var(--color-text) 70%, transparent)">数据集契约落盘</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 140px 220px 1fr; gap: 32px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid var(--color-divider)">
+      <span style="font-size: 14px; letter-spacing: 0.08em; color: color-mix(in srgb, var(--color-text) 55%, transparent); font-feature-settings: 'tnum' 1">下一步</span>
+      <span style="font-size: 20px">3DGS 迭代</span>
+      <span style="font-size: 16px; color: color-mix(in srgb, var(--color-text) 70%, transparent)">HDR 统一后处理解决曝光一致性,probe 采集路径优化,打磨重建质量</span>
+    </div>
+  </div>
+</section>
+
+<footer style="border-top: 1px solid var(--color-divider); margin-top: 32px">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 40px 32px 64px; display: flex; justify-content: space-between; align-items: baseline">
+    <span style="font-family: var(--font-heading), 'Noto Serif SC', serif; font-size: 22px">工作总结</span>
+    <span style="font-size: 14px; color: color-mix(in srgb, var(--color-text) 55%, transparent); font-feature-settings: 'tnum' 1">SeanZJX · 2026.05.25 — 08.10 · 内部资料</span>
+  </div>
+</footer>
+
+</div></div>
+</body>
+</html>
