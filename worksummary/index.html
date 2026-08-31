@@ -85,16 +85,16 @@
   .sl .tl line { stroke: var(--line); stroke-width: 2; }
   .sl .tl circle { fill: #6b6152; }
   .sl .tl circle.hi { fill: var(--accent); }
-  .sl .ent { padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .sl .ent { padding: 11px 0; border-bottom: 1px solid var(--line); }
   .sl .ent:last-child { border-bottom: 0; }
-  .sl .ent b { display: block; font-size: 22.5px; font-weight: 600; color: var(--text); }
-  .sl .ent i { font-style: normal; display: block; font-size: 18px; color: #c9c0ae; margin-top: 4px; }
+  .sl .ent b { display: block; font-size: 21px; font-weight: 600; color: var(--text); }
+  .sl .ent i { font-style: normal; display: block; font-size: 16.5px; color: #c9c0ae; margin-top: 4px; }
   .sl .ent em { font-style: normal; display: block; font-size: 15.5px; color: var(--accent); margin-top: 6px;
     letter-spacing: .06em; font-variant-numeric: tabular-nums; }
   .sl .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 11px; margin-top: 14px; }
   .sl .tile { border: 1px solid var(--line); border-radius: 10px; background: var(--panel);
-    padding: 13px 6px 11px; text-align: center; }
-  .sl .tile img { display: block; width: 44px; height: 44px; object-fit: contain; margin: 0 auto; }
+    padding: 11px 6px 9px; text-align: center; }
+  .sl .tile img { display: block; width: 38px; height: 38px; object-fit: contain; margin: 0 auto; }
   .sl .tile span { display: block; font-size: 13px; color: var(--muted); margin-top: 8px; }
   .sl .langs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 13px; }
   .sl .langs i { font-style: normal; border: 1px solid var(--line); border-radius: 999px;
@@ -219,48 +219,59 @@ const SLIDES = [
 { label:"封面", html:`
   <div class="sl" style="align-items:center;justify-content:center;text-align:center">
     <p class="kick">Tencent Work Summary · 2026.05.25 — 08.31</p>
-    <h1 style="font-size:110px;margin-top:6px">腾讯工作总结</h1>
-    <div style="width:130px;height:2px;background:var(--accent);margin:36px 0"></div>
-    <p class="lead" style="font-size:30px;color:#d6cdbb;max-width:none">AI PCG 工程管线 · 端到端网页 PCG 探索 · 3DGS 前沿探索</p>
-    <p class="lead" style="margin-top:18px;font-size:19.5px;color:var(--muted);max-width:46em">把「能跑通」的原型推进到「能生产」的管线 —— 每个部分都链有对应专题页,末页为可动手的算法演示与视频操作台。</p>
-    <p style="margin-top:48px;font-size:21px;color:#d6cdbb">SeanZJXiao 肖子骏 <span style="color:var(--muted);font-size:17px">· 内部资料</span></p>
-    <p style="margin-top:24px;font-size:15px;color:var(--muted)">→ 键翻页 · 右上「目录」跳转</p>
+    <h1 style="font-size:118px;margin-top:10px">腾讯工作总结</h1>
+    <div style="width:130px;height:2px;background:var(--accent);margin:44px 0"></div>
+    <p class="lead" style="font-size:31px;color:#d6cdbb;max-width:none">AI PCG 工程管线 · 端到端网页 PCG 探索 · 3DGS 前沿探索</p>
+    <p style="margin-top:60px;font-size:22px;color:#c9c0ae">SeanZJXiao 肖子骏</p>
   </div>` },
 
 { label:"自我介绍", html:`
-  <div class="sl">
-    <p class="kick">00 · About</p>
-    <h2>自我介绍</h2>
-    <p class="lead">肖子骏 Zijun Xiao(SeanZJXiao)— Technical Artist / 图形工程师:实时渲染 · PCG 与 Agent 自动化 · 神经渲染 · DCC 管线与引擎研发。</p>
-    <div class="cols">
+  <div class="sl" style="padding-top:50px">
+    <p class="kick" style="margin-bottom:10px">00 · About</p>
+    <h2 style="font-size:56px;margin-bottom:10px">自我介绍</h2>
+    <p class="lead" style="font-size:22px">肖子骏 Zijun Xiao(SeanZJXiao)— Technical Artist / 图形工程师:实时渲染 · PCG 与 Agent 自动化 · 神经渲染 · 引擎研发。</p>
+    <div class="cols" style="margin-top:22px;margin-block:0;padding-block:0;gap:44px">
       <div class="col"><p class="step">教育经历</p>
         <div class="ent"><b>Georgia Tech</b><i>计算机图形 M.S.</i><em>2025.09 — 2027.06</em></div>
         <div class="ent"><b>SCAD</b><i>游戏开发 M.S.</i><em>2024.09 — 2025.08</em></div>
         <div class="ent"><b>华南师范大学</b><i>金融数学 B.S.</i><em>2019.09 — 2023.06</em></div>
       </div>
       <div class="col"><p class="step">工作经历</p>
-        <div class="ent"><b>腾讯</b><i>国内发行线 生态发展部 预研组</i><i>Cross Tech AI 引擎部 PCG 组 · 前沿实验室</i><em>2025.12 — 至今</em></div>
+        <div class="ent"><b>腾讯</b><i>国内发行线 生态发展部 预研组;Cross Tech AI 引擎部 PCG 组 · 前沿实验室</i><em>2025.12 — 至今</em></div>
         <div class="ent"><b>西山居(金山)</b><i>《剑网 3》引擎部 QA 管线组</i><em>2023.07 — 2023.12</em></div>
         <div class="ent"><b>毕马威 KPMG(中国)</b><i>软件工程师(实习)· 数据管理后台系统</i><em>2022.06 — 2022.09</em></div>
       </div>
       <div class="col"><p class="step">软件与技术栈</p>
         <div class="tiles">
           <div class="tile"><img src="assets/icons/cplusplus.svg" alt="C++"><span>C++</span></div>
-          <div class="tile"><img src="assets/icons/csharp.svg" alt="C#"><span>C#</span></div>
           <div class="tile"><img src="assets/icons/python.svg" alt="Python"><span>Python</span></div>
-          <div class="tile"><img src="assets/icons/nvidia.svg" alt="CUDA"><span>CUDA</span></div>
-          <div class="tile"><img src="assets/icons/vulkan.svg" alt="Vulkan"><span>Vulkan</span></div>
           <div class="tile"><img src="assets/icons/pytorch.svg" alt="PyTorch"><span>PyTorch</span></div>
           <div class="tile"><img src="assets/icons/unrealengine.svg" alt="Unreal Engine 5"><span>UE 5</span></div>
           <div class="tile"><img src="assets/icons/unity.svg" alt="Unity"><span>Unity</span></div>
-          <div class="tile"><img src="assets/icons/houdini.svg" alt="Houdini"><span>Houdini</span></div>
           <div class="tile"><img src="assets/icons/autodeskmaya.svg" alt="Maya"><span>Maya</span></div>
           <div class="tile"><img src="assets/icons/blender.svg" alt="Blender"><span>Blender</span></div>
         </div>
         <div class="langs"><i>HLSL</i><i>Substance</i><i>RenderDoc</i></div>
       </div>
     </div>
-    <div class="foot"><a class="chip" href="${L_PF}"${EXT}>完整作品集 · seanwilliam2077.github.io/SeanSiu_Portfolio ↗</a><a class="chip" href="${L_VG}"${EXT}>代表作 VortexGaussians ↗</a></div>
+    <div style="display:flex;align-items:baseline;gap:18px;margin-top:26px;border-top:1px solid var(--line);padding-top:14px">
+      <p class="step" style="margin:0">作品集 · Portfolio 概述</p>
+      <a class="chip" style="margin-left:auto;padding:7px 18px;font-size:15px" href="${L_PF}"${EXT}>完整作品集 ↗</a>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:44px;margin-top:8px">
+      <p style="font-size:18.5px;line-height:1.62;color:#c9c0ae">游戏 Demo × 6:Unreal 3D ARPG(5 人组独立程序)、ARPG 跑酷系统、Unity 3D ARPG、VR FPS(Quest 3 · 子弹时间)、48h GGJ 像素解谜、2D 平台跳跃。</p>
+      <p style="font-size:18.5px;line-height:1.62;color:#c9c0ae">美术:角色 / 场景 / 材质三条全流程(Blender · Maya · Substance);实时图形演示 × 8:SDF、SIREN、体渲染、NeRF、2DGS、XPBD、扩散模型。</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:11px;margin-top:12px">
+      <a href="${L_PF}"${EXT} style="text-align:center"><img src="assets/img/gp-wolfsoga.webp" alt="Wolf Soga" style="width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:7px;border:1px solid var(--line)"><span style="display:block;font-size:12.5px;color:var(--muted);margin-top:5px">Wolf Soga</span></a>
+      <a href="${L_PF}"${EXT} style="text-align:center"><img src="assets/img/gp-parkour.webp" alt="RPG Parkour" style="width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:7px;border:1px solid var(--line)"><span style="display:block;font-size:12.5px;color:var(--muted);margin-top:5px">RPG Parkour</span></a>
+      <a href="${L_PF}"${EXT} style="text-align:center"><img src="assets/img/gp-sorrow.webp" alt="City of Sorrow" style="width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:7px;border:1px solid var(--line)"><span style="display:block;font-size:12.5px;color:var(--muted);margin-top:5px">City of Sorrow</span></a>
+      <a href="${L_PF}"${EXT} style="text-align:center"><img src="assets/img/gp-letmeout.webp" alt="Let Me Out" style="width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:7px;border:1px solid var(--line)"><span style="display:block;font-size:12.5px;color:var(--muted);margin-top:5px">Let Me Out</span></a>
+      <a href="${L_PF}"${EXT} style="text-align:center"><img src="assets/img/gp-roi.webp" alt="ROI Journey" style="width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:7px;border:1px solid var(--line)"><span style="display:block;font-size:12.5px;color:var(--muted);margin-top:5px">ROI Journey</span></a>
+      <a href="${L_PF}"${EXT} style="text-align:center"><img src="assets/img/gp-cyber.webp" alt="Cyber Shoot VR" style="width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:7px;border:1px solid var(--line)"><span style="display:block;font-size:12.5px;color:var(--muted);margin-top:5px">Cyber Shoot VR</span></a>
+      <a href="${L_PF}"${EXT} style="text-align:center"><img src="assets/img/gp-charart.webp" alt="Character Art" style="width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:7px;border:1px solid var(--line)"><span style="display:block;font-size:12.5px;color:var(--muted);margin-top:5px">角色美术</span></a>
+      <a href="${L_PF}"${EXT} style="text-align:center"><img src="assets/img/gp-envart.webp" alt="Environment Art" style="width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:7px;border:1px solid var(--line)"><span style="display:block;font-size:12.5px;color:var(--muted);margin-top:5px">场景美术</span></a>
+    </div>
   </div>` },
 
 { label:"总览", html:`
