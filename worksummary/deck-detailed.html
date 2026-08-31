@@ -479,34 +479,58 @@ deck-stage { counter-reset: page; }
 <div id="dc-root"><div class="sc-host" data-sc-name="deck-detailed">
 <div class="sc-host-x" style="display: contents;"><deck-stage width="1920" height="1080">
 
-  <section class="slide cover" data-label="封面" data-screen-label="01" data-speaker-notes="三个月,三条线:AI PCG 编辑器(白盒管线与 GeoGen)、世界模型数据管线、神经渲染前沿探索。">
+  <section class="slide cover" data-label="封面" data-screen-label="01" data-speaker-notes="三个月,三条线:AI PCG 编辑器(白盒管线含数据采集、GeoGen)、单图到场景的端到端生成、神经渲染前沿探索。">
     <div class="rise">
       <h1 class="display">工作总结</h1>
-      <p class="cover-sub text-muted">AI PCG 编辑器 · 世界模型数据管线 · 神经渲染前沿探索</p>
+      <p class="cover-sub text-muted">AI PCG 编辑器 · 端到端场景生成 · 神经渲染前沿探索</p>
     </div>
-    <div class="pin-bottom meta"><span>SeanZJX</span><span>·</span><span>2026.05.25 — 08.10</span></div>
+    <div class="pin-bottom meta"><span>SeanZJX</span><span>·</span><span>2026.05.25 — 08.31</span></div>
   </section>
 
-  <section class="slide content" data-label="总览" data-screen-label="02" data-speaker-notes="四部分:白盒生成与批产、GeoGen 山体植被、世界模型数据、前沿探索简述。">
+  <section class="slide content" data-label="自我介绍" data-screen-label="02" data-speaker-notes="自我介绍:TA / 图形工程师背景,腾讯双线,Georgia Tech 计算机图形在读,代表作 VortexGaussians。">
+    <h2 class="slide-title">自我介绍</h2>
+    <p class="lead">Zijun Xiao(SeanZJX)— Technical Artist / 图形工程师:实时渲染 · PCG 与 Agent 自动化 · 神经渲染 · DCC 管线与引擎研发。</p>
+    <div class="cols cols-3 rise">
+      <div>
+        <p class="col-step">经历</p>
+        <h3>腾讯 · 2025.12 —</h3>
+        <p>国内发行线 生态发展部 预研组;Cross Tech AI 引擎部 PCG 组与前沿实验室。此前西山居《剑网 3》引擎部 QA 管线组(2023.07 — 12)。</p>
+      </div>
+      <div>
+        <p class="col-step">教育</p>
+        <h3>Georgia Tech</h3>
+        <p>计算机图形 M.S.(2025.09 — 2027.06);SCAD 游戏开发 M.S.(2024 — 2025);华南师范大学 金融 B.S.(2019 — 2023)。</p>
+      </div>
+      <div>
+        <p class="col-step">技术栈与代表作</p>
+        <h3>UE5 · 图形</h3>
+        <p>C++ / C# / Python / HLSL / CUDA;UE5 · Unity · Vulkan · PyTorch · Houdini · Maya · Blender。VortexGaussians:实时前向模拟的火焰烟雾渲染为原生 3DGS,8.9 ms/帧(112 FPS)。</p>
+      </div>
+    </div>
+    <p class="chart-caption text-muted">完整作品集:seanwilliam2077.github.io/SeanSiu_Portfolio</p>
+    <div class="page-foot" aria-hidden="true"></div>
+  </section>
+
+  <section class="slide content" data-label="总览" data-screen-label="03" data-speaker-notes="四部分:白盒生成与批产(含数据采集与视频批产)、GeoGen 山体植被、AI PCG Scene 端到端、前沿探索简述。">
     <h2 class="slide-title">总览</h2>
     <div class="toc rise">
-      <div class="toc-row"><span class="toc-num">01</span><span>白盒生成管线 — 节点图与批量生产</span><span class="toc-note">Create PCG Data · BatchPCG</span></div>
+      <div class="toc-row"><span class="toc-num">01</span><span>白盒生成管线 — 节点图、批量生产与数据采集</span><span class="toc-note">Create PCG Data · BatchPCG</span></div>
       <div class="toc-row"><span class="toc-num">02</span><span>GeoGen — 山体与植被生成</span><span class="toc-note">编辑器模式 · 双路线</span></div>
-      <div class="toc-row"><span class="toc-num">03</span><span>世界模型 — 数据采集与视频批产</span><span class="toc-note">白盒 → 数据集</span></div>
+      <div class="toc-row"><span class="toc-num">03</span><span>AI PCG Scene — 单图到场景的端到端</span><span class="toc-note">三条实现 · 开源</span></div>
       <div class="toc-row"><span class="toc-num">04</span><span>前沿探索 — 现实采集与 3DGS 重建</span><span class="toc-note">简述</span></div>
     </div>
     <div class="page-foot" aria-hidden="true"></div>
   </section>
 
-  <section class="slide divider" data-label="01 白盒生成管线" data-screen-label="03" data-speaker-notes="第一部分:从一张概念图到可游走的白盒关卡,以及把它批量化。">
+  <section class="slide divider" data-label="01 白盒生成管线" data-screen-label="04" data-speaker-notes="第一部分:从一张概念图到可游走的白盒关卡,把它批量化,再延伸到数据采集与视频批产。">
     <div class="rise">
       <div class="ghost-num">01</div>
       <h2 class="slide-title">白盒生成管线</h2>
-      <p class="divider-sub">一张概念图进,一个白盒关卡出 — 再把它变成夜跑几百个场景的生产线。</p>
+      <p class="divider-sub">一张概念图进,一个白盒关卡出 — 再把它变成夜跑几百个场景的生产线,并延伸到数据与视频生产。</p>
     </div>
   </section>
 
-  <section class="slide content" data-label="节点图与数据流" data-screen-label="04" data-speaker-notes="三段式数据流。生图段锁定顶视;矢量化段有 SVG 与精度优先两条通路;CharScale 用骨骼网格推真实尺度。">
+  <section class="slide content" data-label="节点图与数据流" data-screen-label="05" data-speaker-notes="三段式数据流。生图段锁定顶视;矢量化段有 SVG 与精度优先两条通路;CharScale 用骨骼网格推真实尺度。">
     <h2 class="slide-title">节点图与数据流</h2>
     <div class="cols cols-3 rise">
       <div>
@@ -528,7 +552,7 @@ deck-stage { counter-reset: page; }
     <div class="page-foot" aria-hidden="true"></div>
   </section>
 
-  <section class="slide content" data-label="Create PCG Data 执行模型" data-screen-label="05" data-speaker-notes="这一页讲工程细节:分帧执行模型、统一标定、失败隔离。这些决定了它能被无头批量调用。">
+  <section class="slide content" data-label="Create PCG Data 执行模型" data-screen-label="06" data-speaker-notes="这一页讲工程细节:分帧执行模型、统一标定、失败隔离。这些决定了它能被无头批量调用。">
     <h2 class="slide-title">Create PCG Data — 执行模型</h2>
     <ul class="bullets dense rise">
       <li>双输入可选:高度图与街区数据各自独立,任一失败不阻塞另一路,状态聚合后经 OnExecuteComplete 广播结果</li>
@@ -540,7 +564,7 @@ deck-stage { counter-reset: page; }
     <div class="page-foot" aria-hidden="true"></div>
   </section>
 
-  <section class="slide content" data-label="SpawnObjects 统一摆放" data-screen-label="06" data-speaker-notes="把原先三个独立节点合成一个,内容/范围两个维度正交。规则引擎与批量共用同一套默认。">
+  <section class="slide content" data-label="SpawnObjects 统一摆放" data-screen-label="07" data-speaker-notes="把原先三个独立节点合成一个,内容/范围两个维度正交。规则引擎与批量共用同一套默认。">
     <h2 class="slide-title">SpawnObjects — 统一摆放</h2>
     <ul class="bullets dense rise">
       <li>植物 / 围墙 / 道路三类内容收进一个节点,Content 下拉分派,Generate 与 Clear 成对;行为与原独立节点完全一致</li>
@@ -552,7 +576,7 @@ deck-stage { counter-reset: page; }
     <div class="page-foot" aria-hidden="true"></div>
   </section>
 
-  <section class="slide content" data-label="无头化与批量生产" data-screen-label="07" data-speaker-notes="白盒管线批量化的关键是无头化:每个关键节点都有 Python 可调的一击式入口,Phase B 是编辑器内不阻塞主线程的 tick 状态机。">
+  <section class="slide content" data-label="无头化与批量生产" data-screen-label="08" data-speaker-notes="白盒管线批量化的关键是无头化:每个关键节点都有 Python 可调的一击式入口,Phase B 是编辑器内不阻塞主线程的 tick 状态机。">
     <h2 class="slide-title">无头化与批量生产 — BatchPCG</h2>
     <ul class="bullets dense rise">
       <li>关键节点全部无头化:生图整备 / 布局转换 / 白盒落地 / 统一摆放 / 地形导出五个 Python 入口,外加地形层重置与异步收敛轮询两个配套接口</li>
@@ -564,7 +588,7 @@ deck-stage { counter-reset: page; }
     <div class="page-foot" aria-hidden="true"></div>
   </section>
 
-  <section class="slide content" data-label="每 job 产物" data-screen-label="08" data-speaker-notes="产物即交付契约:地形文件带引擎导入标定,整景白模按类别分组,磁盘预算可控。">
+  <section class="slide content" data-label="每 job 产物" data-screen-label="09" data-speaker-notes="产物即交付契约:地形文件带引擎导入标定,整景白模按类别分组,磁盘预算可控。">
     <h2 class="slide-title">每 job 产物与规模</h2>
     <table class="table rise">
       <thead>
@@ -581,7 +605,43 @@ deck-stage { counter-reset: page; }
     <div class="page-foot" aria-hidden="true"></div>
   </section>
 
-  <section class="slide divider" data-label="02 GeoGen" data-screen-label="09" data-speaker-notes="第二部分:GeoGen 编辑器模式,山体与植被。">
+  <section class="slide content" data-label="数据采集管线" data-screen-label="10" data-speaker-notes="五阶段全部用编辑器内 Python 实现,不动 C++。原为世界模型训练数据设计,方向未采纳,能力留在白盒管线。对数据是硬要求的设置逐条固定:曝光、模糊、内参。">
+    <h2 class="slide-title">数据采集管线</h2>
+    <p class="lead">批量能力的延伸:白盒之上自动运镜、无损渲染、坐标转换,按数据集契约落盘——原为世界模型训练数据设计,该方向未采纳落地,能力沉淀回本管线。</p>
+    <div class="cols cols-3 rise">
+      <div>
+        <p class="col-step">STAGE 1 · 2</p>
+        <h3>程序化运镜</h3>
+        <p>建筑群包围盒定轨道半径,地形刻意不并入(8 km 地形会把轨道推上天),相机高度下限对地形做射线检测;orbit / dolly / crane 轨迹模版按 job 随机;对焦与内参显式固定,位姿按轨迹参数解析重算,无采样误差。</p>
+      </div>
+      <div>
+        <p class="col-step">STAGE 3</p>
+        <h3>MRQ 无损渲染</h3>
+        <p>关运动模糊与自动曝光(否则亮度时序漂移)、空间采样抗锯齿替代 TAA 避免拖影;RGB 之外经后处理材质输出 32 位 EXR 深度与世界法线;逐帧位姿与内参写 cameras.json,作为数据真源。</p>
+      </div>
+      <div>
+        <p class="col-step">STAGE 4 · 5</p>
+        <h3>坐标转换与打包</h3>
+        <p>UE 左手系(厘米)变换到 OpenCV 相机约定(米),用合成已知位姿做单测;深度声明为沿光轴 z-depth 并换米;内参换算 K,可选逐像素 Plücker 光线;全部产物校验后按目录契约落盘。</p>
+      </div>
+    </div>
+    <p class="chart-caption text-muted">rgb / depth / normal / cameras.json / capture_meta —— 目录 schema 即与世界模型侧的交付契约,DataLoader 按 [B,C,F,H,W] 直接组装。</p>
+    <div class="page-foot" aria-hidden="true"></div>
+  </section>
+
+  <section class="slide content" data-label="一键视频批产" data-screen-label="11" data-speaker-notes="M1 已活体验证:47.5 秒一个场景从生图到成片。动态容量按质检现算,拍满即切、拍够即停。">
+    <h2 class="slide-title">一键视频批产</h2>
+    <ul class="bullets dense rise">
+      <li>极简前端:浏览器输入 fps / 数量 / 时长(可选主题),后台自动跑完「LLM 组合 → 三图 → PCG 白盒 → 运镜渲染 → mp4 落盘」全链,实时进度与画廊</li>
+      <li>动态容量:每场景可产视频数由轨迹枚举 + 质检现算(上限可调),拍满即切下一场景,全局拍够目标即停,生图只为要用的场景付费</li>
+      <li>离屏无人值守实测通过(2026.07.22):48 帧 mp4 落盘、截图非黑,单场景全链 47.5 秒</li>
+      <li>Phase C 自动后处理:坐标转换、编码合入画廊、默认删帧回收磁盘;进度四文件原子落盘,前端轮询聚合</li>
+      <li>批处理稳态细节逐个踩平:启动参数引号与分号坑、状态机同帧重入护栏、限流退避与失败熔断</li>
+    </ul>
+    <div class="page-foot" aria-hidden="true"></div>
+  </section>
+
+  <section class="slide divider" data-label="02 GeoGen" data-screen-label="12" data-speaker-notes="第二部分:GeoGen 编辑器模式,山体与植被。">
     <div class="rise">
       <div class="ghost-num">02</div>
       <h2 class="slide-title">GeoGen — 山体与植被</h2>
@@ -589,7 +649,7 @@ deck-stage { counter-reset: page; }
     </div>
   </section>
 
-  <section class="slide content" data-label="GeoGen 模式架构" data-screen-label="10" data-speaker-notes="架构决策:观感照抄 Modeling Mode 但机制不抄;三套业务逻辑一行不改地被收编;懒加载把阻塞弹窗与网络请求挡在需要时。">
+  <section class="slide content" data-label="GeoGen 模式架构" data-screen-label="13" data-speaker-notes="架构决策:观感照抄 Modeling Mode 但机制不抄;三套业务逻辑一行不改地被收编;懒加载把阻塞弹窗与网络请求挡在需要时。">
     <h2 class="slide-title">GeoGen 模式 — 架构</h2>
     <p class="lead">观感对齐 Modeling Mode,机制自绘:左侧竖排分类 + 面板切换器,把三套既有大块 Slate 面板收进一个模式,业务逻辑一行未改。</p>
     <div class="quad rise">
@@ -613,7 +673,7 @@ deck-stage { counter-reset: page; }
     <div class="page-foot" aria-hidden="true"></div>
   </section>
 
-  <section class="slide content" data-label="山体·一键生成链" data-screen-label="11" data-speaker-notes="一键链只并零副作用的四步,产物全是图片可无限重来。写地形、放图章、交接 Genesis 都刻意留在链外。">
+  <section class="slide content" data-label="山体·一键生成链" data-screen-label="14" data-speaker-notes="一键链只并零副作用的四步,产物全是图片可无限重来。写地形、放图章、交接 Genesis 都刻意留在链外。">
     <h2 class="slide-title">山体生成 — 一键生成链</h2>
     <div class="cols cols-3 rise">
       <div>
@@ -636,7 +696,7 @@ deck-stage { counter-reset: page; }
     <div class="page-foot" aria-hidden="true"></div>
   </section>
 
-  <section class="slide content" data-label="山体·近中景落地" data-screen-label="12" data-speaker-notes="落地的三个关键:面积直定与分辨率解绑;ProvisionLandscape 只建不写高度,Scale.Z 兑现高度落差;边界包络只削戳破处。">
+  <section class="slide content" data-label="山体·近中景落地" data-screen-label="15" data-speaker-notes="落地的三个关键:面积直定与分辨率解绑;ProvisionLandscape 只建不写高度,Scale.Z 兑现高度落差;边界包络只削戳破处。">
     <h2 class="slide-title">山体生成 — 近中景落地</h2>
     <ul class="bullets dense rise">
       <li>地形面积由用户直接指定(上限 2500 km²),每格尺度在生成那一刻按面积 ÷ 高度图分辨率现算——切 1K/2K/4K 档不再让面积漂移</li>
@@ -648,7 +708,7 @@ deck-stage { counter-reset: page; }
     <div class="page-foot" aria-hidden="true"></div>
   </section>
 
-  <section class="slide content" data-label="山体·远景产物" data-screen-label="13" data-speaker-notes="远景的立项理由就是 Landscape 不能随意移动。三种产物各有用途;显存策略是面积白拿的关键。">
+  <section class="slide content" data-label="山体·远景产物" data-screen-label="16" data-speaker-notes="远景的立项理由就是 Landscape 不能随意移动。三种产物各有用途;显存策略是面积白拿的关键。">
     <h2 class="slide-title">山体生成 — 远景产物</h2>
     <ul class="bullets dense rise">
       <li>默认烘成单一连续静态网格:移动 / 旋转 / 缩放 / 复制全是引擎原生行为,且没有 Landscape 版的组件边界法线接缝</li>
@@ -660,7 +720,7 @@ deck-stage { counter-reset: page; }
     <div class="page-foot" aria-hidden="true"></div>
   </section>
 
-  <section class="slide content" data-label="植被生成" data-screen-label="14" data-speaker-notes="植被独立成页签:分布图双来源,生成只跑 VegetationOnly。与批量管线共享同一套 C++ 摆放默认。">
+  <section class="slide content" data-label="植被生成" data-screen-label="17" data-speaker-notes="植被独立成页签:分布图双来源,生成只跑 VegetationOnly。与批量管线共享同一套 C++ 摆放默认。">
     <h2 class="slide-title">植被生成</h2>
     <ul class="bullets dense rise">
       <li>「植被」页顶部生成生态分布图:近中景 / 远景山双来源段选,各自持有独立的侵蚀高度图与参考图</li>
@@ -672,50 +732,50 @@ deck-stage { counter-reset: page; }
     <div class="page-foot" aria-hidden="true"></div>
   </section>
 
-  <section class="slide divider" data-label="03 世界模型" data-screen-label="15" data-speaker-notes="第三部分:把批量白盒变成世界模型的训练数据与视频。">
+  <section class="slide divider" data-label="03 AI PCG Scene" data-screen-label="18" data-speaker-notes="第三部分:公开侧新工作。同一个命题做三遍——一张参考图自动生成三维场景,全部开源。">
     <div class="rise">
       <div class="ghost-num">03</div>
-      <h2 class="slide-title">世界模型 — 数据管线</h2>
-      <p class="divider-sub">批量白盒 → 程序化运镜 → 无损渲染 → 坐标转换 → 训练数据集,一条无人值守生产线。</p>
+      <h2 class="slide-title">AI PCG Scene</h2>
+      <p class="divider-sub">给一张参考图,自动生成一个三维场景——三条独立实现 + 方法论 + 白盒 Live,全部开源。</p>
     </div>
   </section>
 
-  <section class="slide content" data-label="数据采集管线" data-screen-label="16" data-speaker-notes="五阶段蓝图全部用编辑器内 Python 实现,不动 C++。对训练数据是硬要求的设置逐条固定:曝光、模糊、内参。">
-    <h2 class="slide-title">数据采集管线</h2>
+  <section class="slide content" data-label="单图到场景·三条路" data-screen-label="19" data-speaker-notes="三条互相独立的实现互相印证。线 1 与线 3 用同一张图同一批资产,可定量对比;线 2 用另一张图,只比方法结构。">
+    <h2 class="slide-title">单图到场景 — 三条路</h2>
     <div class="cols cols-3 rise">
       <div>
-        <p class="col-step">STAGE 1 · 2</p>
-        <h3>程序化运镜</h3>
-        <p>建筑群包围盒定轨道半径,地形刻意不并入(8 km 地形会把轨道推上天),相机高度下限对地形做射线检测;orbit / dolly / crane 轨迹模版按 job 随机;对焦与内参显式固定,位姿按轨迹参数解析重算,无采样误差。</p>
+        <p class="col-step">线 1 · UE5 资产库匹配</p>
+        <h3>AI 出提案,规则做裁决</h3>
+        <p>UE 5.5 内嵌 Python 前馈管线:感知标定 → 地面射线布局 → 材质氛围 → 资产库匹配与装配;阶段间只交换 JSON、可断点续跑;匹配不上的对象退化成代理盒而不是被丢掉。127 actors / 0 报错 / 21 库命中 + 9 代理盒。</p>
       </div>
       <div>
-        <p class="col-step">STAGE 3</p>
-        <h3>MRQ 无损渲染</h3>
-        <p>关运动模糊与自动曝光(否则亮度时序漂移)、空间采样抗锯齿替代 TAA 避免拖影;RGB 之外经后处理材质输出 32 位 EXR 深度与世界法线;逐帧位姿与内参写 cameras.json,作为数据真源。</p>
+        <p class="col-step">线 2 · three.js 程序化</p>
+        <h3>一张图长出一整类场景</h3>
+        <p>不匹配资产库:把画面拆成可生成的规则清单,几何与贴图全部在页面加载时由代码算出;同一份总平面数据被地面烘焙与三维摆放两处消费。44 897 构件 / 每帧 60 draw call,换个种子约 4 秒长出另一座。</p>
       </div>
       <div>
-        <p class="col-step">STAGE 4 · 5</p>
-        <h3>坐标转换与打包</h3>
-        <p>UE 左手系(厘米)变换到 OpenCV 相机约定(米),用合成已知位姿做单测;深度声明为沿光轴 z-depth 并换米;内参换算 K,可选逐像素 Plücker 光线;全部产物校验后按目录契约落盘。</p>
+        <p class="col-step">线 3 · Blender 度量闭环</p>
+        <h3>把「像不像」拆成可测量</h3>
+        <p>九轮「渲染 → 度量 → 定位病因 → 改」;相机由消失点解出后定死,并投影回原图逐点核对。边缘 F 0.260 → 0.650;与线 1 外参一比,地平线差 91 px——测量推翻感觉的过程按原样留档。</p>
       </div>
     </div>
-    <p class="chart-caption text-muted">rgb / depth / normal / cameras.json / capture_meta —— 目录 schema 即与世界模型侧的交付契约,DataLoader 按 [B,C,F,H,W] 直接组装。</p>
+    <p class="chart-caption text-muted">github.com/Seanwilliam2077/AI-PCG-Scene —— 代码、过程留档与交互文档全部开源。</p>
     <div class="page-foot" aria-hidden="true"></div>
   </section>
 
-  <section class="slide content" data-label="一键视频批产" data-screen-label="17" data-speaker-notes="M1 已活体验证:47.5 秒一个场景从生图到成片。动态容量按质检现算,拍满即切、拍够即停。">
-    <h2 class="slide-title">一键视频批产</h2>
-    <ul class="bullets dense rise">
-      <li>极简前端:浏览器输入 fps / 数量 / 时长(可选主题),后台自动跑完「LLM 组合 → 三图 → PCG 白盒 → 运镜渲染 → mp4 落盘」全链,实时进度与画廊</li>
-      <li>动态容量:每场景可产视频数由轨迹枚举 + 质检现算(上限可调),拍满即切下一场景,全局拍够目标即停,生图只为要用的场景付费</li>
-      <li>离屏无人值守实测通过(2026.07.22):48 帧 mp4 落盘、截图非黑,单场景全链 47.5 秒</li>
-      <li>Phase C 自动后处理:坐标转换、编码合入画廊、默认删帧回收磁盘;进度四文件原子落盘,前端轮询聚合</li>
-      <li>批处理稳态细节逐个踩平:启动参数引号与分号坑、状态机同帧重入护栏、限流退避与失败熔断</li>
+  <section class="slide content" data-label="方法论与白盒 Live" data-screen-label="20" data-speaker-notes="三条撞出来的经验抽成方法论:语义走模型,几何走算法。白盒 Live 全在浏览器本地跑,拖图即出白盒。">
+    <h2 class="slide-title">方法论与白盒 Live</h2>
+    <ul class="bullets rise">
+      <li>方法论只有一条贯穿判据:模型擅长说「这是什么」,不擅长说「这有多大、在哪里」——语义走模型,几何走算法</li>
+      <li>39 个资产模块的模型估计尺寸全部挤在 75 – 118 cm 一条带里,与实测毫无关系;踩塌的结论按原样写进正文</li>
+      <li>三条补召回策略贡献 49/70 检出;全部数据经脚本可复跑导出,不绑定本仓库代码</li>
+      <li>白盒 Live:LSD + RANSAC 解相机,深度以地面解析单应校成米制,按视差不连续切分体块,导出 GLB 直接进 DCC</li>
+      <li>推理与几何求解全部在浏览器本地完成,图片不上传;纯静态托管,打开即用</li>
     </ul>
     <div class="page-foot" aria-hidden="true"></div>
   </section>
 
-  <section class="slide divider" data-label="04 前沿探索" data-screen-label="18" data-speaker-notes="第四部分,简述:真实世界进引擎的另一半。细节见《探索下一代神经渲染》专题汇报。">
+  <section class="slide divider" data-label="04 前沿探索" data-screen-label="21" data-speaker-notes="第四部分,简述:真实世界进引擎的另一半。细节见《探索下一代神经渲染》专题汇报。">
     <div class="rise">
       <div class="ghost-num">04</div>
       <h2 class="slide-title">前沿探索</h2>
@@ -723,7 +783,7 @@ deck-stage { counter-reset: page; }
     </div>
   </section>
 
-  <section class="slide content" data-label="现实采集与 3DGS 重建" data-screen-label="19" data-speaker-notes="三段式:尽调、采集、重建集成。此处简述,细节在 FL 专题汇报终稿里。">
+  <section class="slide content" data-label="现实采集与 3DGS 重建" data-screen-label="22" data-speaker-notes="三段式:尽调、采集、重建集成。此处简述,细节在 FL 专题汇报终稿里。">
     <h2 class="slide-title">现实采集与 3DGS 重建</h2>
     <div class="cols cols-3 rise">
       <div>
@@ -746,41 +806,45 @@ deck-stage { counter-reset: page; }
     <div class="page-foot" aria-hidden="true"></div>
   </section>
 
-  <section class="slide content" data-label="里程碑" data-screen-label="20" data-speaker-notes="收束:三个月从单点节点到三条管线,下一步把数据规模化喂进世界模型训练闭环。">
+  <section class="slide content" data-label="里程碑" data-screen-label="23" data-speaker-notes="收束:三个月从单点节点到三条管线,数据采集并入白盒管线,PCG Scene 开源,下一步迭代 3DGS。">
     <h2 class="slide-title">三个月里程碑</h2>
     <figure class="rise">
-      <svg class="chart" viewBox="0 0 1632 260" role="img" aria-label="时间线:五月下旬白盒管线,六月 GeoGen 山体与植被,七月批量生产与视频批产,八月采集管线与数据集,下一步世界模型训练闭环">
+      <svg class="chart" viewBox="0 0 1632 260" role="img" aria-label="时间线:五月下旬白盒管线,六月 GeoGen 山体与植被,七月批量生产与视频批产,八月上旬数据采集并入白盒管线,八月下旬 AI PCG Scene 开源,下一步 3DGS 迭代">
       <line class="tl-line" x1="0" y1="104" x2="1632" y2="104"/>
       <text class="tl-date" x="0" y="68">05 月下</text>
-      <text class="tl-date" x="350" y="68">06 月</text>
-      <text class="tl-date" x="700" y="68">07 月</text>
-      <text class="tl-date-hi" x="1050" y="68">08 月</text>
+      <text class="tl-date" x="280" y="68">06 月</text>
+      <text class="tl-date" x="560" y="68">07 月</text>
+      <text class="tl-date" x="840" y="68">08 月上</text>
+      <text class="tl-date-hi" x="1120" y="68">08 月下</text>
       <text class="tl-date" x="1400" y="68">下一步</text>
       <circle class="tl-node" cx="8.75" cy="104" r="8"/>
-      <circle class="tl-node" cx="358.75" cy="104" r="8"/>
-      <circle class="tl-node" cx="708.75" cy="104" r="8"/>
-      <circle class="tl-node-hi" cx="1058" cy="104" r="8"/>
+      <circle class="tl-node" cx="288.75" cy="104" r="8"/>
+      <circle class="tl-node" cx="568.75" cy="104" r="8"/>
+      <circle class="tl-node" cx="848.75" cy="104" r="8"/>
+      <circle class="tl-node-hi" cx="1128" cy="104" r="8"/>
       <circle class="tl-node" cx="1408.75" cy="104" r="8"/>
       <text class="tl-label" x="0" y="170">白盒管线</text>
-      <text class="tl-label" x="350" y="170">GeoGen</text>
-      <text class="tl-label" x="700" y="170">批量生产</text>
-      <text class="tl-label" x="1050" y="170">数据采集</text>
-      <text class="tl-label" x="1400" y="170">训练闭环</text>
+      <text class="tl-label" x="280" y="170">GeoGen</text>
+      <text class="tl-label" x="560" y="170">批量生产</text>
+      <text class="tl-label" x="840" y="170">数据采集</text>
+      <text class="tl-label" x="1120" y="170">PCG Scene</text>
+      <text class="tl-label" x="1400" y="170">3DGS 迭代</text>
       <text x="0" y="234">节点图与无头化</text>
-      <text x="350" y="234">山体与植被两条路线</text>
-      <text x="700" y="234">夜跑批产·视频全链</text>
-      <text x="1050" y="234">数据集契约落盘</text>
-      <text x="1400" y="234">喂入世界模型迭代</text>
+      <text x="280" y="234">山体与植被两条路线</text>
+      <text x="560" y="234">夜跑批产·视频全链</text>
+      <text x="840" y="234">数据集契约,并入白盒</text>
+      <text x="1120" y="234">单图到场景·开源</text>
+      <text x="1400" y="234">曝光一致性·采集路径</text>
       </svg>
     </figure>
-    <p class="chart-caption text-muted">从单点节点到三条管线:白盒生产、地形生态、世界模型数据——下一步把数据规模化喂进世界模型,闭环出片质量。</p>
+    <p class="chart-caption text-muted">从单点节点到三条管线:白盒生产(含数据采集与视频批产)、地形生态、单图到场景端到端——下一步迭代 3DGS 重建质量。</p>
     <div class="page-foot" aria-hidden="true"></div>
   </section>
 
-  <section class="slide cover" data-label="结尾" data-screen-label="21" data-speaker-notes="致谢与提问。">
+  <section class="slide cover" data-label="结尾" data-screen-label="24" data-speaker-notes="致谢与提问。">
     <div class="rise">
       <h2 class="display">谢谢</h2>
-      <p class="cover-sub text-muted">AI PCG · 世界模型 · 神经渲染 — 欢迎提问。</p>
+      <p class="cover-sub text-muted">AI PCG · 场景生成 · 神经渲染 — 欢迎提问。</p>
     </div>
     <div class="pin-bottom meta"><span>SeanZJX</span><span>·</span><span>2026.08</span></div>
   </section>
