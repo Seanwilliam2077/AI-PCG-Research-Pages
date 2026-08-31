@@ -94,11 +94,25 @@
   .sl .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 11px; margin-top: 14px; }
   .sl .tile { border: 1px solid var(--line); border-radius: 10px; background: var(--panel);
     padding: 13px 6px 11px; text-align: center; }
-  .sl .tile b { display: block; font-family: var(--serif); font-size: 25px; font-weight: 600; line-height: 1.1; }
-  .sl .tile span { display: block; font-size: 13px; color: var(--muted); margin-top: 5px; }
+  .sl .tile img { display: block; width: 44px; height: 44px; object-fit: contain; margin: 0 auto; }
+  .sl .tile span { display: block; font-size: 13px; color: var(--muted); margin-top: 8px; }
   .sl .langs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 13px; }
   .sl .langs i { font-style: normal; border: 1px solid var(--line); border-radius: 999px;
     padding: 5px 13px; font-size: 14.5px; color: #c9c0ae; background: var(--panel-2); }
+  .sl .fig { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px;
+    border: 1px solid var(--line); margin-bottom: 14px; cursor: zoom-in; display: block; background: #0d0b07; }
+  .sl .cols.two .fig { aspect-ratio: 21/9; }
+  .sl .cols.media .col p { font-size: 19px; line-height: 1.68; }
+  .sl .cols.media .col h3 { font-size: 29px; }
+  .sl .cols.media .col .step { font-size: 15px; }
+  .sl .ph { display: flex; align-items: center; justify-content: center; text-align: center;
+    width: 100%; aspect-ratio: 21/7; border: 2px dashed color-mix(in srgb, var(--accent) 45%, transparent);
+    border-radius: 8px; color: var(--muted); font-size: 16.5px; line-height: 1.7; padding: 14px; margin-bottom: 14px; }
+  #lb { position: fixed; inset: 0; background: rgba(0,0,0,.9); display: none; flex-direction: column;
+    align-items: center; justify-content: center; gap: 12px; z-index: 60; cursor: zoom-out; }
+  #lb.on { display: flex; }
+  #lb img { max-width: 94vw; max-height: 88vh; border-radius: 6px; }
+  #lb p { color: var(--muted); font-size: 14px; }
   .sl .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 15px; color: var(--muted); }
   .sl .legend i { display: inline-block; width: 13px; height: 13px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
 
@@ -183,6 +197,7 @@
   <div id="prog"><i></i></div>
   <span>SeanZJXiao 肖子骏 · 2026.05.25 — 08.31 · 内部资料</span>
 </footer>
+<div id="lb"><img alt=""><p></p></div>
 <div id="tocMask"></div>
 <nav id="toc">
   <div class="th">目录 · CONTENTS</div>
@@ -202,12 +217,14 @@ const EXT = ' target="_blank" rel="noopener"';
 
 const SLIDES = [
 { label:"封面", html:`
-  <div class="sl" style="justify-content:center">
+  <div class="sl" style="align-items:center;justify-content:center;text-align:center">
     <p class="kick">Tencent Work Summary · 2026.05.25 — 08.31</p>
-    <h1>腾讯工作总结</h1>
-    <p class="lead" style="margin-top:30px;font-size:31px">AI PCG 工程管线 · 端到端网页 PCG 探索 · 3DGS 前沿探索</p>
-    <p class="lead" style="margin-top:18px;font-size:22px;color:var(--muted)">把「能跑通」的原型推进到「能生产」的管线 —— 每个部分都链有对应专题页,末页为可动手的算法演示与视频操作台。</p>
-    <div class="foot"><span>SeanZJXiao 肖子骏</span><span>·</span><span>内部资料</span><span style="margin-left:auto">→ 键开始</span></div>
+    <h1 style="font-size:110px;margin-top:6px">腾讯工作总结</h1>
+    <div style="width:130px;height:2px;background:var(--accent);margin:36px 0"></div>
+    <p class="lead" style="font-size:30px;color:#d6cdbb;max-width:none">AI PCG 工程管线 · 端到端网页 PCG 探索 · 3DGS 前沿探索</p>
+    <p class="lead" style="margin-top:18px;font-size:19.5px;color:var(--muted);max-width:46em">把「能跑通」的原型推进到「能生产」的管线 —— 每个部分都链有对应专题页,末页为可动手的算法演示与视频操作台。</p>
+    <p style="margin-top:48px;font-size:21px;color:#d6cdbb">SeanZJXiao 肖子骏 <span style="color:var(--muted);font-size:17px">· 内部资料</span></p>
+    <p style="margin-top:24px;font-size:15px;color:var(--muted)">→ 键翻页 · 右上「目录」跳转</p>
   </div>` },
 
 { label:"自我介绍", html:`
@@ -224,19 +241,23 @@ const SLIDES = [
       <div class="col"><p class="step">工作经历</p>
         <div class="ent"><b>腾讯</b><i>国内发行线 生态发展部 预研组</i><i>Cross Tech AI 引擎部 PCG 组 · 前沿实验室</i><em>2025.12 — 至今</em></div>
         <div class="ent"><b>西山居(金山)</b><i>《剑网 3》引擎部 QA 管线组</i><em>2023.07 — 2023.12</em></div>
+        <div class="ent"><b>毕马威 KPMG(中国)</b><i>软件工程师(实习)· 数据管理后台系统</i><em>2022.06 — 2022.09</em></div>
       </div>
       <div class="col"><p class="step">软件与技术栈</p>
         <div class="tiles">
-          <div class="tile"><b style="color:#e8e8e8">U</b><span>UE 5</span></div>
-          <div class="tile"><b style="color:#bfbfbf">Un</b><span>Unity</span></div>
-          <div class="tile"><b style="color:#f5792a">B</b><span>Blender</span></div>
-          <div class="tile"><b style="color:#ff4713">H</b><span>Houdini</span></div>
-          <div class="tile"><b style="color:#0696d7">M</b><span>Maya</span></div>
-          <div class="tile"><b style="color:#df3d1e">Sb</b><span>Substance</span></div>
-          <div class="tile"><b style="color:#ee4c2c">Pt</b><span>PyTorch</span></div>
-          <div class="tile"><b style="color:#a41e22">Vk</b><span>Vulkan</span></div>
+          <div class="tile"><img src="assets/icons/cplusplus.svg" alt="C++"><span>C++</span></div>
+          <div class="tile"><img src="assets/icons/csharp.svg" alt="C#"><span>C#</span></div>
+          <div class="tile"><img src="assets/icons/python.svg" alt="Python"><span>Python</span></div>
+          <div class="tile"><img src="assets/icons/nvidia.svg" alt="CUDA"><span>CUDA</span></div>
+          <div class="tile"><img src="assets/icons/vulkan.svg" alt="Vulkan"><span>Vulkan</span></div>
+          <div class="tile"><img src="assets/icons/pytorch.svg" alt="PyTorch"><span>PyTorch</span></div>
+          <div class="tile"><img src="assets/icons/unrealengine.svg" alt="Unreal Engine 5"><span>UE 5</span></div>
+          <div class="tile"><img src="assets/icons/unity.svg" alt="Unity"><span>Unity</span></div>
+          <div class="tile"><img src="assets/icons/houdini.svg" alt="Houdini"><span>Houdini</span></div>
+          <div class="tile"><img src="assets/icons/autodeskmaya.svg" alt="Maya"><span>Maya</span></div>
+          <div class="tile"><img src="assets/icons/blender.svg" alt="Blender"><span>Blender</span></div>
         </div>
-        <div class="langs"><i>C++</i><i>C#</i><i>Python</i><i>HLSL</i><i>CUDA</i><i>RenderDoc</i></div>
+        <div class="langs"><i>HLSL</i><i>Substance</i><i>RenderDoc</i></div>
       </div>
     </div>
     <div class="foot"><a class="chip" href="${L_PF}"${EXT}>完整作品集 · seanwilliam2077.github.io/SeanSiu_Portfolio ↗</a><a class="chip" href="${L_VG}"${EXT}>代表作 VortexGaussians ↗</a></div>
@@ -260,10 +281,10 @@ const SLIDES = [
     <p class="kick">01 · AI PCG 编辑器</p>
     <h2>白盒生成管线 — Create PCG Data</h2>
     <p class="lead">一张概念图进,一个可游走的白盒关卡出:「生图 — 矢量化 — 落地」三段数据流,全链可在无界面的编辑器进程里执行。</p>
-    <div class="cols">
-      <div class="col"><p class="step">① 生图</p><h3>三图供给</h3><p>文生图双通道产写实航拍、语义分块、灰度高度三图;提示词模板锁定 90° 正交顶视,支持笔刷蒙版 + 文字指令局部重绘。</p></div>
-      <div class="col"><p class="step">② 矢量化</p><h3>语义图 → 布局数据</h3><p>按语义色提取建筑 / 道路 / 植被 / 水体 / 边界轮廓;另有精度优先通路直接产内存布局文档;角色比例节点推算真实世界尺度。</p></div>
-      <div class="col"><p class="step">③ 落地</p><h3>Create PCG Data</h3><p>高度图写入 Landscape,布局数据生成街区、地块与建筑白盒;统一摆放节点生成植物、围墙与道路,地形与街区共用同一标定。</p></div>
+    <div class="cols media">
+      <div class="col"><img class="fig" src="assets/img/tri-photoreal.webp" alt="AI 生成的写实顶视图"><p class="step">① 生图</p><h3>三图供给</h3><p>文生图双通道产写实航拍、语义分块、灰度高度三图;提示词模板锁定 90° 正交顶视,支持笔刷蒙版 + 文字指令局部重绘。</p></div>
+      <div class="col"><img class="fig" src="assets/img/tri-semantic.webp" alt="六类语义分块图(后处理)"><p class="step">② 矢量化</p><h3>语义图 → 布局数据</h3><p>按语义色提取建筑 / 道路 / 植被 / 水体 / 边界轮廓;另有精度优先通路直接产内存布局文档;角色比例节点推算真实世界尺度。</p></div>
+      <div class="col"><img class="fig" src="assets/img/wm-whitebox.webp" alt="落地后的白盒场景渲染"><p class="step">③ 落地</p><h3>Create PCG Data</h3><p>高度图写入 Landscape,布局数据生成街区、地块与建筑白盒;统一摆放节点生成植物、围墙与道路,地形与街区共用同一标定。</p></div>
     </div>
     <div class="foot"><span>分帧执行 · 统一标定 · 失败隔离 · 统一摆放(贴地 / 陡坡 30° 禁植 / 崖边禁植)</span><a class="chip" style="margin-left:auto" href="${L_WB}"${EXT}>专题页:白盒生成管线 ↗</a></div>
   </div>` },
@@ -273,15 +294,21 @@ const SLIDES = [
     <p class="kick">01 · AI PCG 编辑器</p>
     <h2>BatchPCG — 无人值守批量</h2>
     <p class="lead">关键节点全部无头化(五个 Python 入口 + 重置与收敛轮询):维护一份 prompt 清单即可夜跑几百个场景。</p>
-    <table>
-      <thead><tr><th>产物</th><th>规格</th><th>说明</th></tr></thead>
-      <tbody>
-        <tr><td>生成图与布局</td><td class="num">3 图 + JSON</td><td>写实航拍 / 语义分块 / 高度图,布局文档随批落盘</td></tr>
-        <tr><td>地形文件</td><td class="num">r16 + 16-bit PNG</td><td>附世界尺寸与高度标定、UE Landscape 导入四参数</td></tr>
-        <tr><td>整景白模</td><td class="num">scene.obj</td><td>地形 / 地块 / 建筑 / 植物 / 围墙 / 道路六类分组</td></tr>
-        <tr><td>磁盘预算</td><td class="num">20 – 35 GB</td><td>300 job 夜跑总量(Low 档);语义纯度低于 0.90 告警</td></tr>
-      </tbody>
-    </table>
+    <div style="display:grid;grid-template-columns:1.05fr 1fr;gap:44px;margin-block:auto;align-items:start">
+      <table style="margin:0;font-size:19.5px">
+        <thead><tr><th>产物</th><th>规格</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td>生成图与布局</td><td class="num">3 图 + JSON</td><td>写实航拍 / 语义分块 / 高度图,布局文档随批落盘</td></tr>
+          <tr><td>地形文件</td><td class="num">r16 + 16-bit PNG</td><td>附世界尺寸与高度标定、UE Landscape 导入四参数</td></tr>
+          <tr><td>整景白模</td><td class="num">scene.obj</td><td>地形 / 地块 / 建筑 / 植物 / 围墙 / 道路六类分组</td></tr>
+          <tr><td>磁盘预算</td><td class="num">20 – 35 GB</td><td>300 job 夜跑总量(Low 档);语义纯度低于 0.90 告警</td></tr>
+        </tbody>
+      </table>
+      <div>
+        <img class="fig" style="aspect-ratio:16/8" src="assets/img/flow-overview.webp" alt="六步管线总览流程图">
+        <div class="ph" style="aspect-ratio:4/1">图片占位 — 待补:批产场景俯视截图 / report 汇总图</div>
+      </div>
+    </div>
     <div class="foot"><span>三阶段编排:云端生图 → 编辑器内状态机 → 汇总报告 · 每 25 job 重启编辑器 · 断点续跑 · 失败熔断 · 离屏真 GPU 渲染</span></div>
   </div>` },
 
@@ -290,20 +317,28 @@ const SLIDES = [
     <p class="kick">01 · AI PCG 编辑器</p>
     <h2>数据采集与视频批产</h2>
     <p class="lead">批量能力的延伸:白盒之上自动运镜、无损渲染、坐标转换,按数据集契约落盘——原为世界模型训练数据设计,该方向未采纳落地,能力沉淀回本管线。</p>
-    <div class="cols">
-      <div class="col"><p class="step">STAGE 1 · 2</p><h3>程序化运镜</h3><p>建筑群包围盒定轨道,orbit / dolly / crane 模版按 job 随机;内参与对焦显式固定,位姿按轨迹参数解析重算,无采样误差。</p></div>
-      <div class="col"><p class="step">STAGE 3</p><h3>MRQ 无损渲染</h3><p>固定曝光、关运动模糊、空间采样抗锯齿;RGB 之外输出 32 位深度与法线,逐帧位姿写入 cameras.json 作数据真源。</p></div>
-      <div class="col"><p class="step">STAGE 4 · 5</p><h3>坐标转换与打包</h3><p>UE 约定转 OpenCV 相机约定并以合成位姿单测;深度换米、内参换算 K;产物校验后按目录契约落盘,下游直接组装。</p></div>
+    <div class="cols media">
+      <div class="col"><img class="fig" src="assets/img/flow-camera.webp" alt="程序化运镜流程图"><p class="step">STAGE 1 · 2</p><h3>程序化运镜</h3><p>建筑群包围盒定轨道,orbit / dolly / crane 模版按 job 随机;内参与对焦显式固定,位姿按轨迹参数解析重算,无采样误差。</p></div>
+      <div class="col"><img class="fig" src="assets/img/flow-render.webp" alt="MRQ 渲染与编码流程图"><p class="step">STAGE 3</p><h3>MRQ 无损渲染</h3><p>固定曝光、关运动模糊、空间采样抗锯齿;RGB 之外输出 32 位深度与法线,逐帧位姿写入 cameras.json 作数据真源。</p></div>
+      <div class="col"><img class="fig" src="assets/img/flow-dataset.webp" alt="数据集契约与训练价值"><p class="step">STAGE 4 · 5</p><h3>坐标转换与打包</h3><p>UE 约定转 OpenCV 相机约定并以合成位姿单测;深度换米、内参换算 K;产物校验后按目录契约落盘,下游直接组装。</p></div>
     </div>
     <div class="foot"><span>rgb / depth / normal / cameras.json / capture_meta —— 目录 schema 即交付契约</span><a class="chip" style="margin-left:auto" href="${L_WM}"${EXT}>流程与视频 ↗</a></div>
   </div>` },
 
 { label:"47.5 s", html:`
-  <div class="sl" style="justify-content:center">
+  <div class="sl">
     <p class="kick">01 · AI PCG 编辑器</p>
-    <p class="heroN">47.5 s</p>
-    <p class="lead" style="margin-top:28px;font-size:27px">单场景「生图 → 白盒 → 运镜 → 成片」全链耗时——离屏无人值守实测(2026.07.22),48 帧 mp4 落盘、截图非黑,批产通道就此打通。</p>
-    <p class="lead" style="margin-top:16px;font-size:21px;color:var(--muted)">一键视频批产:浏览器输入 fps / 数量 / 时长即自动跑完全链;动态容量按质检现算,拍满即切、拍够即停。</p>
+    <div style="display:grid;grid-template-columns:1fr 640px;gap:60px;align-items:center;flex:1;min-height:0">
+      <div>
+        <p class="heroN" style="font-size:200px">47.5 s</p>
+        <p class="lead" style="margin-top:26px;font-size:25px">单场景「生图 → 白盒 → 运镜 → 成片」全链耗时——离屏无人值守实测(2026.07.22),48 帧 mp4 落盘、截图非黑,批产通道就此打通。</p>
+        <p class="lead" style="margin-top:14px;font-size:19.5px;color:var(--muted)">一键视频批产:浏览器输入 fps / 数量 / 时长即自动跑完全链;动态容量按质检现算,拍满即切、拍够即停。</p>
+      </div>
+      <div>
+        <video src="assets/wm-result.mp4" poster="assets/wm-result-poster.webp" controls preload="none" playsinline style="width:100%;aspect-ratio:16/9;border-radius:10px;border:1px solid var(--line);background:#000"></video>
+        <p style="margin-top:12px;font-size:15.5px;color:var(--muted)">白盒 → 视频成片(0:16,点击播放)· 完整 3:34 全流程录屏见末页操作台</p>
+      </div>
+    </div>
   </div>` },
 
 { label:"02 GeoGen · 山体", html:`
@@ -311,10 +346,10 @@ const SLIDES = [
     <p class="kick">02 · AI PCG 编辑器</p>
     <h2>GeoGen — 山体一键生成链</h2>
     <p class="lead">地形 / 蒙版 / 城市 / 工具四套面板收进一个编辑器模式;近中景与远景两条路线各持一套流水线节点,互不覆盖。</p>
-    <div class="cols">
-      <div class="col"><p class="step">STEP 1 · 环绕参考图</p><h3>AI 合成顶视</h3><p>多张参考图合成「中央平地、四周环山」俯视图;笔刷蒙版 + 文字指令局部重绘,未涂抹像素逐字节保真。</p></div>
-      <div class="col"><p class="step">STEP 2 · AI 高度图</p><h3>按海拔推理</h3><p>雪线读作高地、河谷读作最低;多图按生态特征排序,要求产出一块连续地形而非拼贴。</p></div>
-      <div class="col"><p class="step">STEP 3 · 侵蚀与蒙版</p><h3>沿冲刷纹理</h3><p>服务器侵蚀(1K 约 20 秒 / 2K 约 90 秒);生态蒙版刻意排在侵蚀后,沿真实冲刷纹理划分植被、岩石与积雪。</p></div>
+    <div class="cols media">
+      <div class="col"><img class="fig" src="assets/img/gg-ref.webp" alt="合成的环绕顶视参考图"><p class="step">STEP 1 · 环绕参考图</p><h3>AI 合成顶视</h3><p>多张参考图合成「中央平地、四周环山」俯视图;笔刷蒙版 + 文字指令局部重绘,未涂抹像素逐字节保真。</p></div>
+      <div class="col"><img class="fig" src="assets/img/gg-height.webp" alt="16-bit 高度图"><p class="step">STEP 2 · AI 高度图</p><h3>按海拔推理</h3><p>雪线读作高地、河谷读作最低;多图按生态特征排序,要求产出一块连续地形而非拼贴。</p></div>
+      <div class="col"><img class="fig" src="assets/img/gg-biome.webp" alt="生态分布蒙版"><p class="step">STEP 3 · 侵蚀与蒙版</p><h3>沿冲刷纹理</h3><p>服务器侵蚀(1K 约 20 秒 / 2K 约 90 秒);生态蒙版刻意排在侵蚀后,沿真实冲刷纹理划分植被、岩石与积雪。</p></div>
     </div>
     <div class="foot"><span>四步产物全是图片、零副作用可无限重来;写地形、放图章、交接 Genesis 都刻意留在链外。</span></div>
   </div>` },
@@ -323,10 +358,10 @@ const SLIDES = [
   <div class="sl">
     <p class="kick">02 · AI PCG 编辑器</p>
     <h2>GeoGen — 落地与植被</h2>
-    <div class="cols" style="margin-top:38px">
-      <div class="col"><p class="step">近中景落地</p><h3>面积直定</h3><p>地形面积由用户直接指定(上限 2500 km²),每格尺度现算,切分辨率档不漂移;边界包络坡角只削戳破处;交接 Genesis 按顶点数对齐导出。</p></div>
-      <div class="col"><p class="step">远景产物</p><h3>烘成网格</h3><p>默认烘成单一连续静态网格,移动旋转复制全是原生行为;「提取山峰」逐座抠峰散布地平线;同顶点数从 2 km 拉到 8 km,显存不变。</p></div>
-      <div class="col"><p class="step">植被生成</p><h3>生态分布图</h3><p>双来源各持独立结果;16 色蒙版一键导入 Genesis 为每层绑 PCG Graph;只跑 VegetationOnly、不改地形高度;贴地、陡坡 30° 与崖边禁植。</p></div>
+    <div class="cols media" style="margin-top:38px">
+      <div class="col"><img class="fig" src="assets/img/gg-terrain.webp" alt="一键生成的裸地形"><p class="step">近中景落地</p><h3>面积直定</h3><p>地形面积由用户直接指定(上限 2500 km²),每格尺度现算,切分辨率档不漂移;边界包络坡角只削戳破处;交接 Genesis 按顶点数对齐导出。</p></div>
+      <div class="col"><img class="fig" src="assets/img/gg-massing.webp" alt="地形体量与远景山"><p class="step">远景产物</p><h3>烘成网格</h3><p>默认烘成单一连续静态网格,移动旋转复制全是原生行为;「提取山峰」逐座抠峰散布地平线;同顶点数从 2 km 拉到 8 km,显存不变。</p></div>
+      <div class="col"><img class="fig" src="assets/img/gg-veg.webp" alt="黄昏植被落地成果"><p class="step">植被生成</p><h3>生态分布图</h3><p>双来源各持独立结果;16 色蒙版一键导入 Genesis 为每层绑 PCG Graph;只跑 VegetationOnly、不改地形高度;贴地、陡坡 30° 与崖边禁植。</p></div>
     </div>
     <div class="foot"><span>植被侧「只跑 VegetationOnly」与山体侧「只跑权重图章」互为镜像</span><a class="chip" style="margin-left:auto" href="${L_GG}"${EXT}>专题页:GeoGen 山脉与植被 ↗</a></div>
   </div>` },
@@ -336,10 +371,10 @@ const SLIDES = [
     <p class="kick">03 · 开源</p>
     <h2>AI PCG Scene — 单图到场景的端到端</h2>
     <p class="lead">同一个命题做三遍:给一张参考图,自动生成一个三维场景。三条互相独立的实现互相印证,全部开源。</p>
-    <div class="cols">
-      <div class="col"><p class="step">线 1 · UE5 资产库匹配</p><h3>AI 提案,规则裁决</h3><p>UE 5.5 内嵌 Python 前馈管线:标定 → 布局 → 材质 → 匹配装配;阶段间只交换 JSON、可断点续跑;失配退化代理盒。127 actors / 0 报错 / 21 库命中 + 9 代理盒。</p></div>
-      <div class="col"><p class="step">线 2 · three.js 程序化</p><h3>规则长出场景</h3><p>一张图拆成可生成的规则清单,几何与贴图全部运行时算出;同一份总平面被烘焙与摆放两处消费。44 897 构件 / 每帧 60 draw call,换个种子约 4 秒。</p></div>
-      <div class="col"><p class="step">线 3 · Blender 度量闭环</p><h3>像不像,可测量</h3><p>九轮「渲染 → 度量 → 定位病因 → 改」;消失点解相机、投影回原图逐点核对。边缘 F 0.260 → 0.650;与线 1 外参一比,地平线差 91 px。</p></div>
+    <div class="cols media">
+      <div class="col"><img class="fig" style="aspect-ratio:16/6" src="assets/img/sc-compare.webp" alt="参考图与 UE5 重建的并排对照"><p class="step">线 1 · UE5 资产库匹配</p><h3>AI 提案,规则裁决</h3><p>UE 5.5 内嵌 Python 前馈管线:标定 → 布局 → 材质 → 匹配装配;阶段间只交换 JSON、可断点续跑;失配退化代理盒。127 actors / 0 报错 / 21 库命中 + 9 代理盒。</p></div>
+      <div class="col"><img class="fig" style="aspect-ratio:16/6" src="assets/img/sc-fob.webp" alt="参考图与浏览器实时渲染对照"><p class="step">线 2 · three.js 程序化</p><h3>规则长出场景</h3><p>一张图拆成可生成的规则清单,几何与贴图全部运行时算出;同一份总平面被烘焙与摆放两处消费。44 897 构件 / 每帧 60 draw call,换个种子约 4 秒。</p></div>
+      <div class="col"><img class="fig" style="aspect-ratio:16/6" src="assets/img/sc-calib.webp" alt="房间线框与地平线投影回参考图核对"><p class="step">线 3 · Blender 度量闭环</p><h3>像不像,可测量</h3><p>九轮「渲染 → 度量 → 定位病因 → 改」;消失点解相机、投影回原图逐点核对。边缘 F 0.260 → 0.650;与线 1 外参一比,地平线差 91 px。</p></div>
     </div>
     <div class="foot"><span>三份交互文档:拖动对比 · 逐步播放 · 图上探针 · 参数滑块</span><a class="chip" style="margin-left:auto" href="${L_SC}"${EXT}>仓库:github.com/Seanwilliam2077/AI-PCG-Scene ↗</a></div>
   </div>` },
@@ -349,8 +384,8 @@ const SLIDES = [
     <p class="kick">03 · 开源</p>
     <h2>方法论与白盒 Live</h2>
     <div class="cols two" style="margin-top:38px">
-      <div class="col"><p class="step">方法论</p><h3>语义走模型,几何走算法</h3><p>贯穿判据只有一条:模型擅长说「这是什么」,不擅长说「这有多大、在哪里」。39 个资产模块的估计尺寸全部挤在 75 – 118 cm 一条带里,与实测毫无关系;踩塌的结论按原样写进正文,数据可一键复跑导出。</p></div>
-      <div class="col"><p class="step">白盒 Live</p><h3>拖图进浏览器,当场出白盒</h3><p>LSD + RANSAC 解相机,深度模型以地面解析单应校成米制,按视差不连续切分体块,导出 GLB 直接进 DCC。推理与几何求解全部在浏览器本地完成,图片不上传,打开即用。</p></div>
+      <div class="col"><img class="fig" src="assets/img/sc-scatter.webp" alt="39 个模块估计尺寸与实测散点图"><p class="step">方法论</p><h3>语义走模型,几何走算法</h3><p>贯穿判据只有一条:模型擅长说「这是什么」,不擅长说「这有多大、在哪里」。39 个资产模块的估计尺寸全部挤在 75 – 118 cm 一条带里,与实测毫无关系;踩塌的结论按原样写进正文,数据可一键复跑导出。</p></div>
+      <div class="col"><img class="fig" src="assets/img/sc-strip.webp" alt="输入图与解出的白盒及相机视锥"><p class="step">白盒 Live</p><h3>拖图进浏览器,当场出白盒</h3><p>LSD + RANSAC 解相机,深度模型以地面解析单应校成米制,按视差不连续切分体块,导出 GLB 直接进 DCC。推理与几何求解全部在浏览器本地完成,图片不上传,打开即用。</p></div>
     </div>
     <div class="foot"><span>三条补召回策略贡献 49/70 检出 · 39 模块实测最长边 75.0 – 117.8 cm</span><a class="chip" style="margin-left:auto" href="${L_WBL}"${EXT}>白盒 Live · 打开即用 ↗</a></div>
   </div>` },
@@ -361,8 +396,8 @@ const SLIDES = [
     <h2>3DGS — 游戏场景重建</h2>
     <p class="lead">沿烘焙 probe 点连线生成采集路径自动采数据,重建为编辑器内可查看的 3DGS 资产,并完成定制引擎的渲染集成验证;采集管线已迭代约 20 次。</p>
     <div class="cols two">
-      <div class="col"><p class="step">问题 1 · 曝光一致性</p><h3>HDR 统一后处理</h3><p>统一曝光让暗部死黑,自动曝光让同区域帧间不一致。思路:HDR 采集 → exposure 调整 → tone mapping 压缩动态范围 → gamma / sRGB 转换。</p></div>
-      <div class="col"><p class="step">问题 2 · 采集路径</p><h3>probe 后拉</h3><p>部分 probe 点离墙面过近影响重建;按 probe 特性把点整体向后拉,先采完暗区场景再统一对齐,预计还需几轮迭代。</p></div>
+      <div class="col"><div class="ph">图片占位 — 待补:暗区场景 3DGS 重建效果截图(统一曝光 vs 自动曝光对比)</div><p class="step">问题 1 · 曝光一致性</p><h3>HDR 统一后处理</h3><p>统一曝光让暗部死黑,自动曝光让同区域帧间不一致。思路:HDR 采集 → exposure 调整 → tone mapping 压缩动态范围 → gamma / sRGB 转换。</p></div>
+      <div class="col"><div class="ph">图片占位 — 待补:probe 采集路径示意图(后拉前 / 后拉后)</div><p class="step">问题 2 · 采集路径</p><h3>probe 后拉</h3><p>部分 probe 点离墙面过近影响重建;按 probe 特性把点整体向后拉,先采完暗区场景再统一对齐,预计还需几轮迭代。</p></div>
     </div>
     <div class="foot"><span>当前重建质量还不够好,瓶颈集中在这两处,仍在迭代。</span></div>
   </div>` },
@@ -373,9 +408,9 @@ const SLIDES = [
     <h2>VortexGaussians</h2>
     <p class="lead">首个以实时前向物理模拟生成火焰烟雾、并作为原生 3DGS 内容渲染的系统:涡粒子与 3D 高斯同为一种点基元——无体素化、无网格化、无模拟到渲染的转换。</p>
     <div class="cols">
-      <div class="col"><p class="step">统一基元</p><h3>粒子即高斯</h3><p>火焰与重建出的 3DGS 场景共享一个深度序,互相遮挡正确——烟雾能正确地绕过重建场景的梁柱。</p></div>
-      <div class="col"><p class="step">性能</p><h3>8.9 ms / 帧</h3><p>112 FPS,单文件 WebGL2 原型;模拟与渲染同帧完成,无离线烘焙。</p></div>
-      <div class="col"><p class="step">开放</p><h3>论文页 + Live Demo</h3><p>论文页、实时 Demo 与代码全部公开,浏览器直接跑。</p></div>
+      <div class="col"><img class="fig" src="assets/img/vg-flame.webp" alt="VortexGaussians 火焰题图"><p class="step">统一基元</p><h3>粒子即高斯</h3><p>火焰与重建出的 3DGS 场景共享一个深度序,互相遮挡正确——烟雾能正确地绕过重建场景的梁柱。</p></div>
+      <div class="col"><img class="fig" src="assets/img/vg-kitchen.webp" alt="厨房场景中的实时火焰"><p class="step">性能</p><h3>8.9 ms / 帧</h3><p>112 FPS,单文件 WebGL2 原型;模拟与渲染同帧完成,无离线烘焙。</p></div>
+      <div class="col"><img class="fig" src="assets/img/vg-occl.webp" alt="烟雾与重建场景的正确遮挡"><p class="step">开放</p><h3>论文页 + Live Demo</h3><p>论文页、实时 Demo 与代码全部公开,浏览器直接跑。</p></div>
     </div>
     <div class="foot"><a class="chip" style="margin-left:auto" href="${L_VG}"${EXT}>专题页:seanwilliam2077.github.io/VortexGaussians ↗</a></div>
   </div>` },
@@ -385,10 +420,10 @@ const SLIDES = [
     <p class="kick">05 · Summary</p>
     <h2>总结 — 三个月做了什么</h2>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px 40px;margin-top:26px">
-      <p style="font-size:20.5px;line-height:1.7;color:#c9c0ae;border-top:1px solid var(--line);padding-top:14px"><b style="color:var(--text)">白盒管线批产化。</b>一张概念图到可游走白盒,做到无人值守夜跑几百场景;数据采集与一键视频批产并入,单场景全链 47.5 s。</p>
-      <p style="font-size:20.5px;line-height:1.7;color:#c9c0ae;border-top:1px solid var(--line);padding-top:14px"><b style="color:var(--text)">GeoGen 补齐地形生态。</b>山体一键链(参考图 → 高度图 → 侵蚀 → 生态蒙版),近远景双路线互不覆盖,植被按 16 色分布图落地。</p>
-      <p style="font-size:20.5px;line-height:1.7;color:#c9c0ae;border-top:1px solid var(--line);padding-top:14px"><b style="color:var(--text)">AI PCG Scene 开源。</b>单图到场景的端到端做了三条独立实现互相印证,沉淀成方法论——语义走模型,几何走算法。</p>
-      <p style="font-size:20.5px;line-height:1.7;color:#c9c0ae;border-top:1px solid var(--line);padding-top:14px"><b style="color:var(--text)">3DGS 前沿起步。</b>游戏场景重建管线端到端跑通,曝光一致性与 probe 路径是下一步;VortexGaussians 公开发布。</p>
+      <div style="display:flex;gap:18px;border-top:1px solid var(--line);padding-top:14px;align-items:flex-start"><img class="fig" style="width:170px;aspect-ratio:16/10;margin:0;flex:none" src="assets/img/wm-whitebox.webp" alt="白盒场景"><p style="font-size:19.5px;line-height:1.66;color:#c9c0ae;margin:0"><b style="color:var(--text)">白盒管线批产化。</b>一张概念图到可游走白盒,做到无人值守夜跑几百场景;数据采集与一键视频批产并入,单场景全链 47.5 s。</p></div>
+      <div style="display:flex;gap:18px;border-top:1px solid var(--line);padding-top:14px;align-items:flex-start"><img class="fig" style="width:170px;aspect-ratio:16/10;margin:0;flex:none" src="assets/img/gg-veg.webp" alt="GeoGen 植被成果"><p style="font-size:19.5px;line-height:1.66;color:#c9c0ae;margin:0"><b style="color:var(--text)">GeoGen 补齐地形生态。</b>山体一键链(参考图 → 高度图 → 侵蚀 → 生态蒙版),近远景双路线互不覆盖,植被按 16 色分布图落地。</p></div>
+      <div style="display:flex;gap:18px;border-top:1px solid var(--line);padding-top:14px;align-items:flex-start"><img class="fig" style="width:170px;aspect-ratio:16/10;margin:0;flex:none" src="assets/img/sc-calib.webp" alt="线 3 标定核对"><p style="font-size:19.5px;line-height:1.66;color:#c9c0ae;margin:0"><b style="color:var(--text)">AI PCG Scene 开源。</b>单图到场景的端到端做了三条独立实现互相印证,沉淀成方法论——语义走模型,几何走算法。</p></div>
+      <div style="display:flex;gap:18px;border-top:1px solid var(--line);padding-top:14px;align-items:flex-start"><img class="fig" style="width:170px;aspect-ratio:16/10;margin:0;flex:none" src="assets/img/vg-flame.webp" alt="VortexGaussians"><p style="font-size:19.5px;line-height:1.66;color:#c9c0ae;margin:0"><b style="color:var(--text)">3DGS 前沿起步。</b>游戏场景重建管线端到端跑通,曝光一致性与 probe 路径是下一步;VortexGaussians 公开发布。</p></div>
     </div>
     <svg class="tl" viewBox="0 0 1440 250" style="margin-top:10px" role="img" aria-label="时间线:五月下旬白盒管线,六月 GeoGen,七月批量生产,八月上旬数据采集并入白盒管线,八月下旬 AI PCG Scene 开源,下一步 3DGS 迭代">
       <line x1="0" y1="92" x2="1440" y2="92"/>
@@ -667,6 +702,15 @@ function initDemo() {
   setTimeout(runDemo, 120); // fonts/layout settle; rAF may be throttled in hidden panes
 }
 addEventListener('resize', () => { if (cur === SLIDES.length - 1) runDemo(); });
+
+/* lightbox: click any .fig to zoom */
+const lb = document.getElementById('lb');
+document.addEventListener('click', e => {
+  if (e.target.closest('#lb')) { lb.classList.remove('on'); return; }
+  const f = e.target.closest('img.fig');
+  if (f) { lb.querySelector('img').src = f.src; lb.querySelector('p').textContent = f.alt || ''; lb.classList.add('on'); }
+});
+addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('on'); });
 
 const n0 = parseInt(location.hash.slice(1));
 show(n0 ? n0 - 1 : 0, false);
