@@ -108,6 +108,20 @@
   .sl .ph { display: flex; align-items: center; justify-content: center; text-align: center;
     width: 100%; aspect-ratio: 21/7; border: 2px dashed color-mix(in srgb, var(--accent) 45%, transparent);
     border-radius: 8px; color: var(--muted); font-size: 16.5px; line-height: 1.7; padding: 14px; margin-bottom: 14px; }
+  .cmp { position: relative; overflow: hidden; border-radius: 10px; border: 1px solid var(--line);
+    user-select: none; touch-action: none; cursor: ew-resize; background: #000; }
+  .cmp img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+  .cmp .bar { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: var(--accent); }
+  .cmp .knob { position: absolute; top: 50%; left: 0; transform: translate(-50%,-50%); width: 42px; height: 42px;
+    border-radius: 50%; background: var(--accent); color: #211803; display: flex; align-items: center;
+    justify-content: center; font-size: 19px; font-weight: 700; box-shadow: 0 2px 12px rgba(0,0,0,.55); }
+  .cmp .tag { position: absolute; top: 12px; padding: 6px 14px; background: rgba(0,0,0,.6);
+    border-radius: 6px; font-size: 14.5px; color: #ece5d8; }
+  .cmp .tagL { left: 12px; } .cmp .tagR { right: 12px; }
+  .sl button.st { background: var(--panel-2); color: #d6cdbb; border: 1px solid var(--line);
+    border-radius: 8px; padding: 8px 18px; font-size: 16px; cursor: pointer; font-family: inherit; }
+  .sl button.st.on { border-color: var(--accent); color: var(--accent); }
+  .sl button.st:hover { border-color: var(--accent); }
   #lb { position: fixed; inset: 0; background: rgba(0,0,0,.9); display: none; flex-direction: column;
     align-items: center; justify-content: center; gap: 12px; z-index: 60; cursor: zoom-out; }
   #lb.on { display: flex; }
@@ -291,18 +305,28 @@ const SLIDES = [
 { label:"01 白盒生成管线", html:`
   <div class="sl">
     <p class="kick">01 · AI PCG 编辑器</p>
-    <h2>白盒生成管线 — Create PCG Data</h2>
-    <p class="lead" style="font-size:23px">一张概念图进,一个可游走的白盒关卡出:「生图 — 矢量化 — 落地」三段数据流,全链可在无界面的编辑器进程里执行。</p>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-block:auto;padding-block:8px">
-      <div><img class="fig" style="aspect-ratio:1/1;margin-bottom:10px" src="assets/img/wb-photoreal.webp" alt="① 写实顶视图 — AI 生成的大坝小镇正交顶视"><p style="font-size:15.5px;color:var(--muted);text-align:center">① 写实顶视图</p></div>
-      <div><img class="fig" style="aspect-ratio:1/1;margin-bottom:10px" src="assets/img/wb-semantic.webp" alt="② 语义分块图 — 建筑/道路/植被/水体按色分块"><p style="font-size:15.5px;color:var(--muted);text-align:center">② 语义分块图</p></div>
-      <div><img class="fig" style="aspect-ratio:1/1;margin-bottom:10px" src="assets/img/wb-height.webp" alt="③ 高度图 — 峡谷与坝体的灰度海拔"><p style="font-size:15.5px;color:var(--muted);text-align:center">③ 高度图</p></div>
-      <div><img class="fig" style="aspect-ratio:1/1;margin-bottom:10px" src="assets/img/wb-massing.webp" alt="④ 白盒落地 — Landscape + 街区建筑白盒"><p style="font-size:15.5px;color:var(--muted);text-align:center">④ 白盒落地</p></div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:44px">
-      <p style="font-size:17.5px;line-height:1.62;color:#c9c0ae;border-top:1px solid var(--line);padding-top:12px"><b style="color:var(--accent);font-weight:600">生图。</b>文生图双通道产写实航拍、语义分块、灰度高度三图;提示词模板锁定 90° 正交顶视,支持笔刷蒙版 + 文字指令局部重绘。</p>
-      <p style="font-size:17.5px;line-height:1.62;color:#c9c0ae;border-top:1px solid var(--line);padding-top:12px"><b style="color:var(--accent);font-weight:600">矢量化。</b>按语义色提取建筑 / 道路 / 植被 / 水体轮廓,精度优先通路直接产内存布局文档;角色比例节点推算真实尺度。</p>
-      <p style="font-size:17.5px;line-height:1.62;color:#c9c0ae;border-top:1px solid var(--line);padding-top:12px"><b style="color:var(--accent);font-weight:600">落地。</b>高度图写入 Landscape,布局生成街区与建筑白盒;统一摆放节点生成植物、围墙与道路,地形街区共用同一标定。</p>
+    <h2 style="font-size:58px">白盒生成管线 — Create PCG Data</h2>
+    <div style="display:grid;grid-template-columns:520px 1fr;gap:52px;margin-block:auto;align-items:start">
+      <div>
+        <div class="cmp" id="cmp-wb" style="width:520px;height:520px">
+          <img class="a" src="assets/img/wb-photoreal.webp" alt="写实顶视原图">
+          <img class="b" src="assets/img/wb-semantic.webp" alt="对比图层">
+          <div class="bar"><div class="knob">⇄</div></div>
+          <span class="tag tagL">写实原图</span><span class="tag tagR" id="cmp-wb-tag">语义分块</span>
+        </div>
+        <div style="display:flex;gap:9px;margin-top:12px;align-items:center">
+          <span style="font-size:14px;color:var(--muted)">对比图层:</span>
+          <button class="st on" data-cmp="cmp-wb" data-src="assets/img/wb-semantic.webp" data-name="语义分块">语义分块</button>
+          <button class="st" data-cmp="cmp-wb" data-src="assets/img/wb-height.webp" data-name="高度估计">高度估计</button>
+          <button class="st" data-cmp="cmp-wb" data-src="assets/img/wb-massing.webp" data-name="白盒落地">白盒落地</button>
+        </div>
+      </div>
+      <div>
+        <p class="lead" style="font-size:21.5px;margin-bottom:20px">一张概念图进,一个可游走的白盒关卡出:「生图 — 矢量化 — 落地」三段数据流,全链可在无界面的编辑器进程里执行。拖动左侧分割线,对比同一场景的原图与各阶段产物。</p>
+        <p style="font-size:18px;line-height:1.66;color:#c9c0ae;border-top:1px solid var(--line);padding-top:13px"><b style="color:var(--accent);font-weight:600">生图。</b>文生图双通道产写实航拍、语义分块、灰度高度三图;提示词模板锁定 90° 正交顶视,支持笔刷蒙版 + 文字指令局部重绘。</p>
+        <p style="font-size:18px;line-height:1.66;color:#c9c0ae;border-top:1px solid var(--line);padding-top:13px;margin-top:13px"><b style="color:var(--accent);font-weight:600">矢量化。</b>按语义色提取建筑 / 道路 / 植被 / 水体轮廓,精度优先通路直接产内存布局文档;角色比例节点推算真实尺度。</p>
+        <p style="font-size:18px;line-height:1.66;color:#c9c0ae;border-top:1px solid var(--line);padding-top:13px;margin-top:13px"><b style="color:var(--accent);font-weight:600">落地。</b>高度图写入 Landscape,布局生成街区与建筑白盒;统一摆放节点生成植物、围墙与道路,地形街区共用同一标定。</p>
+      </div>
     </div>
     <div class="foot"><span>分帧执行 · 统一标定 · 失败隔离 · 统一摆放</span><a class="chip" style="margin-left:auto" href="${L_WB}"${EXT}>专题页:白盒生成管线 ↗</a></div>
   </div>` },
@@ -363,14 +387,29 @@ const SLIDES = [
 { label:"02 GeoGen · 山体", html:`
   <div class="sl">
     <p class="kick">02 · AI PCG 编辑器</p>
-    <h2>GeoGen — 山体一键生成链</h2>
-    <p class="lead">地形 / 蒙版 / 城市 / 工具四套面板收进一个编辑器模式;近中景与远景两条路线各持一套流水线节点,互不覆盖。</p>
-    <div class="cols media">
-      <div class="col"><img class="fig" src="assets/img/gg-ref.webp" alt="合成的环绕顶视参考图"><p class="step">STEP 1 · 环绕参考图</p><h3>AI 合成顶视</h3><p>多张参考图合成「中央平地、四周环山」俯视图;笔刷蒙版 + 文字指令局部重绘,未涂抹像素逐字节保真。</p></div>
-      <div class="col"><img class="fig" src="assets/img/gg-height.webp" alt="16-bit 高度图"><p class="step">STEP 2 · AI 高度图</p><h3>按海拔推理</h3><p>雪线读作高地、河谷读作最低;多图按生态特征排序,要求产出一块连续地形而非拼贴。</p></div>
-      <div class="col"><img class="fig" src="assets/img/gg-biome.webp" alt="生态分布蒙版"><p class="step">STEP 3 · 侵蚀与蒙版</p><h3>沿冲刷纹理</h3><p>服务器侵蚀(1K 约 20 秒 / 2K 约 90 秒);生态蒙版刻意排在侵蚀后,沿真实冲刷纹理划分植被、岩石与积雪。</p></div>
+    <h2 style="font-size:58px">GeoGen — 山体一键生成链</h2>
+    <div style="display:grid;grid-template-columns:520px 1fr;gap:52px;margin-block:auto;align-items:start">
+      <div>
+        <div class="cmp" id="cmp-gg" style="width:520px;height:520px">
+          <img class="a" src="assets/img/gg-ref.webp" alt="环绕顶视参考图">
+          <img class="b" src="assets/img/gg-height.webp" alt="对比图层">
+          <div class="bar"><div class="knob">⇄</div></div>
+          <span class="tag tagL">环绕参考图</span><span class="tag tagR" id="cmp-gg-tag">高度估计</span>
+        </div>
+        <div style="display:flex;gap:9px;margin-top:12px;align-items:center">
+          <span style="font-size:14px;color:var(--muted)">对比图层:</span>
+          <button class="st on" data-cmp="cmp-gg" data-src="assets/img/gg-height.webp" data-name="高度估计">高度估计</button>
+          <button class="st" data-cmp="cmp-gg" data-src="assets/img/gg-biome.webp" data-name="生态分布图">生态分布图</button>
+        </div>
+      </div>
+      <div>
+        <p class="lead" style="font-size:21.5px;margin-bottom:20px">地形 / 蒙版 / 城市 / 工具四套面板收进一个编辑器模式;近中景与远景两条路线各持一套流水线节点,互不覆盖。拖动分割线,对比参考图与推理出的高度、生态。</p>
+        <p style="font-size:18px;line-height:1.66;color:#c9c0ae;border-top:1px solid var(--line);padding-top:13px"><b style="color:var(--accent);font-weight:600">环绕参考图。</b>多张参考图 AI 合成「中央平地、四周环山」俯视图;笔刷蒙版 + 文字指令局部重绘,未涂抹像素逐字节保真。</p>
+        <p style="font-size:18px;line-height:1.66;color:#c9c0ae;border-top:1px solid var(--line);padding-top:13px;margin-top:13px"><b style="color:var(--accent);font-weight:600">AI 高度图。</b>让图像模型按海拔推理成图:雪线读作高地、河谷读作最低;多图按生态特征排序,产出连续地形而非拼贴。</p>
+        <p style="font-size:18px;line-height:1.66;color:#c9c0ae;border-top:1px solid var(--line);padding-top:13px;margin-top:13px"><b style="color:var(--accent);font-weight:600">侵蚀与生态蒙版。</b>服务器侵蚀(1K 约 20 秒 / 2K 约 90 秒);生态蒙版排在侵蚀后,沿真实冲刷纹理划分植被、岩石与积雪。</p>
+      </div>
     </div>
-    <div class="foot"><span>四步产物全是图片、零副作用可无限重来;写地形、放图章、交接 Genesis 都刻意留在链外。</span></div>
+    <div class="foot"><span>四步产物全是图片、零副作用可无限重来</span><a class="chip" style="margin-left:auto" href="${L_GG}"${EXT}>专题页:GeoGen 山脉与植被 ↗</a></div>
   </div>` },
 
 { label:"GeoGen · 落地与植被", html:`
@@ -391,9 +430,9 @@ const SLIDES = [
     <h2>AI PCG Scene — 单图到场景的端到端</h2>
     <p class="lead">同一个命题做三遍:给一张参考图,自动生成一个三维场景。三条互相独立的实现互相印证,全部开源。</p>
     <div class="cols media">
-      <div class="col"><img class="fig" style="aspect-ratio:16/6" src="assets/img/sc-compare.webp" alt="参考图与 UE5 重建的并排对照"><p class="step">线 1 · UE5 资产库匹配</p><h3>AI 提案,规则裁决</h3><p>UE 5.5 内嵌 Python 前馈管线:标定 → 布局 → 材质 → 匹配装配;阶段间只交换 JSON、可断点续跑;失配退化代理盒。127 actors / 0 报错 / 21 库命中 + 9 代理盒。</p></div>
-      <div class="col"><img class="fig" style="aspect-ratio:16/6" src="assets/img/sc-fob.webp" alt="参考图与浏览器实时渲染对照"><p class="step">线 2 · three.js 程序化</p><h3>规则长出场景</h3><p>一张图拆成可生成的规则清单,几何与贴图全部运行时算出;同一份总平面被烘焙与摆放两处消费。44 897 构件 / 每帧 60 draw call,换个种子约 4 秒。</p></div>
-      <div class="col"><img class="fig" style="aspect-ratio:16/6" src="assets/img/sc-calib.webp" alt="房间线框与地平线投影回参考图核对"><p class="step">线 3 · Blender 度量闭环</p><h3>像不像,可测量</h3><p>九轮「渲染 → 度量 → 定位病因 → 改」;消失点解相机、投影回原图逐点核对。边缘 F 0.260 → 0.650;与线 1 外参一比,地平线差 91 px。</p></div>
+      <div class="col"><img class="fig" style="aspect-ratio:16/7" src="assets/img/sc-endpoints.webp" alt="两个终点 — 参考图与 Blender Cycles 重建并排(166 物体 · 480 spp)"><p class="step">线 1 · UE5 资产库匹配</p><h3>AI 提案,规则裁决</h3><p>UE 5.5 内嵌 Python 前馈管线:标定 → 布局 → 材质 → 匹配装配;阶段间只交换 JSON、可断点续跑;失配退化代理盒。127 actors / 0 报错 / 21 库命中 + 9 代理盒。</p></div>
+      <div class="col"><img class="fig" style="aspect-ratio:16/7" src="assets/img/sc-assetlib.webp" alt="39 模块资产库总览 — 实测最长边全落在 75–118 cm 一条带"><p class="step">线 2 · three.js 程序化</p><h3>规则长出场景</h3><p>一张图拆成可生成的规则清单,几何与贴图全部运行时算出;同一份总平面被烘焙与摆放两处消费。44 897 构件 / 每帧 60 draw call,换个种子约 4 秒。</p></div>
+      <div class="col"><img class="fig" style="aspect-ratio:16/7" src="assets/img/sc-layout.webp" alt="解出的实例包围盒回投参考图 — 实例名:模块号 · 32 instances"><p class="step">线 3 · Blender 度量闭环</p><h3>像不像,可测量</h3><p>九轮「渲染 → 度量 → 定位病因 → 改」;消失点解相机、投影回原图逐点核对。边缘 F 0.260 → 0.650;与线 1 外参一比,地平线差 91 px。</p></div>
     </div>
     <div class="foot"><span>三份交互文档:拖动对比 · 逐步播放 · 图上探针 · 参数滑块</span><a class="chip" style="margin-left:auto" href="${L_SC}"${EXT}>仓库:github.com/Seanwilliam2077/AI-PCG-Scene ↗</a></div>
   </div>` },
@@ -543,6 +582,7 @@ function show(i, push) {
   document.title = '腾讯工作总结 · 第 ' + (i + 1) + '/' + SLIDES.length + ' 页';
   if (push !== false) history.replaceState(null, '', '#' + (i + 1));
   fit();
+  initCmps();
   if (i === SLIDES.length - 1) initDemo();
 }
 document.getElementById('btnPrev').addEventListener('click', () => show(cur - 1));
@@ -721,6 +761,27 @@ function initDemo() {
   setTimeout(runDemo, 120); // fonts/layout settle; rAF may be throttled in hidden panes
 }
 addEventListener('resize', () => { if (cur === SLIDES.length - 1) runDemo(); });
+
+/* compare sliders (参考 geogen.html 的划拉对比) */
+function initCmps() {
+  cv.querySelectorAll('.cmp').forEach(c => {
+    const b = c.querySelector('img.b'), bar = c.querySelector('.bar');
+    const setF = f => { f = Math.max(0.03, Math.min(0.97, f));
+      b.style.clipPath = 'inset(0 0 0 ' + (f * 100) + '%)'; bar.style.left = (f * 100) + '%'; };
+    setF(0.5);
+    const move = e => { const r = c.getBoundingClientRect(); setF((e.clientX - r.left) / r.width); };
+    c.addEventListener('pointerdown', e => { c.setPointerCapture(e.pointerId); move(e); });
+    c.addEventListener('pointermove', e => { if (e.buttons) move(e); });
+  });
+  cv.querySelectorAll('button[data-cmp]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const c = document.getElementById(btn.dataset.cmp);
+      c.querySelector('img.b').src = btn.dataset.src;
+      c.querySelector('.tagR').textContent = btn.dataset.name;
+      btn.parentElement.querySelectorAll('button[data-cmp]').forEach(x => x.classList.toggle('on', x === btn));
+    });
+  });
+}
 
 /* lightbox: click any .fig to zoom */
 const lb = document.getElementById('lb');
