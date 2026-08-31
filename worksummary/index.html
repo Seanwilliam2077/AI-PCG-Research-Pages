@@ -437,15 +437,40 @@ const SLIDES = [
     <div class="foot"><span>三份交互文档:拖动对比 · 逐步播放 · 图上探针 · 参数滑块</span><a class="chip" style="margin-left:auto" href="${L_SC}"${EXT}>仓库:github.com/Seanwilliam2077/AI-PCG-Scene ↗</a></div>
   </div>` },
 
-{ label:"方法论与白盒 Live", html:`
-  <div class="sl">
-    <p class="kick">03 · 开源</p>
-    <h2>方法论与白盒 Live</h2>
-    <div class="cols two" style="margin-top:38px">
-      <div class="col"><img class="fig" src="assets/img/sc-scatter.webp" alt="39 个模块估计尺寸与实测散点图"><p class="step">方法论</p><h3>语义走模型,几何走算法</h3><p>贯穿判据只有一条:模型擅长说「这是什么」,不擅长说「这有多大、在哪里」。39 个资产模块的估计尺寸全部挤在 75 – 118 cm 一条带里,与实测毫无关系;踩塌的结论按原样写进正文,数据可一键复跑导出。</p></div>
-      <div class="col"><img class="fig" src="assets/img/sc-strip.webp" alt="输入图与解出的白盒及相机视锥"><p class="step">白盒 Live</p><h3>拖图进浏览器,当场出白盒</h3><p>LSD + RANSAC 解相机,深度模型以地面解析单应校成米制,按视差不连续切分体块,导出 GLB 直接进 DCC。推理与几何求解全部在浏览器本地完成,图片不上传,打开即用。</p></div>
+{ label:"方法论总图", html:`
+  <div class="sl" style="padding:46px 76px 40px">
+    <p class="kick" style="margin-bottom:8px">03 · 开源 · 方法论</p>
+    <h2 style="font-size:46px;margin-bottom:12px">模型很会说「这是什么」,很不会说「有多大、在哪里」</h2>
+    <p style="font-size:19px;color:#c9c0ae;margin-bottom:16px">所以:语义交给模型,几何交给确定性算法;模型给出的几何量只当提示 —— 拿不到它,管线也必须照样出结果。</p>
+    <div style="display:flex;flex-direction:column;gap:12px;flex:1;min-height:0;justify-content:space-evenly">
+      <div style="border:1.5px dashed #5a9fd6;border-radius:10px;padding:14px 18px 16px">
+        <p style="font-size:16px;letter-spacing:.08em;color:#7db8e8;margin-bottom:9px"><b>语义层 · 交给模型</b>　类别 · 支撑关系 · 文字 · 材质倾向 —— 输出只当提示,不进关键路径</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
+          <p style="font-size:15.5px;line-height:1.6;color:#c2b9a8"><b style="color:#ece5d8">单遍欠召回是结构性的。</b>同一份提示词只换 crop 跑四遍召回:整图 21 个,另外三遍补 49 个 = 70;这种漏,调提示词补不回来。</p>
+          <p style="font-size:15.5px;line-height:1.6;color:#c2b9a8"><b style="color:#ece5d8">模型报的尺寸只当交叉校验。</b>语义字段人核对过就冻结;模型估的尺寸不参与任何缩放,偏差 > 2 倍只打标记 —— 39 个模块里 25 个中招。</p>
+          <p style="font-size:15.5px;line-height:1.6;color:#c2b9a8"><b style="color:#ece5d8">模型的位姿输出只做旁证。</b>九自由度三维盒只给偏航一条交叉证据;让模型写解算器,不要让它看图报数:当估计器用误差 ±30–50%。</p>
+        </div>
+      </div>
+      <div style="border:1.5px solid #4fbf7f;border-radius:10px;padding:14px 18px 16px">
+        <p style="font-size:16px;letter-spacing:.08em;color:#6fd39a;margin-bottom:9px"><b>几何层 · 交给确定性算法</b>　尺度 · 位置 · 姿态 —— 这是主干,这条链上不出现模型;可解的几何量不交给模型估</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
+          <p style="font-size:15.5px;line-height:1.6;color:#c2b9a8"><b style="color:#ece5d8">框的取舍靠坐标判据,不靠模型。</b>碰人工切缝的框丢弃,碰真实图边的保留并打「被裁断」标记;前提是重叠带宽于最大跨缝物体。</p>
+          <p style="font-size:15.5px;line-height:1.6;color:#c2b9a8"><b style="color:#ece5d8">几何字段永远从实测覆盖。</b>注册表不可信,实测才是裁判:矮桌变体实测顶面比模型低 35 cm,桌上的东西整批悬空。</p>
+          <p style="font-size:15.5px;line-height:1.6;color:#c2b9a8"><b style="color:#ece5d8">位姿是「解 + 验」,不是「估」。</b>像素 → 射线 → 与声明的支撑面求交 → 米;换 DCC 改的只是搬运层六件事(手性 / 单位 / 上轴 / 枢轴 / 欧拉序 / FOV 轴)。</p>
+        </div>
+      </div>
+      <div style="border:1.5px solid var(--accent);border-radius:10px;padding:14px 18px 16px">
+        <p style="font-size:16px;letter-spacing:.08em;color:var(--accent);margin-bottom:9px"><b>闸门 · 不通过就退回</b>　并把拒收理由记下来 —— 这是这套方法与「一路前馈」的全部区别</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px">
+          <p style="font-size:15px;line-height:1.55;color:#c2b9a8"><b style="color:#ece5d8">① 受理窗口。</b>hfov 出 [30°,120°] 拒收,出 (35°,110°) 置信 ×0.2;同一张参考图上真的解出过 15° 和 155°。</p>
+          <p style="font-size:15px;line-height:1.55;color:#c2b9a8"><b style="color:#ece5d8">② 一致性检查。</b>几个已知高度的物体各自反解机高,取 MAD/median;它只说至少有一个错了 —— 线 1 记了 0.35,照样交付。</p>
+          <p style="font-size:15px;line-height:1.55;color:#c2b9a8"><b style="color:#ece5d8">③ 余量门。</b>dD/dpx = h·f / margin²:余量 273 px 解 1.4 m、38 px 解 9.7 m,同一像素误差在两端差 50 倍。</p>
+          <p style="font-size:15px;line-height:1.55;color:#c2b9a8"><b style="color:#ece5d8">④ 重投影核对。</b>把解算结果画回参考图,点阵双向投影验渲染器与投影器一致;唯一能抓到全局系统性偏移的手段。</p>
+        </div>
+        <p style="font-size:14.5px;color:var(--accent);margin-top:8px">任一闸门不过 → 退回上一步重解,而不是带着一个自洽但错误的解继续往下走</p>
+      </div>
     </div>
-    <div class="foot"><span>三条补召回策略贡献 49/70 检出 · 39 模块实测最长边 75.0 – 117.8 cm</span><a class="chip" style="margin-left:auto" href="${L_WBL}"${EXT}>白盒 Live · 打开即用 ↗</a></div>
+    <div class="foot" style="margin-top:16px"><span>三条实现撞出来的通用做法,不绑定本仓库代码 · 数据可一键复跑导出</span><a class="chip" style="margin-left:auto" href="${L_SCP}"${EXT}>交互文档 ↗</a><a class="chip" href="${L_WBL}"${EXT}>白盒 Live ↗</a></div>
   </div>` },
 
 { label:"04 3DGS 场景重建", html:`
