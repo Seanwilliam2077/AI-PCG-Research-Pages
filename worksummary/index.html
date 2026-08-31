@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
-<title>工作总结 — SeanZJX · 2026.05–08</title>
+<title>腾讯工作总结 — 肖子骏 · 2026.05–08</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
@@ -36,97 +36,88 @@
   button.ctl:disabled { opacity: .35; cursor: default; }
   main { flex: 1 1 auto; display: flex; min-height: 0; }
   #stageWrap { flex: 1 1 auto; min-width: 0; display: flex; align-items: center;
-    justify-content: center; padding: 20px; overflow: auto; }
-  #stage { position: relative; width: min(100%, calc((100vh - 170px) * 16 / 9));
+    justify-content: center; padding: 14px; overflow: auto; }
+  #stage { position: relative; width: min(100%, calc((100vh - 118px) * 16 / 9));
     aspect-ratio: 16 / 9; background: #16130c; border-radius: var(--radius);
     box-shadow: 0 18px 50px rgba(0,0,0,.55); overflow: hidden; border: 1px solid var(--line); }
   #cv { position: absolute; left: 0; top: 0; width: 1600px; height: 900px;
     transform-origin: 0 0; }
 
   /* ── slide typography (authored at 1600×900) ── */
-  .sl { position: absolute; inset: 0; padding: 72px 88px 60px; display: flex; flex-direction: column; }
-  .sl .kick { font-size: 17px; letter-spacing: .22em; color: var(--accent); text-transform: uppercase;
-    font-variant-numeric: tabular-nums; margin-bottom: 18px; }
-  .sl h1 { font-family: var(--serif); font-weight: 400; font-size: 104px; line-height: 1.15; letter-spacing: .01em; }
-  .sl h2 { font-family: var(--serif); font-weight: 400; font-size: 54px; line-height: 1.2; margin-bottom: 14px; }
-  .sl .lead { font-size: 21.5px; line-height: 1.75; color: #cfc6b4; max-width: 62em; }
-  .sl .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 44px; margin-top: 44px; }
-  .sl .cols.two { grid-template-columns: 1fr 1fr; gap: 56px; }
-  .sl .cols.four { grid-template-columns: repeat(4, 1fr); gap: 32px; }
-  .sl .col { border-top: 1px solid var(--line); padding-top: 18px; }
-  .sl .col .step { font-size: 14.5px; letter-spacing: .12em; color: var(--accent); margin-bottom: 10px; }
-  .sl .col h3 { font-family: var(--serif); font-weight: 600; font-size: 27px; margin-bottom: 10px; }
-  .sl .col p { font-size: 17.5px; line-height: 1.72; color: #c9c0ae; text-align: justify; }
-  .sl ul.big { margin-top: 36px; list-style: none; }
-  .sl ul.big li { font-size: 21px; line-height: 1.65; padding: 15px 0 15px 34px; position: relative;
+  .sl { position: absolute; inset: 0; padding: 60px 84px 52px; display: flex; flex-direction: column; }
+  .sl .kick { font-size: 18px; letter-spacing: .22em; color: var(--accent); text-transform: uppercase;
+    font-variant-numeric: tabular-nums; margin-bottom: 16px; }
+  .sl h1 { font-family: var(--serif); font-weight: 400; font-size: 132px; line-height: 1.12; letter-spacing: .01em; }
+  .sl h2 { font-family: var(--serif); font-weight: 400; font-size: 68px; line-height: 1.18; margin-bottom: 18px; }
+  .sl .lead { font-size: 26.5px; line-height: 1.74; color: #cfc6b4; max-width: 60em; }
+  .sl .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 52px; margin-top: 46px; margin-block: auto; padding-block: 12px; }
+  .sl .cols.two { grid-template-columns: 1fr 1fr; gap: 64px; }
+  .sl .col { border-top: 1px solid var(--line); padding-top: 20px; }
+  .sl .col .step { font-size: 16.5px; letter-spacing: .12em; color: var(--accent); margin-bottom: 10px; }
+  .sl .col h3 { font-family: var(--serif); font-weight: 600; font-size: 33px; margin-bottom: 12px; }
+  .sl .col p { font-size: 21.5px; line-height: 1.78; color: #c9c0ae; text-align: justify; }
+  .sl ul.big { margin-top: 36px; margin-block: auto; list-style: none; }
+  .sl ul.big li { font-size: 26px; line-height: 1.65; padding: 16px 0 16px 36px; position: relative;
     border-bottom: 1px solid var(--line); color: #d6cdbb; }
   .sl ul.big li::before { content: "▸"; position: absolute; left: 2px; color: var(--accent); }
-  .sl .foot { margin-top: auto; display: flex; gap: 22px; align-items: baseline;
-    font-size: 15px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .sl .foot { margin-top: 24px; display: flex; gap: 22px; align-items: center;
+    font-size: 16.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
   .sl .chip { display: inline-block; border: 1px solid var(--line); border-radius: 999px;
-    padding: 9px 20px; font-size: 16px; color: var(--accent); background: var(--panel-2); }
+    padding: 10px 22px; font-size: 17px; color: var(--accent); background: var(--panel-2);
+    text-decoration: none; transition: border-color .15s; }
+  .sl a.chip:hover { border-color: var(--accent); }
   .sl a { color: var(--accent-2); text-decoration: none; }
   .sl a:hover { text-decoration: underline; text-underline-offset: 3px; }
-  .sl table { border-collapse: collapse; margin-top: 30px; font-size: 17.5px; width: 100%; }
-  .sl th { text-align: left; font-weight: 600; color: var(--muted); font-size: 15px; letter-spacing: .08em;
-    padding: 10px 18px 10px 0; border-bottom: 1px solid var(--line); }
-  .sl td { padding: 12px 18px 12px 0; border-bottom: 1px solid var(--line); color: #cfc6b4; vertical-align: top; }
+  .sl a.chip { color: var(--accent); }
+  .sl a.chip:hover { text-decoration: none; }
+  .sl table { border-collapse: collapse; margin-top: 28px; margin-block: auto; font-size: 21px; width: 100%; }
+  .sl th { text-align: left; font-weight: 600; color: var(--muted); font-size: 16px; letter-spacing: .08em;
+    padding: 11px 18px 11px 0; border-bottom: 1px solid var(--line); }
+  .sl td { padding: 15px 18px 15px 0; border-bottom: 1px solid var(--line); color: #cfc6b4; vertical-align: top; }
   .sl td.num { white-space: nowrap; color: var(--accent); font-variant-numeric: tabular-nums; }
-  .sl .heroN { font-family: var(--serif); font-size: 240px; line-height: 1; color: var(--accent);
+  .sl .heroN { font-family: var(--serif); font-size: 270px; line-height: 1; color: var(--accent);
     font-variant-numeric: tabular-nums; }
-  .sl .tl text { fill: #c9c0ae; font-size: 19px; font-family: var(--sans); }
-  .sl .tl .d { fill: var(--muted); font-size: 17px; letter-spacing: .08em; }
+  .sl .tl { margin-block: auto; }
+  .sl .tl text { fill: #c9c0ae; font-size: 23px; font-family: var(--sans); }
+  .sl .tl .d { fill: var(--muted); font-size: 19px; letter-spacing: .08em; }
   .sl .tl .d.hi { fill: var(--accent); }
-  .sl .tl .lb { fill: var(--text); font-size: 24px; font-family: var(--serif); }
+  .sl .tl .lb { fill: var(--text); font-size: 29px; font-family: var(--serif); }
   .sl .tl line { stroke: var(--line); stroke-width: 2; }
   .sl .tl circle { fill: #6b6152; }
   .sl .tl circle.hi { fill: var(--accent); }
-  .sl .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
-  .sl .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+  .sl .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 15px; color: var(--muted); }
+  .sl .legend i { display: inline-block; width: 13px; height: 13px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
 
   /* ── final demo slide ── */
-  .demo { display: grid; grid-template-columns: 1fr 560px; gap: 34px; margin-top: 22px; flex: 1; min-height: 0; }
+  .demo { display: grid; grid-template-columns: 1fr 560px; gap: 32px; margin-top: 20px; flex: 1; min-height: 0; }
   .demo .lab { border: 1px solid var(--line); border-radius: 12px; background: var(--panel);
     padding: 18px 20px; display: flex; flex-direction: column; min-height: 0; }
   .demo .lab .bar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
-  .demo .lab .bar .tt { font-size: 15px; letter-spacing: .12em; color: var(--accent); margin-right: auto; }
+  .demo .lab .bar .tt { font-size: 16px; letter-spacing: .12em; color: var(--accent); margin-right: auto; }
   .demo button.st { background: var(--panel-2); color: #d6cdbb; border: 1px solid var(--line);
-    border-radius: 8px; padding: 6px 14px; font-size: 14px; cursor: pointer; }
+    border-radius: 8px; padding: 7px 16px; font-size: 15px; cursor: pointer; }
   .demo button.st.on { border-color: var(--accent); color: var(--accent); }
   .demo button.st:hover { border-color: var(--accent); }
   .demo .canvs { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; min-height: 0; }
   .demo canvas { width: 100%; height: 100%; border-radius: 8px; background: #0d0b07; border: 1px solid var(--line); }
-  .demo .ctr { display: flex; gap: 16px; align-items: center; margin-top: 12px; font-size: 13.5px; color: var(--muted); flex-wrap: wrap; }
+  .demo .ctr { display: flex; gap: 18px; align-items: center; margin-top: 12px; font-size: 14.5px; color: var(--muted); flex-wrap: wrap; }
   .demo .ctr label { display: flex; gap: 7px; align-items: center; }
-  .demo input[type=range] { accent-color: var(--accent); width: 110px; }
+  .demo input[type=range] { accent-color: var(--accent); width: 120px; }
   .demo .stat { margin-left: auto; font-variant-numeric: tabular-nums; color: #c9c0ae; }
   .demo .side { display: flex; flex-direction: column; gap: 12px; min-height: 0; overflow: hidden; }
   .demo .vrow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
   .demo .vcard { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--panel); }
   .demo .vcard video { width: 100%; aspect-ratio: 16/9; display: block; background: #000; object-fit: cover; }
-  .demo .vcard p { font-size: 12.5px; color: #c9c0ae; padding: 8px 10px; line-height: 1.45; }
+  .demo .vcard p { font-size: 13px; color: #c9c0ae; padding: 8px 10px; line-height: 1.45; }
   .demo .vcard p b { color: var(--text); font-weight: 600; display: block; }
   .demo .links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .demo .lk { border: 1px solid var(--line); border-radius: 10px; background: var(--panel);
-    padding: 11px 14px; text-decoration: none; display: block; transition: border-color .15s; }
+    padding: 12px 15px; text-decoration: none; display: block; transition: border-color .15s; }
   .demo .lk:hover { border-color: var(--accent); }
-  .demo .lk b { color: var(--text); font-size: 14.5px; font-weight: 600; display: block; margin-bottom: 3px; }
+  .demo .lk b { color: var(--text); font-size: 15.5px; font-weight: 600; display: block; margin-bottom: 4px; }
   .demo .lk b::after { content: " ↗"; color: var(--accent); }
-  .demo .lk span { color: var(--muted); font-size: 12.5px; line-height: 1.5; display: block; }
+  .demo .lk span { color: var(--muted); font-size: 13.5px; line-height: 1.5; display: block; }
 
-  /* ── notes panel ── */
-  #notes { flex: 0 0 380px; background: var(--panel); border-left: 1px solid var(--line);
-    display: flex; flex-direction: column; min-height: 0; }
-  #notes .head { padding: 13px 20px 11px; border-bottom: 1px solid var(--line);
-    color: var(--muted); font-size: 12.5px; letter-spacing: 2px; }
-  #notesBody { flex: 1 1 auto; overflow-y: auto; padding: 18px 22px 30px; font-size: 14.5px; line-height: 1.9; }
-  #notesBody p { margin-bottom: 12px; color: #cfc6b4; }
-  #notesBody p:first-of-type { color: var(--text); }
-  #notesBody .lks { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 14px; }
-  #notesBody .lks a { display: block; color: var(--accent-2); text-decoration: none;
-    font-size: 13.5px; padding: 5px 0; }
-  #notesBody .lks a:hover { text-decoration: underline; }
-  #notesBody .lks a::before { content: "↗ "; color: var(--accent); }
   footer { flex: 0 0 auto; display: flex; align-items: center; gap: 16px; padding: 8px 18px;
     background: var(--panel); border-top: 1px solid var(--line);
     color: var(--muted); font-size: 12px; letter-spacing: .5px; }
@@ -151,18 +142,17 @@
   #tocList button i { font-style: normal; color: var(--muted); font-variant-numeric: tabular-nums; width: 22px; flex: none; }
 
   @media (max-width: 900px) {
-    main { flex-direction: column; overflow-y: auto; }
+    main { overflow-y: auto; }
     body { overflow: auto; }
-    #stageWrap { padding: 12px; overflow: visible; }
+    #stageWrap { padding: 10px; overflow: visible; }
     #stage { width: 100%; }
-    #notes { flex: none; border-left: 0; border-top: 1px solid var(--line); max-height: 45vh; }
     header .brand { font-size: 13.5px; }
   }
 </style>
 </head>
 <body>
 <header>
-  <div class="brand">工作总结 <em>SeanZJX</em></div>
+  <div class="brand">腾讯工作总结 <em>SeanZJXiao 肖子骏</em></div>
   <div class="pager">第 <b id="pgNow">1</b> / <b id="pgAll">?</b> 页</div>
   <div class="spacer"></div>
   <button class="ctl" id="btnToc">目录</button>
@@ -173,15 +163,11 @@
 </header>
 <main>
   <div id="stageWrap"><div id="stage"><div id="cv"></div></div></div>
-  <aside id="notes">
-    <div class="head">讲述 · NOTES</div>
-    <div id="notesBody"></div>
-  </aside>
 </main>
 <footer>
   <span>←/→ 翻页 · Home/End 首尾 · 点击目录跳转</span>
   <div id="prog"><i></i></div>
-  <span>SeanZJX · 2026.05.25 — 08.31 · 内部资料</span>
+  <span>SeanZJXiao 肖子骏 · 2026.05.25 — 08.31 · 内部资料</span>
 </footer>
 <div id="tocMask"></div>
 <nav id="toc">
@@ -198,41 +184,38 @@ const L_SCP = "https://seanwilliam2077.github.io/AI-PCG-Scene/";
 const L_WBL = "https://seanwilliam2077.github.io/AI-PCG-Scene/whitebox/";
 const L_VG = "https://seanwilliam2077.github.io/VortexGaussians/";
 const L_PF = "https://seanwilliam2077.github.io/SeanSiu_Portfolio/";
+const EXT = ' target="_blank" rel="noopener"';
 
 const SLIDES = [
 { label:"封面", html:`
   <div class="sl" style="justify-content:center">
-    <p class="kick">Work Summary · 2026.05.25 — 08.31</p>
-    <h1>工作总结</h1>
-    <p class="lead" style="margin-top:26px;font-size:26px">AI PCG 编辑器 · 端到端场景生成 · 神经渲染前沿探索</p>
-    <div class="foot"><span>SeanZJX</span><span>·</span><span>内部资料</span><span style="margin-left:auto">→ 键开始</span></div>
-  </div>`,
-  notes:["三个月,三条线:AI PCG 编辑器(白盒管线与 GeoGen,含数据采集与视频批产)、单图到场景的端到端生成(AI PCG Scene,开源)、神经渲染前沿探索。","把「能跑通」的原型推进到「能生产」的管线。右侧此栏是每页的详细讲述;页面上的链接均可点开对应专题页。"],
-  links:[["幻灯版(12 页速览)","deck.html"],["详细版(23 页)","deck-detailed.html"]] },
+    <p class="kick">Tencent Work Summary · 2026.05.25 — 08.31</p>
+    <h1>腾讯工作总结</h1>
+    <p class="lead" style="margin-top:30px;font-size:31px">AI PCG 工程管线 · 端到端网页 PCG 探索 · 3DGS 前沿探索</p>
+    <p class="lead" style="margin-top:18px;font-size:22px;color:var(--muted)">把「能跑通」的原型推进到「能生产」的管线 —— 每个部分都链有对应专题页,末页为可动手的算法演示与视频操作台。</p>
+    <div class="foot"><span>SeanZJXiao 肖子骏</span><span>·</span><span>内部资料</span><span style="margin-left:auto">→ 键开始</span></div>
+  </div>` },
 
 { label:"自我介绍", html:`
   <div class="sl">
     <p class="kick">00 · About</p>
     <h2>自我介绍</h2>
-    <p class="lead">Zijun Xiao(SeanZJX)— Technical Artist / 图形工程师:实时渲染 · PCG 与 Agent 自动化 · 神经渲染 · DCC 管线与引擎研发。</p>
+    <p class="lead">肖子骏 Zijun Xiao(SeanZJXiao)— Technical Artist / 图形工程师:实时渲染 · PCG 与 Agent 自动化 · 神经渲染 · DCC 管线与引擎研发。</p>
     <div class="cols">
       <div class="col"><p class="step">经历</p><h3>腾讯 · 2025.12 —</h3><p>国内发行线 生态发展部 预研组;Cross Tech AI 引擎部 PCG 组与前沿实验室。此前西山居《剑网 3》引擎部 QA 管线组(2023.07 — 12)。</p></div>
       <div class="col"><p class="step">教育</p><h3>Georgia Tech</h3><p>计算机图形 M.S.(2025.09 — 2027.06);SCAD 游戏开发 M.S.(2024 — 2025);华南师范大学 金融 B.S.(2019 — 2023)。</p></div>
       <div class="col"><p class="step">技术栈与代表作</p><h3>UE5 · 图形</h3><p>C++ / C# / Python / HLSL / CUDA;UE5 · Unity · Vulkan · PyTorch · Houdini · Blender。VortexGaussians:实时前向模拟的火焰烟雾渲染为原生 3DGS,8.9 ms/帧(112 FPS)。</p></div>
     </div>
-    <div class="foot"><span class="chip">完整作品集:seanwilliam2077.github.io/SeanSiu_Portfolio</span></div>
-  </div>`,
-  notes:["Technical Artist / 图形工程师,方向:实时渲染、PCG 与 Agent 自动化、神经渲染、DCC 管线与引擎研发。","2025.12 至今在腾讯:国内发行线生态发展部预研组,及 Cross Tech AI 引擎部 PCG 组与前沿实验室;此前在西山居《剑网 3》引擎部(2023.07 — 12)。","Georgia Tech 计算机图形 M.S. 在读;代表作 VortexGaussians——首个以实时前向物理模拟生成火焰烟雾并作为原生 3DGS 内容渲染的系统。"],
-  links:[["完整作品集 · SeanSiu Portfolio",L_PF],["VortexGaussians 论文页与 Demo",L_VG]] },
+    <div class="foot"><a class="chip" href="${L_PF}"${EXT}>完整作品集:seanwilliam2077.github.io/SeanSiu_Portfolio ↗</a></div>
+  </div>` },
 
 { label:"总览", html:`
   <div class="sl">
     <p class="kick">Overview</p>
     <h2>总览</h2>
-    <div style="margin-top:30px;border-top:1px solid var(--line)" id="ovList"></div>
-    <div class="foot"><span>每一页右侧为详细讲述;各部分末尾有对应专题页链接;最后一页汇总全部可交互 Demo 与视频。</span></div>
-  </div>`,
-  notes:["四个部分:两条 AI PCG 主线(白盒管线含数据采集与视频批产、GeoGen 山体与植被),一条开源的单图到场景端到端线(AI PCG Scene),一条前沿探索线(3DGS)。","点击总览行可直接跳转;最后一页把全部可交互功能与视频汇总成一个操作台。"], links:[] , ov:[
+    <div style="margin-block:auto;border-top:1px solid var(--line)" id="ovList"></div>
+    <div class="foot"><span>点击任意一行直接跳转 · 各部分末尾链有对应专题页 · 最后一页汇总全部可交互 Demo 与视频</span></div>
+  </div>`, ov:[
     ["01","白盒生成管线 — 批量生产与数据采集","Create PCG Data · BatchPCG · 47.5 s 全链",3],
     ["02","GeoGen — 山体与植被生成","编辑器模式 · 近远景双路线",7],
     ["03","AI PCG Scene — 单图到场景的端到端","三条实现 + 方法论 · 开源",9],
@@ -249,10 +232,8 @@ const SLIDES = [
       <div class="col"><p class="step">② 矢量化</p><h3>语义图 → 布局数据</h3><p>按语义色提取建筑 / 道路 / 植被 / 水体 / 边界轮廓;另有精度优先通路直接产内存布局文档;角色比例节点推算真实世界尺度。</p></div>
       <div class="col"><p class="step">③ 落地</p><h3>Create PCG Data</h3><p>高度图写入 Landscape,布局数据生成街区、地块与建筑白盒;统一摆放节点生成植物、围墙与道路,地形与街区共用同一标定。</p></div>
     </div>
-    <div class="foot"><span class="chip">专题页:白盒生成管线 — 流程、参考图与渲染视频 →</span></div>
-  </div>`,
-  notes:["这条管线的目标是把关卡白盒搭建从纯手工变成 AI 生成为主、人工调整为辅:一张概念图进,一个可游走的白盒关卡出,把前期搭建从天级压缩到分钟级。","工程要点:分帧执行(写高度、生成街区、贴回地形分帧进行,编辑器全程可重绘不假死);统一标定(一个目标宽度同时推导地形缩放与布局单位,街区与地形像素级对齐);失败隔离(高度图与街区两路互不阻塞);统一摆放(植物/围墙/道路一个节点分派,贴地、陡坡 30° 禁植、崖边禁植)。"],
-  links:[["专题页:白盒生成管线",L_WB],["管线一详页:世界模型白盒生成",L_WM]] },
+    <div class="foot"><span>分帧执行 · 统一标定 · 失败隔离 · 统一摆放(贴地 / 陡坡 30° 禁植 / 崖边禁植)</span><a class="chip" style="margin-left:auto" href="${L_WB}"${EXT}>专题页:白盒生成管线 ↗</a></div>
+  </div>` },
 
 { label:"批量白盒生产", html:`
   <div class="sl">
@@ -269,9 +250,7 @@ const SLIDES = [
       </tbody>
     </table>
     <div class="foot"><span>三阶段编排:云端生图 → 编辑器内状态机 → 汇总报告 · 每 25 job 重启编辑器 · 断点续跑 · 失败熔断 · 离屏真 GPU 渲染</span></div>
-  </div>`,
-  notes:["BatchPCG 一条命令无人值守:摄取 prompt → 云端生图 → 分片编辑器状态机 → 汇总报告。每 25 个 job 重启编辑器规避内存累积;断点续跑、失败熔断、启动预检。","「万能顶视图框架」由 LLM 按主题产异质化组合,近无限 prompt 供给。批量能力让白盒从单个 demo 变成可规模化供给的资产来源。"],
-  links:[["专题页:白盒生成管线",L_WB]] },
+  </div>` },
 
 { label:"数据采集与视频批产", html:`
   <div class="sl">
@@ -283,19 +262,16 @@ const SLIDES = [
       <div class="col"><p class="step">STAGE 3</p><h3>MRQ 无损渲染</h3><p>固定曝光、关运动模糊、空间采样抗锯齿;RGB 之外输出 32 位深度与法线,逐帧位姿写入 cameras.json 作数据真源。</p></div>
       <div class="col"><p class="step">STAGE 4 · 5</p><h3>坐标转换与打包</h3><p>UE 约定转 OpenCV 相机约定并以合成位姿单测;深度换米、内参换算 K;产物校验后按目录契约落盘,下游直接组装。</p></div>
     </div>
-    <div class="foot"><span>rgb / depth / normal / cameras.json / capture_meta —— 目录 schema 即交付契约</span></div>
-  </div>`,
-  notes:["五阶段全部用编辑器内 Python 实现,不动 C++、不碰节点管线。","一键视频批产:浏览器输入 fps / 数量 / 时长即自动跑完「LLM 组合 → 三图 → PCG 白盒 → 运镜渲染 → mp4 落盘」全链;动态容量按质检现算,拍满即切、拍够即停;崩溃超时不废批。","最后一页可直接播放全流程录屏与成片效果。"],
-  links:[["管线一详页:流程与视频",L_WM]] },
+    <div class="foot"><span>rgb / depth / normal / cameras.json / capture_meta —— 目录 schema 即交付契约</span><a class="chip" style="margin-left:auto" href="${L_WM}"${EXT}>流程与视频 ↗</a></div>
+  </div>` },
 
 { label:"47.5 s", html:`
   <div class="sl" style="justify-content:center">
     <p class="kick">01 · AI PCG 编辑器</p>
     <p class="heroN">47.5 s</p>
-    <p class="lead" style="margin-top:24px">单场景「生图 → 白盒 → 运镜 → 成片」全链耗时——离屏无人值守实测(2026.07.22),48 帧 mp4 落盘、截图非黑,批产通道就此打通。</p>
-  </div>`,
-  notes:["白盒批产线的收束数字:47.5 秒,一个场景从一句提示词到一段可用视频。","这个数字来自离屏无人值守实测:编辑器后台真 GPU 渲染,mp4 落盘、截图逐帧校验非黑。"],
-  links:[["专题页:白盒生成管线",L_WB]] },
+    <p class="lead" style="margin-top:28px;font-size:27px">单场景「生图 → 白盒 → 运镜 → 成片」全链耗时——离屏无人值守实测(2026.07.22),48 帧 mp4 落盘、截图非黑,批产通道就此打通。</p>
+    <p class="lead" style="margin-top:16px;font-size:21px;color:var(--muted)">一键视频批产:浏览器输入 fps / 数量 / 时长即自动跑完全链;动态容量按质检现算,拍满即切、拍够即停。</p>
+  </div>` },
 
 { label:"02 GeoGen · 山体", html:`
   <div class="sl">
@@ -308,23 +284,19 @@ const SLIDES = [
       <div class="col"><p class="step">STEP 3 · 侵蚀与蒙版</p><h3>沿冲刷纹理</h3><p>服务器侵蚀(1K 约 20 秒 / 2K 约 90 秒);生态蒙版刻意排在侵蚀后,沿真实冲刷纹理划分植被、岩石与积雪。</p></div>
     </div>
     <div class="foot"><span>四步产物全是图片、零副作用可无限重来;写地形、放图章、交接 Genesis 都刻意留在链外。</span></div>
-  </div>`,
-  notes:["GeoGen 补齐大世界的地形与生态环节:白盒解决街区,山体与植被此前仍靠手工雕刻。","编辑器模式观感对齐 Modeling Mode,机制自绘,三套既有业务逻辑一行未改;反复调远山不会覆盖近景结果。"],
-  links:[["专题页:GeoGen 山脉与植被",L_GG]] },
+  </div>` },
 
 { label:"GeoGen · 落地与植被", html:`
   <div class="sl">
     <p class="kick">02 · AI PCG 编辑器</p>
     <h2>GeoGen — 落地与植被</h2>
-    <div class="cols" style="margin-top:34px">
+    <div class="cols" style="margin-top:38px">
       <div class="col"><p class="step">近中景落地</p><h3>面积直定</h3><p>地形面积由用户直接指定(上限 2500 km²),每格尺度现算,切分辨率档不漂移;边界包络坡角只削戳破处;交接 Genesis 按顶点数对齐导出。</p></div>
       <div class="col"><p class="step">远景产物</p><h3>烘成网格</h3><p>默认烘成单一连续静态网格,移动旋转复制全是原生行为;「提取山峰」逐座抠峰散布地平线;同顶点数从 2 km 拉到 8 km,显存不变。</p></div>
       <div class="col"><p class="step">植被生成</p><h3>生态分布图</h3><p>双来源各持独立结果;16 色蒙版一键导入 Genesis 为每层绑 PCG Graph;只跑 VegetationOnly、不改地形高度;贴地、陡坡 30° 与崖边禁植。</p></div>
     </div>
-    <div class="foot"><span class="chip">专题页:GeoGen — 生成过程与编辑器演示 →</span></div>
-  </div>`,
-  notes:["近中景与远景互为镜像:植被侧「只跑 VegetationOnly」对应山体侧「只跑权重图章」。","专题页里有可划拉的生态分布擦除对比和完整操作录屏(从切模式、导参考图到一键落地形,整段无剪辑)——也收进了最后一页的操作台。"],
-  links:[["专题页:GeoGen 山脉与植被",L_GG]] },
+    <div class="foot"><span>植被侧「只跑 VegetationOnly」与山体侧「只跑权重图章」互为镜像</span><a class="chip" style="margin-left:auto" href="${L_GG}"${EXT}>专题页:GeoGen 山脉与植被 ↗</a></div>
+  </div>` },
 
 { label:"03 AI PCG Scene", html:`
   <div class="sl">
@@ -336,23 +308,19 @@ const SLIDES = [
       <div class="col"><p class="step">线 2 · three.js 程序化</p><h3>规则长出场景</h3><p>一张图拆成可生成的规则清单,几何与贴图全部运行时算出;同一份总平面被烘焙与摆放两处消费。44 897 构件 / 每帧 60 draw call,换个种子约 4 秒。</p></div>
       <div class="col"><p class="step">线 3 · Blender 度量闭环</p><h3>像不像,可测量</h3><p>九轮「渲染 → 度量 → 定位病因 → 改」;消失点解相机、投影回原图逐点核对。边缘 F 0.260 → 0.650;与线 1 外参一比,地平线差 91 px。</p></div>
     </div>
-    <div class="foot"><span class="chip">仓库与交互文档:github.com/Seanwilliam2077/AI-PCG-Scene →</span></div>
-  </div>`,
-  notes:["三份文档都是可动手的交互页:拖动对比、逐步播放、图上探针、可筛选表、参数滑块。","线 1 与线 3 用同一张室内参考图与同一批资产,可定量对照;线 2 用另一张图(沙漠基地),只比方法结构——可比性边界写在 README 里。"],
-  links:[["GitHub 仓库",L_SC],["交互文档站点",L_SCP],["白盒 Live(打开即用)",L_WBL]] },
+    <div class="foot"><span>三份交互文档:拖动对比 · 逐步播放 · 图上探针 · 参数滑块</span><a class="chip" style="margin-left:auto" href="${L_SC}"${EXT}>仓库:github.com/Seanwilliam2077/AI-PCG-Scene ↗</a></div>
+  </div>` },
 
 { label:"方法论与白盒 Live", html:`
   <div class="sl">
     <p class="kick">03 · 开源</p>
     <h2>方法论与白盒 Live</h2>
-    <div class="cols two" style="margin-top:34px">
+    <div class="cols two" style="margin-top:38px">
       <div class="col"><p class="step">方法论</p><h3>语义走模型,几何走算法</h3><p>贯穿判据只有一条:模型擅长说「这是什么」,不擅长说「这有多大、在哪里」。39 个资产模块的估计尺寸全部挤在 75 – 118 cm 一条带里,与实测毫无关系;踩塌的结论按原样写进正文,数据可一键复跑导出。</p></div>
       <div class="col"><p class="step">白盒 Live</p><h3>拖图进浏览器,当场出白盒</h3><p>LSD + RANSAC 解相机,深度模型以地面解析单应校成米制,按视差不连续切分体块,导出 GLB 直接进 DCC。推理与几何求解全部在浏览器本地完成,图片不上传,打开即用。</p></div>
     </div>
-    <div class="foot"><span>三条补召回策略贡献 49/70 检出 · 39 模块实测最长边 75.0 – 117.8 cm · 数据可复跑导出</span></div>
-  </div>`,
-  notes:["方法论不绑定本仓库代码,换个项目也照做得出来:图像的识别与分割、对应资产的生成、DCC 里的相机还原与位姿估计。","白盒 Live 在最后一页的操作台里可以直接打开——纯静态托管,推理走 WebGPU / WASM。"],
-  links:[["白盒 Live(打开即用)",L_WBL],["交互文档站点",L_SCP]] },
+    <div class="foot"><span>三条补召回策略贡献 49/70 检出 · 39 模块实测最长边 75.0 – 117.8 cm</span><a class="chip" style="margin-left:auto" href="${L_WBL}"${EXT}>白盒 Live · 打开即用 ↗</a></div>
+  </div>` },
 
 { label:"04 3DGS 场景重建", html:`
   <div class="sl">
@@ -364,9 +332,7 @@ const SLIDES = [
       <div class="col"><p class="step">问题 2 · 采集路径</p><h3>probe 后拉</h3><p>部分 probe 点离墙面过近影响重建;按 probe 特性把点整体向后拉,先采完暗区场景再统一对齐,预计还需几轮迭代。</p></div>
     </div>
     <div class="foot"><span>当前重建质量还不够好,瓶颈集中在这两处,仍在迭代。</span></div>
-  </div>`,
-  notes:["探索把游戏场景变成 3DGS 表达:不涉及真实设备,数据全部来自引擎内。","单轮采集很快;重建质量的两处瓶颈(曝光一致性、probe 路径)是下一步的迭代重点。"],
-  links:[["VortexGaussians 专题页",L_VG]] },
+  </div>` },
 
 { label:"VortexGaussians", html:`
   <div class="sl">
@@ -378,38 +344,34 @@ const SLIDES = [
       <div class="col"><p class="step">性能</p><h3>8.9 ms / 帧</h3><p>112 FPS,单文件 WebGL2 原型;模拟与渲染同帧完成,无离线烘焙。</p></div>
       <div class="col"><p class="step">开放</p><h3>论文页 + Live Demo</h3><p>论文页、实时 Demo 与代码全部公开,浏览器直接跑。</p></div>
     </div>
-    <div class="foot"><span class="chip">专题页:seanwilliam2077.github.io/VortexGaussians →</span></div>
-  </div>`,
-  notes:["与 3DGS 场景重建同方向的公开研究:重建负责把场景变成高斯,VortexGaussians 负责让动态效果(火、烟)也成为高斯——两边在同一种表达下合成。","实时 Demo 在最后一页的操作台可以直接打开。"],
-  links:[["VortexGaussians 论文页与 Demo",L_VG]] },
+    <div class="foot"><a class="chip" style="margin-left:auto" href="${L_VG}"${EXT}>专题页:seanwilliam2077.github.io/VortexGaussians ↗</a></div>
+  </div>` },
 
 { label:"里程碑", html:`
   <div class="sl">
     <p class="kick">Timeline</p>
     <h2>三个月里程碑</h2>
-    <svg class="tl" viewBox="0 0 1440 250" style="margin-top:44px" role="img" aria-label="时间线:五月下旬白盒管线,六月 GeoGen,七月批量生产,八月上旬数据采集并入白盒管线,八月下旬 AI PCG Scene 开源,下一步 3DGS 迭代">
+    <svg class="tl" viewBox="0 0 1440 250" style="margin-top:54px" role="img" aria-label="时间线:五月下旬白盒管线,六月 GeoGen,七月批量生产,八月上旬数据采集并入白盒管线,八月下旬 AI PCG Scene 开源,下一步 3DGS 迭代">
       <line x1="0" y1="92" x2="1440" y2="92"/>
-      <text class="d" x="0" y="56">05 月下</text><text class="d" x="248" y="56">06 月</text>
-      <text class="d" x="496" y="56">07 月</text><text class="d" x="744" y="56">08 月上</text>
-      <text class="d hi" x="992" y="56">08 月下</text><text class="d" x="1240" y="56">下一步</text>
+      <text class="d" x="0" y="52">05 月下</text><text class="d" x="248" y="52">06 月</text>
+      <text class="d" x="496" y="52">07 月</text><text class="d" x="744" y="52">08 月上</text>
+      <text class="d hi" x="992" y="52">08 月下</text><text class="d" x="1240" y="52">下一步</text>
       <circle cx="8" cy="92" r="7"/><circle cx="256" cy="92" r="7"/><circle cx="504" cy="92" r="7"/>
       <circle cx="752" cy="92" r="7"/><circle class="hi" cx="1000" cy="92" r="8"/><circle cx="1248" cy="92" r="7"/>
-      <text class="lb" x="0" y="150">白盒管线</text><text class="lb" x="248" y="150">GeoGen</text>
-      <text class="lb" x="496" y="150">批量生产</text><text class="lb" x="744" y="150">数据采集</text>
-      <text class="lb" x="992" y="150">PCG Scene</text><text class="lb" x="1240" y="150">3DGS 迭代</text>
-      <text x="0" y="196">节点图与无头化</text><text x="248" y="196">山体与植被两条路线</text>
-      <text x="496" y="196">夜跑批产·视频全链</text><text x="744" y="196">数据集契约,并入白盒</text>
-      <text x="992" y="196">单图到场景·开源</text><text x="1240" y="196">曝光一致性·采集路径</text>
+      <text class="lb" x="0" y="152">白盒管线</text><text class="lb" x="248" y="152">GeoGen</text>
+      <text class="lb" x="496" y="152">批量生产</text><text class="lb" x="744" y="152">数据采集</text>
+      <text class="lb" x="992" y="152">PCG Scene</text><text class="lb" x="1240" y="152">3DGS 迭代</text>
+      <text x="0" y="202">节点图与无头化</text><text x="248" y="202">山体与植被两条路线</text>
+      <text x="496" y="202">夜跑批产·视频全链</text><text x="744" y="202">数据集契约,并入白盒</text>
+      <text x="992" y="202">单图到场景·开源</text><text x="1240" y="202">曝光一致性·采集路径</text>
     </svg>
     <div class="foot"><span>从单点节点到三条管线:白盒生产(含数据采集与视频批产)、地形生态、单图到场景端到端——下一步迭代 3DGS 重建质量。</span></div>
-  </div>`,
-  notes:["05 月下:白盒管线节点图与无头化。06 月:GeoGen 山体与植被两条路线。07 月:夜跑批产与一键视频全链。","08 月上:数据采集按数据集契约落盘,能力并入白盒管线。08 月下:AI PCG Scene 开源——三条实现、方法论与白盒 Live。","下一步:3DGS 重建质量迭代(HDR 统一后处理、probe 采集路径)。"],
-  links:[] },
+  </div>` },
 
 { label:"交互 Demo 汇总", html:`
-  <div class="sl" style="padding:52px 60px 40px">
-    <p class="kick" style="margin-bottom:8px">Playground · 已有功能与视频汇总</p>
-    <h2 style="font-size:42px;margin-bottom:4px">操作台 — 白盒布局算法 Demo · 视频 · 在线功能</h2>
+  <div class="sl" style="padding:46px 56px 36px">
+    <p class="kick" style="margin-bottom:6px">Playground · 已有功能与视频汇总</p>
+    <h2 style="font-size:44px;margin-bottom:2px">操作台 — 白盒布局算法 Demo · 视频 · 在线功能</h2>
     <div class="demo">
       <div class="lab">
         <div class="bar">
@@ -439,23 +401,20 @@ const SLIDES = [
           <div class="vcard"><video src="assets/geogen-ops.mp4" poster="assets/geogen-ops-poster.webp" controls preload="none" playsinline></video><p><b>GeoGen 完整操作</b>导参考图 → 一键落地形</p></div>
         </div>
         <div class="links">
-          <a class="lk" href="${'https://seanwilliam2077.github.io/AI-PCG-Scene/whitebox/'}" target="_blank" rel="noopener"><b>白盒 Live</b><span>拖一张图,当场出白盒——浏览器本地推理,导出 GLB</span></a>
-          <a class="lk" href="${'https://seanwilliam2077.github.io/VortexGaussians/'}" target="_blank" rel="noopener"><b>VortexGaussians Demo</b><span>实时火焰烟雾 × 原生 3DGS,WebGL2,112 FPS</span></a>
-          <a class="lk" href="${'https://seanwilliam2077.github.io/AI-PCG-Research-Pages/world-model.html'}" target="_blank" rel="noopener"><b>白盒管线专题页</b><span>完整流程、参考图与更多视频</span></a>
-          <a class="lk" href="${'https://seanwilliam2077.github.io/AI-PCG-Research-Pages/geogen.html'}" target="_blank" rel="noopener"><b>GeoGen 专题页</b><span>生态分布擦除对比 · 分步 UI 截图</span></a>
-          <a class="lk" href="${'https://seanwilliam2077.github.io/AI-PCG-Scene/'}" target="_blank" rel="noopener"><b>AI PCG Scene 交互文档</b><span>拖动对比、逐步播放、图上探针、参数滑块</span></a>
-          <a class="lk" href="${'https://seanwilliam2077.github.io/SeanSiu_Portfolio/'}" target="_blank" rel="noopener"><b>作品集</b><span>更多图形技术演示:SDF · NeRF · 2DGS · XPBD · Diffusion</span></a>
+          <a class="lk" href="${L_WBL}"${EXT}><b>白盒 Live</b><span>拖一张图,当场出白盒——浏览器本地推理,导出 GLB</span></a>
+          <a class="lk" href="${L_VG}"${EXT}><b>VortexGaussians Demo</b><span>实时火焰烟雾 × 原生 3DGS,WebGL2,112 FPS</span></a>
+          <a class="lk" href="${L_WM}"${EXT}><b>白盒管线专题页</b><span>完整流程、参考图与更多视频</span></a>
+          <a class="lk" href="${L_GG}"${EXT}><b>GeoGen 专题页</b><span>生态分布擦除对比 · 分步 UI 截图</span></a>
+          <a class="lk" href="${L_SCP}"${EXT}><b>AI PCG Scene 交互文档</b><span>拖动对比、逐步播放、图上探针、参数滑块</span></a>
+          <a class="lk" href="${L_PF}"${EXT}><b>作品集</b><span>更多图形技术演示:SDF · NeRF · 2DGS · XPBD · Diffusion</span></a>
         </div>
       </div>
     </div>
-  </div>`,
-  notes:["谢谢观看——这一页把汇报中出现过的可交互功能与视频集中到一处。","左侧是白盒管线核心算法的可操作演示:同一颗种子决定一切,①语义图(生图段的语义分块)→ ②矢量化(按语义色提取轮廓)→ ③白盒(挤出建筑体块)。拖动滑块或换种子,布局即刻重算——「换个种子长出另一座」。","右上三段视频:白盒全流程录屏、自动运镜成片、GeoGen 完整操作;右下是全部在线功能的直达入口。欢迎提问。"],
-  links:[["幻灯版(答辩用)","deck.html"],["详细版(23 页)","deck-detailed.html"]] }
+  </div>` }
 ];
 
 /* ─────────── shell: render / nav ─────────── */
 const cv = document.getElementById('cv'), stage = document.getElementById('stage');
-const notesBody = document.getElementById('notesBody');
 const pgNow = document.getElementById('pgNow'), pgAll = document.getElementById('pgAll');
 const prog = document.querySelector('#prog i');
 let cur = -1;
@@ -467,8 +426,6 @@ function fit() {
 }
 addEventListener('resize', fit);
 
-function esc(t){ return t.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
-
 function show(i, push) {
   i = Math.max(0, Math.min(SLIDES.length - 1, i));
   if (i === cur) return;
@@ -478,22 +435,19 @@ function show(i, push) {
   if (S.ov) {
     const box = cv.querySelector('#ovList');
     box.innerHTML = S.ov.map(o =>
-      `<div data-go="${o[3]}" style="display:flex;gap:26px;align-items:baseline;padding:21px 6px;border-bottom:1px solid var(--line);cursor:pointer">
-        <span style="font-size:17px;color:var(--accent);font-variant-numeric:tabular-nums">${o[0]}</span>
-        <span style="font-size:26px;font-family:var(--serif)">${o[1]}</span>
-        <span style="margin-left:auto;font-size:15px;color:var(--muted)">${o[2]}</span></div>`).join('');
+      `<div data-go="${o[3]}" style="display:flex;gap:28px;align-items:baseline;padding:25px 6px;border-bottom:1px solid var(--line);cursor:pointer">
+        <span style="font-size:19px;color:var(--accent);font-variant-numeric:tabular-nums">${o[0]}</span>
+        <span style="font-size:31px;font-family:var(--serif)">${o[1]}</span>
+        <span style="margin-left:auto;font-size:17px;color:var(--muted)">${o[2]}</span></div>`).join('');
     box.querySelectorAll('[data-go]').forEach(el =>
       el.addEventListener('click', () => show(+el.dataset.go, true)));
   }
-  notesBody.innerHTML = S.notes.map(p => '<p>' + esc(p) + '</p>').join('') +
-    (S.links.length ? '<div class="lks">' + S.links.map(l =>
-      `<a href="${l[1]}"${/^http/.test(l[1]) ? ' target="_blank" rel="noopener"' : ''}>${esc(l[0])}</a>`).join('') + '</div>' : '');
   pgNow.textContent = i + 1;
   prog.style.width = ((i + 1) / SLIDES.length * 100) + '%';
   document.getElementById('btnPrev').disabled = i === 0;
   document.getElementById('btnNext').disabled = i === SLIDES.length - 1;
   document.querySelectorAll('#tocList button').forEach((b, k) => b.classList.toggle('on', k === i));
-  document.title = '工作总结 · 第 ' + (i + 1) + '/' + SLIDES.length + ' 页';
+  document.title = '腾讯工作总结 · 第 ' + (i + 1) + '/' + SLIDES.length + ' 页';
   if (push !== false) history.replaceState(null, '', '#' + (i + 1));
   fit();
   if (i === SLIDES.length - 1) initDemo();
