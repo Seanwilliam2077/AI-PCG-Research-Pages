@@ -292,13 +292,19 @@ const SLIDES = [
   <div class="sl">
     <p class="kick">01 · AI PCG 编辑器</p>
     <h2>白盒生成管线 — Create PCG Data</h2>
-    <p class="lead">一张概念图进,一个可游走的白盒关卡出:「生图 — 矢量化 — 落地」三段数据流,全链可在无界面的编辑器进程里执行。</p>
-    <div class="cols media">
-      <div class="col"><img class="fig" src="assets/img/tri-photoreal.webp" alt="AI 生成的写实顶视图"><p class="step">① 生图</p><h3>三图供给</h3><p>文生图双通道产写实航拍、语义分块、灰度高度三图;提示词模板锁定 90° 正交顶视,支持笔刷蒙版 + 文字指令局部重绘。</p></div>
-      <div class="col"><img class="fig" src="assets/img/tri-semantic.webp" alt="六类语义分块图(后处理)"><p class="step">② 矢量化</p><h3>语义图 → 布局数据</h3><p>按语义色提取建筑 / 道路 / 植被 / 水体 / 边界轮廓;另有精度优先通路直接产内存布局文档;角色比例节点推算真实世界尺度。</p></div>
-      <div class="col"><img class="fig" src="assets/img/wm-whitebox.webp" alt="落地后的白盒场景渲染"><p class="step">③ 落地</p><h3>Create PCG Data</h3><p>高度图写入 Landscape,布局数据生成街区、地块与建筑白盒;统一摆放节点生成植物、围墙与道路,地形与街区共用同一标定。</p></div>
+    <p class="lead" style="font-size:23px">一张概念图进,一个可游走的白盒关卡出:「生图 — 矢量化 — 落地」三段数据流,全链可在无界面的编辑器进程里执行。</p>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-block:auto;padding-block:8px">
+      <div><img class="fig" style="aspect-ratio:1/1;margin-bottom:10px" src="assets/img/wb-photoreal.webp" alt="① 写实顶视图 — AI 生成的大坝小镇正交顶视"><p style="font-size:15.5px;color:var(--muted);text-align:center">① 写实顶视图</p></div>
+      <div><img class="fig" style="aspect-ratio:1/1;margin-bottom:10px" src="assets/img/wb-semantic.webp" alt="② 语义分块图 — 建筑/道路/植被/水体按色分块"><p style="font-size:15.5px;color:var(--muted);text-align:center">② 语义分块图</p></div>
+      <div><img class="fig" style="aspect-ratio:1/1;margin-bottom:10px" src="assets/img/wb-height.webp" alt="③ 高度图 — 峡谷与坝体的灰度海拔"><p style="font-size:15.5px;color:var(--muted);text-align:center">③ 高度图</p></div>
+      <div><img class="fig" style="aspect-ratio:1/1;margin-bottom:10px" src="assets/img/wb-massing.webp" alt="④ 白盒落地 — Landscape + 街区建筑白盒"><p style="font-size:15.5px;color:var(--muted);text-align:center">④ 白盒落地</p></div>
     </div>
-    <div class="foot"><span>分帧执行 · 统一标定 · 失败隔离 · 统一摆放(贴地 / 陡坡 30° 禁植 / 崖边禁植)</span><a class="chip" style="margin-left:auto" href="${L_WB}"${EXT}>专题页:白盒生成管线 ↗</a></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:44px">
+      <p style="font-size:17.5px;line-height:1.62;color:#c9c0ae;border-top:1px solid var(--line);padding-top:12px"><b style="color:var(--accent);font-weight:600">生图。</b>文生图双通道产写实航拍、语义分块、灰度高度三图;提示词模板锁定 90° 正交顶视,支持笔刷蒙版 + 文字指令局部重绘。</p>
+      <p style="font-size:17.5px;line-height:1.62;color:#c9c0ae;border-top:1px solid var(--line);padding-top:12px"><b style="color:var(--accent);font-weight:600">矢量化。</b>按语义色提取建筑 / 道路 / 植被 / 水体轮廓,精度优先通路直接产内存布局文档;角色比例节点推算真实尺度。</p>
+      <p style="font-size:17.5px;line-height:1.62;color:#c9c0ae;border-top:1px solid var(--line);padding-top:12px"><b style="color:var(--accent);font-weight:600">落地。</b>高度图写入 Landscape,布局生成街区与建筑白盒;统一摆放节点生成植物、围墙与道路,地形街区共用同一标定。</p>
+    </div>
+    <div class="foot"><span>分帧执行 · 统一标定 · 失败隔离 · 统一摆放</span><a class="chip" style="margin-left:auto" href="${L_WB}"${EXT}>专题页:白盒生成管线 ↗</a></div>
   </div>` },
 
 { label:"批量白盒生产", html:`
@@ -317,8 +323,9 @@ const SLIDES = [
         </tbody>
       </table>
       <div>
-        <img class="fig" style="aspect-ratio:16/8" src="assets/img/flow-overview.webp" alt="六步管线总览流程图">
-        <div class="ph" style="aspect-ratio:4/1">图片占位 — 待补:批产场景俯视截图 / report 汇总图</div>
+        <img class="fig" style="aspect-ratio:21/9;margin-bottom:10px" src="assets/img/flow-overview.webp" alt="六步管线总览流程图">
+        <img class="fig" style="aspect-ratio:16/5;margin-bottom:4px" src="assets/img/batch-report.webp" alt="世界模型 report · 批量生图结果(白盒 → 多风格成图 · 主观视角序列)">
+        <p style="font-size:13.5px;color:var(--muted)">report 批量生图:白盒 → 多风格成图 · 主观视角序列(点击放大)</p>
       </div>
     </div>
     <div class="foot"><span>三阶段编排:云端生图 → 编辑器内状态机 → 汇总报告 · 每 25 job 重启编辑器 · 断点续跑 · 失败熔断 · 离屏真 GPU 渲染</span></div>
@@ -347,8 +354,8 @@ const SLIDES = [
         <p class="lead" style="margin-top:14px;font-size:19.5px;color:var(--muted)">一键视频批产:浏览器输入 fps / 数量 / 时长即自动跑完全链;动态容量按质检现算,拍满即切、拍够即停。</p>
       </div>
       <div>
-        <video src="assets/wm-result.mp4" poster="assets/wm-result-poster.webp" controls preload="none" playsinline style="width:100%;aspect-ratio:16/9;border-radius:10px;border:1px solid var(--line);background:#000"></video>
-        <p style="margin-top:12px;font-size:15.5px;color:var(--muted)">白盒 → 视频成片(0:16,点击播放)· 完整 3:34 全流程录屏见末页操作台</p>
+        <video src="assets/wm-full.mp4" poster="assets/wm-full-poster.webp" controls preload="none" playsinline style="width:100%;aspect-ratio:16/9;border-radius:10px;border:1px solid var(--line);background:#000"></video>
+        <p style="margin-top:12px;font-size:15.5px;color:var(--muted)">全流程录屏(3:34,点击播放):从 PCG 节点图一路跑到落盘的 take 目录 · 0:16 成片见末页操作台</p>
       </div>
     </div>
   </div>` },
