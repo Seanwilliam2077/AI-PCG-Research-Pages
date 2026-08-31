@@ -85,6 +85,20 @@
   .sl .tl line { stroke: var(--line); stroke-width: 2; }
   .sl .tl circle { fill: #6b6152; }
   .sl .tl circle.hi { fill: var(--accent); }
+  .sl .ent { padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .sl .ent:last-child { border-bottom: 0; }
+  .sl .ent b { display: block; font-size: 22.5px; font-weight: 600; color: var(--text); }
+  .sl .ent i { font-style: normal; display: block; font-size: 18px; color: #c9c0ae; margin-top: 4px; }
+  .sl .ent em { font-style: normal; display: block; font-size: 15.5px; color: var(--accent); margin-top: 6px;
+    letter-spacing: .06em; font-variant-numeric: tabular-nums; }
+  .sl .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 11px; margin-top: 14px; }
+  .sl .tile { border: 1px solid var(--line); border-radius: 10px; background: var(--panel);
+    padding: 13px 6px 11px; text-align: center; }
+  .sl .tile b { display: block; font-family: var(--serif); font-size: 25px; font-weight: 600; line-height: 1.1; }
+  .sl .tile span { display: block; font-size: 13px; color: var(--muted); margin-top: 5px; }
+  .sl .langs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 13px; }
+  .sl .langs i { font-style: normal; border: 1px solid var(--line); border-radius: 999px;
+    padding: 5px 13px; font-size: 14.5px; color: #c9c0ae; background: var(--panel-2); }
   .sl .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 15px; color: var(--muted); }
   .sl .legend i { display: inline-block; width: 13px; height: 13px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
 
@@ -202,11 +216,30 @@ const SLIDES = [
     <h2>自我介绍</h2>
     <p class="lead">肖子骏 Zijun Xiao(SeanZJXiao)— Technical Artist / 图形工程师:实时渲染 · PCG 与 Agent 自动化 · 神经渲染 · DCC 管线与引擎研发。</p>
     <div class="cols">
-      <div class="col"><p class="step">经历</p><h3>腾讯 · 2025.12 —</h3><p>国内发行线 生态发展部 预研组;Cross Tech AI 引擎部 PCG 组与前沿实验室。此前西山居《剑网 3》引擎部 QA 管线组(2023.07 — 12)。</p></div>
-      <div class="col"><p class="step">教育</p><h3>Georgia Tech</h3><p>计算机图形 M.S.(2025.09 — 2027.06);SCAD 游戏开发 M.S.(2024 — 2025);华南师范大学 金融 B.S.(2019 — 2023)。</p></div>
-      <div class="col"><p class="step">技术栈与代表作</p><h3>UE5 · 图形</h3><p>C++ / C# / Python / HLSL / CUDA;UE5 · Unity · Vulkan · PyTorch · Houdini · Blender。VortexGaussians:实时前向模拟的火焰烟雾渲染为原生 3DGS,8.9 ms/帧(112 FPS)。</p></div>
+      <div class="col"><p class="step">教育经历</p>
+        <div class="ent"><b>Georgia Tech</b><i>计算机图形 M.S.</i><em>2025.09 — 2027.06</em></div>
+        <div class="ent"><b>SCAD</b><i>游戏开发 M.S.</i><em>2024.09 — 2025.08</em></div>
+        <div class="ent"><b>华南师范大学</b><i>金融数学 B.S.</i><em>2019.09 — 2023.06</em></div>
+      </div>
+      <div class="col"><p class="step">工作经历</p>
+        <div class="ent"><b>腾讯</b><i>国内发行线 生态发展部 预研组</i><i>Cross Tech AI 引擎部 PCG 组 · 前沿实验室</i><em>2025.12 — 至今</em></div>
+        <div class="ent"><b>西山居(金山)</b><i>《剑网 3》引擎部 QA 管线组</i><em>2023.07 — 2023.12</em></div>
+      </div>
+      <div class="col"><p class="step">软件与技术栈</p>
+        <div class="tiles">
+          <div class="tile"><b style="color:#e8e8e8">U</b><span>UE 5</span></div>
+          <div class="tile"><b style="color:#bfbfbf">Un</b><span>Unity</span></div>
+          <div class="tile"><b style="color:#f5792a">B</b><span>Blender</span></div>
+          <div class="tile"><b style="color:#ff4713">H</b><span>Houdini</span></div>
+          <div class="tile"><b style="color:#0696d7">M</b><span>Maya</span></div>
+          <div class="tile"><b style="color:#df3d1e">Sb</b><span>Substance</span></div>
+          <div class="tile"><b style="color:#ee4c2c">Pt</b><span>PyTorch</span></div>
+          <div class="tile"><b style="color:#a41e22">Vk</b><span>Vulkan</span></div>
+        </div>
+        <div class="langs"><i>C++</i><i>C#</i><i>Python</i><i>HLSL</i><i>CUDA</i><i>RenderDoc</i></div>
+      </div>
     </div>
-    <div class="foot"><a class="chip" href="${L_PF}"${EXT}>完整作品集:seanwilliam2077.github.io/SeanSiu_Portfolio ↗</a></div>
+    <div class="foot"><a class="chip" href="${L_PF}"${EXT}>完整作品集 · seanwilliam2077.github.io/SeanSiu_Portfolio ↗</a><a class="chip" href="${L_VG}"${EXT}>代表作 VortexGaussians ↗</a></div>
   </div>` },
 
 { label:"总览", html:`
@@ -220,7 +253,7 @@ const SLIDES = [
     ["02","GeoGen — 山体与植被生成","编辑器模式 · 近远景双路线",7],
     ["03","AI PCG Scene — 单图到场景的端到端","三条实现 + 方法论 · 开源",9],
     ["04","3DGS — 场景重建与 VortexGaussians","probe 采集 · 原生 3DGS 火焰烟雾",11],
-    ["05","里程碑与交互 Demo","时间线 · 操作台",13]] },
+    ["05","总结 — 三个月做了什么","里程碑时间线 · 有可交互 Demo 可供体验",13]] },
 
 { label:"01 白盒生成管线", html:`
   <div class="sl">
@@ -347,11 +380,17 @@ const SLIDES = [
     <div class="foot"><a class="chip" style="margin-left:auto" href="${L_VG}"${EXT}>专题页:seanwilliam2077.github.io/VortexGaussians ↗</a></div>
   </div>` },
 
-{ label:"里程碑", html:`
+{ label:"总结", html:`
   <div class="sl">
-    <p class="kick">Timeline</p>
-    <h2>三个月里程碑</h2>
-    <svg class="tl" viewBox="0 0 1440 250" style="margin-top:54px" role="img" aria-label="时间线:五月下旬白盒管线,六月 GeoGen,七月批量生产,八月上旬数据采集并入白盒管线,八月下旬 AI PCG Scene 开源,下一步 3DGS 迭代">
+    <p class="kick">05 · Summary</p>
+    <h2>总结 — 三个月做了什么</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px 40px;margin-top:26px">
+      <p style="font-size:20.5px;line-height:1.7;color:#c9c0ae;border-top:1px solid var(--line);padding-top:14px"><b style="color:var(--text)">白盒管线批产化。</b>一张概念图到可游走白盒,做到无人值守夜跑几百场景;数据采集与一键视频批产并入,单场景全链 47.5 s。</p>
+      <p style="font-size:20.5px;line-height:1.7;color:#c9c0ae;border-top:1px solid var(--line);padding-top:14px"><b style="color:var(--text)">GeoGen 补齐地形生态。</b>山体一键链(参考图 → 高度图 → 侵蚀 → 生态蒙版),近远景双路线互不覆盖,植被按 16 色分布图落地。</p>
+      <p style="font-size:20.5px;line-height:1.7;color:#c9c0ae;border-top:1px solid var(--line);padding-top:14px"><b style="color:var(--text)">AI PCG Scene 开源。</b>单图到场景的端到端做了三条独立实现互相印证,沉淀成方法论——语义走模型,几何走算法。</p>
+      <p style="font-size:20.5px;line-height:1.7;color:#c9c0ae;border-top:1px solid var(--line);padding-top:14px"><b style="color:var(--text)">3DGS 前沿起步。</b>游戏场景重建管线端到端跑通,曝光一致性与 probe 路径是下一步;VortexGaussians 公开发布。</p>
+    </div>
+    <svg class="tl" viewBox="0 0 1440 250" style="margin-top:10px" role="img" aria-label="时间线:五月下旬白盒管线,六月 GeoGen,七月批量生产,八月上旬数据采集并入白盒管线,八月下旬 AI PCG Scene 开源,下一步 3DGS 迭代">
       <line x1="0" y1="92" x2="1440" y2="92"/>
       <text class="d" x="0" y="52">05 月下</text><text class="d" x="248" y="52">06 月</text>
       <text class="d" x="496" y="52">07 月</text><text class="d" x="744" y="52">08 月上</text>
@@ -363,9 +402,9 @@ const SLIDES = [
       <text class="lb" x="992" y="152">PCG Scene</text><text class="lb" x="1240" y="152">3DGS 迭代</text>
       <text x="0" y="202">节点图与无头化</text><text x="248" y="202">山体与植被两条路线</text>
       <text x="496" y="202">夜跑批产·视频全链</text><text x="744" y="202">数据集契约,并入白盒</text>
-      <text x="992" y="202">单图到场景·开源</text><text x="1240" y="202">曝光一致性·采集路径</text>
+      <text x="992" y="202">单图到场景·开源</text><text x="1240" y="202">曝光与采集路径</text>
     </svg>
-    <div class="foot"><span>从单点节点到三条管线:白盒生产(含数据采集与视频批产)、地形生态、单图到场景端到端——下一步迭代 3DGS 重建质量。</span></div>
+    <div class="foot"><span>下一页:可交互的操作台 — 白盒布局算法 Demo、视频与全部在线功能,可直接动手体验</span><span style="margin-left:auto;color:var(--accent)">→</span></div>
   </div>` },
 
 { label:"交互 Demo 汇总", html:`
