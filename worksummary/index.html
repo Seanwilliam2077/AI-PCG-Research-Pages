@@ -603,16 +603,12 @@ const SLIDES = [
 { label:"对未来的展望", html:`
   <div class="sl">
     <p class="kick">05 · Outlook</p>
-    <h2 style="font-size:48px">对未来的展望 — PCG × 扫描重建 × AI</h2>
-    <p class="lead">团队聚焦 AI PCG 与扫描 / 3D 重建。放到 AI——尤其是世界模型——的坐标系里看,这两条线恰好是世界模型最缺的两块:可控的数据引擎,和落回三维的载体。</p>
+    <h2 style="font-size:48px">对未来的展望 — Agent × PCG × 扫描</h2>
+    <p class="lead">agent 时代,AI 在重塑 PCG 的管线;反过来,PCG 与扫描也在喂养前沿 AI。三个正在发生的例子:</p>
     <div class="cols">
-      <div class="col"><img class="fig" style="aspect-ratio:16/6.5" src="assets/wm-triptych-poster.webp" alt="RGB / 深度 / 法线三通道同步"><p class="step">PCG × 世界模型 · 数据引擎</p><h3>无限量的完美 GT 数据</h3><p>世界模型吃数据,PCG 能无限量产带完美标注的数据:相机轨迹、深度、法线、语义逐帧对齐。这条链我已跑通:白盒 → 运镜 → MRQ → 契约落盘,47.5 s 一个场景、可夜跑几百个,随时能重启供数。</p></div>
-      <div class="col"><img class="fig" style="aspect-ratio:16/6.5" src="assets/img/vg-farm.webp" alt="村庄级 3DGS 重建"><p class="step">扫描重建 × 世界模型 · 现实接口</p><h3>真实进来,生成落回三维</h3><p>扫描重建把真实分布带给模型;反过来,世界模型生成的内容也需要三维一致的载体落地。3DGS 是天然候选——可渲染、可微、点基元统一,VortexGaussians 已证明重建体还能承载实时物理。</p></div>
-      <div class="col"><img class="fig" style="aspect-ratio:16/6.5" src="assets/img/batch-poi.webp" alt="同一白盒长出多种写实风格"><p class="step">合流的未来 · 可交互的世界生成</p><h3>AI 出语义,PCG 与重建管几何</h3><p>「语义走模型、几何走算法」放大看就是未来分工:世界模型管意图与外观,PCG 管可玩的几何,扫描重建管真实感——朝「一句话意图 → 可游走、可交互的世界」合流,而不只是一段视频。</p></div>
-    </div>
-    <div style="display:flex;gap:34px;align-items:baseline;border-top:1px solid var(--line);padding-top:9px;margin-top:2px">
-      <span style="font-size:14.5px;letter-spacing:.12em;color:var(--accent);flex:none"><b>持续创造的价值</b></span>
-      <p style="font-size:15.5px;line-height:1.55;color:#c9c0ae;margin:0">工程化(无头批产 · 断点续跑)+ 度量化(指标闭环 · 自动打分)+ 开源沉淀(方法论文档)——做管线的这套方法可复制,团队在 AI PCG 与扫描重建上的任何一条新线都能直接套用。</p>
+      <div class="col"><video src="assets/i2t-turn.mp4" autoplay muted loop playsinline preload="metadata" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;border:1px solid var(--line);background:#000;display:block"></video><p class="step" style="margin-top:12px">Agent 重塑 PCG · <a href="https://img2threejs.io/#/demo/girl-character"${EXT} style="color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent)">img2threejs ↗</a></p><h3>一张图,代码长出角色</h3><p>agent 只写 TypeScript 程序化曲面,就把一张参考图重建成可转台的 three.js 角色——PCG 管线本身,正在变成 agent 的工作流。</p></div>
+      <div class="col"><video src="assets/cwm-clip.mp4" autoplay muted loop playsinline preload="metadata" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;border:1px solid var(--line);background:#000;display:block"></video><p class="step" style="margin-top:12px">PCG 反哺前沿 AI · <a href="https://buaacyw.github.io/cwm/"${EXT} style="color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent)">Code World Model ↗</a></p><h3>世界模型需要 proxy 与白盒 GT</h3><p>CWM 用 coding agent 当世界大脑:先搭 proxy 世界,再交给视频模型渲染——proxy 几何与带完美标注的白盒 GT,正是白盒管线在量产的东西。</p></div>
+      <div class="col"><div style="width:100%;aspect-ratio:16/9;border:1.5px dashed var(--line);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:rgba(255,255,255,.02)"><span style="font-size:34px">🎬</span><span style="font-size:15px;color:var(--muted)">real2sim2real 演示视频 · 占位</span></div><p class="step" style="margin-top:12px">扫描 × Real2Sim2Real</p><h3>扫描资产是置信度最高的 truth</h3><p>扫描资产把物理世界高置信度地搬进仿真:以它为锚做「现实 → 仿真 → 现实」闭环,仿真里训练、现实里验证,误差有对照、可度量。</p></div>
     </div>
     <div class="foot"><span>感谢评审 — 全部工作均可在线查看与运行</span><a class="chip" style="margin-left:auto" href="${L_WBL}"${EXT}>全部专题页入口 ↗</a></div>
   </div>` }
