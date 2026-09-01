@@ -413,12 +413,12 @@ const SLIDES = [
         <p style="font-size:13.5px;color:var(--muted);text-align:center">同一片地形里的四类产物:远景展开 · 中近景 · 远景可移动 Mesh · 单体山峰</p>
       </div>
       <div>
-        <p style="font-size:18px;line-height:1.66;color:#c9c0ae;border-top:1px solid var(--line);padding-top:13px"><b style="color:var(--accent);font-weight:600">① 参考图 → 环绕合成。</b>导入 1 – 6 张参考图,「3D 布局」环绕预览、按 1 – 9 排序;合成环绕顶视图,不满意用 2D 局部重绘——笔刷涂抹 + 一句文字改写,未涂抹像素逐字节保真。</p>
-        <p style="font-size:18px;line-height:1.66;color:#c9c0ae;border-top:1px solid var(--line);padding-top:13px;margin-top:13px"><b style="color:var(--accent);font-weight:600">② 一键生成 Landscape。</b>目标 Landscape 确认位置、大小自动匹配;一键跑完「高度图 → 侵蚀 → 地形」,结果预览直接看高度图与侵蚀后对比,整体高度倍率可调。</p>
-        <p style="font-size:18px;line-height:1.66;color:#c9c0ae;border-top:1px solid var(--line);padding-top:13px;margin-top:13px"><b style="color:var(--accent);font-weight:600">③ 排队与容错。</b>出图慢多为模型排队占线——Output Log 可查,顶部可切换出图模型;四步产物全是图片,零副作用可无限重来。</p>
+        <p style="font-size:18px;line-height:1.66;color:#c9c0ae;border-top:1px solid var(--line);padding-top:13px"><b style="color:var(--accent);font-weight:600">① 近中景。</b>1 – 6 张参考图「3D 布局」环绕合成顶视图,一键跑完「高度图 → 侵蚀 → Landscape」;不满意用 2D 局部重绘笔刷改图,整体高度倍率可调。</p>
+        <p style="font-size:18px;line-height:1.66;color:#c9c0ae;border-top:1px solid var(--line);padding-top:13px;margin-top:13px"><b style="color:var(--accent);font-weight:600">② 远景与山峰。</b>远景一张参考图、同一逻辑一键生成 mesh 地形,中远景按方位 / 层数 / 面积铺开;山峰按预制库 / 参考图 / Heightmap 单独生成,丰富远景边际线。</p>
+        <p style="font-size:18px;line-height:1.66;color:#c9c0ae;border-top:1px solid var(--line);padding-top:13px;margin-top:13px"><b style="color:var(--accent);font-weight:600">③ 工具模块。</b>AI 生图分辨率 1K / 2K / 4K,Landscape ⇆ StaticMesh 互转,出图模型随时切换、Output Log 查排队;产物全是图片,零副作用可无限重来。</p>
       </div>
     </div>
-    <div class="foot"><span>工具区:AI 生图分辨率 1K / 2K / 4K · Landscape ⇆ StaticMesh 互转</span><a class="chip" style="margin-left:auto" href="${L_GG}"${EXT}>专题页:GeoGen 山脉与植被 ↗</a></div>
+    <div class="foot"><span>后两页展开:远景与山峰 · 植被五步</span><a class="chip" style="margin-left:auto" href="${L_GG}"${EXT}>专题页:GeoGen 山脉与植被 ↗</a></div>
   </div>` },
 
 { label:"GeoGen · 远景与山峰", html:`
