@@ -270,7 +270,7 @@ const SLIDES = [
   <div class="sl" style="padding-top:40px;padding-bottom:44px">
     <p class="kick" style="margin-bottom:8px">00 · About</p>
     <h2 style="font-size:52px;margin-bottom:6px">自我介绍</h2>
-    <p class="lead" style="font-size:23px">肖子骏(SeanZJXiao)— 技术美术 / 图形工程师</p>
+    <p class="lead" style="font-size:23px">肖子骏(SeanZJXiao)— 技术美术 / 图形工程师　<a href="https://www.linkedin.com/in/zijunxiao"${EXT} style="font-size:17px">LinkedIn ↗</a></p>
     <div class="cols" style="margin-top:14px;margin-block:auto;padding-block:0;gap:44px">
       <div class="col"><p class="step">教育经历</p>
         <div class="ent"><b>佐治亚理工学院</b><i>计算机图形 · Master of Science</i><em>2025.09 — 2027.06</em></div>
@@ -298,10 +298,9 @@ const SLIDES = [
     <div style="display:flex;align-items:baseline;gap:18px;margin-top:16px;border-top:1px solid var(--line);padding-top:10px">
       <p class="step" style="margin:0">作品集 · Portfolio 概述</p>
       <a class="chip" style="margin-left:auto;padding:7px 18px;font-size:15px" href="${L_PF}"${EXT}>完整作品集 ↗</a>
-      <a class="chip" style="padding:7px 18px;font-size:15px" href="https://www.linkedin.com/in/zijunxiao"${EXT}>LinkedIn ↗</a>
     </div>
     <div style="display:grid;gap:5px;margin-top:6px">
-      <p style="font-size:18.5px;line-height:1.6;color:#c9c0ae"><b style="color:var(--accent);font-weight:600">图形:</b>几何(geometry)、渲染(rendering)与物理模拟(physical sim)的算法实现与效果还原。</p>
+      <p style="font-size:18.5px;line-height:1.6;color:#c9c0ae"><b style="color:var(--accent);font-weight:600">图形:</b>渲染底层原理的从零实现——光线步进 · 体渲染 · Splatting · XPBD 物理;与 AI 图形学应用——SIREN · NeRF · Gaussian Splatting · 扩散模型。</p>
       <p style="font-size:18.5px;line-height:1.6;color:#c9c0ae"><b style="color:var(--accent);font-weight:600">美术:</b>角色 / 场景 / 材质三条全流程(Blender · Maya · Substance Painter)。</p>
       <p style="font-size:18.5px;line-height:1.6;color:#c9c0ae"><b style="color:var(--accent);font-weight:600">玩法:</b>可玩游戏 demo——3D ARPG 战斗与敌人 AI、VR FPS 子弹时间、2D 平台与像素解谜。</p>
     </div>
@@ -377,12 +376,12 @@ const SLIDES = [
   <div class="sl">
     <p class="kick">01 · AI PCG 编辑器</p>
     <h2>世界模型自动化管线</h2>
-    <p class="lead">PCG 白盒场景之后的三步:自动相机漫游 → MRQ 渲染 → 编码输出,把一座白盒变成带精确位姿与深度的视频数据。</p>
+    <p class="lead">白盒生成好之后的三步:相机自己规划轨迹拍一圈 → UE 高质量渲染 → 打包成视频。</p>
     <img class="fig" style="aspect-ratio:1863/351;margin:22px 0 0;object-fit:contain;background:#f4f1fa" src="assets/img/flow-strip.webp" alt="六步全链:LLM 提示词组合 → AI 三图生成 → PCG 场景白盒 → 自动相机漫游 → MRQ 渲染 → 编码输出">
     <div class="cols media">
-      <div class="col"><p class="step">④ 自动相机漫游</p><h3>解析轨迹,不采样</h3><p>建筑群包围盒定轨道半径(地形刻意不并入,否则 8 km 地形会把轨道推上天),orbit / dolly / crane 模板按 job 随机;相机高度对地形做射线检测,内参与对焦显式固定。位姿按轨迹参数逐帧解析重算——不是从物理相机采样,天然无累积误差。</p></div>
-      <div class="col"><p class="step">⑤ MRQ 渲染</p><h3>把不确定性逐条关掉</h3><p>Movie Render Queue 离线渲染:手动固定曝光、关运动模糊(否则亮度时序漂移),空间采样抗锯齿替代 TAA 避免拖影;RGB 之外经后处理材质输出 32 位 EXR 深度与世界法线,逐帧位姿与内参写入 cameras.json 作数据真源。</p></div>
-      <div class="col"><p class="step">⑥ 编码输出</p><h3>换约定,再验证</h3><p>UE 左手系(厘米)变换到 OpenCV 相机约定(米),用合成已知位姿做单元测试;深度声明为沿光轴 z-depth 并换米,内参换算成 K;帧序列编码为视频,全部产物校验后按目录契约落盘,下游直接组装。</p></div>
+      <div class="col"><p class="step">④ 自动相机漫游</p><h3>相机自己找机位</h3><p>不用人扶相机:围着建筑群自动算一条轨道,推、拉、摇、移几套运镜模板随机挑;怕撞山,每帧对地面打射线垫高度。走到哪、朝哪拍全是公式算出来的,每帧位置都精确可查、可复现。</p></div>
+      <div class="col"><p class="step">⑤ MRQ 渲染</p><h3>UE 离线出片,画质稳</h3><p>用 UE 自带的 Movie Render Queue 离线渲染:不赶实时帧率,画质拉满也不卡;曝光锁死、运动模糊关掉,画面不忽明忽暗、不拖影。顺手把每帧的深度图和法线图也一起导出来。</p></div>
+      <div class="col"><p class="step">⑥ Capture → 视频</p><h3>打包成视频</h3><p>渲完是一堆帧 + 相机数据:把 UE 坐标换算成通用相机格式、深度换成米,帧序列压成 mp4;连同每帧相机参数(cameras.json)按固定目录存好——拿到就能直接用,不用再问怎么解析。</p></div>
     </div>
     <div class="foot"><span>rgb / depth / normal / cameras.json / capture_meta —— 目录 schema 即交付契约 · 原为世界模型训练数据设计,方向未采纳,能力沉淀回白盒管线</span><a class="chip" style="margin-left:auto" href="${L_WM}"${EXT}>流程与视频 ↗</a></div>
   </div>` },
