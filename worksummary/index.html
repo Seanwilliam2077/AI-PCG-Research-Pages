@@ -326,8 +326,8 @@ const SLIDES = [
     ["01","白盒生成管线 — 批量生产与数据采集","Create PCG Data · BatchPCG · 47.5 s 全链",3],
     ["02","GeoGen — 山体与植被生成","编辑器模式 · 近远景双路线",7],
     ["03","AI PCG Scene — 单图到场景的端到端","三条实现 + 方法论 · 开源",10],
-    ["04","3DGS — 场景重建与 VortexGaussians","probe 采集 · 原生 3DGS 火焰烟雾",12],
-    ["05","总结 — 三个月做了什么","里程碑时间线 · 有可交互 Demo 可供体验",14]] },
+    ["04","3DGS — 场景重建与 VortexGaussians","probe 采集 · 原生 3DGS 火焰烟雾",13],
+    ["05","总结与展望","实际产出与个人贡献 · 未来方向",15]] },
 
 { label:"01 白盒生成管线", html:`
   <div class="sl" style="padding-top:44px;padding-bottom:44px">
@@ -500,11 +500,52 @@ const SLIDES = [
     <h2>AI PCG Scene — 单图到场景的端到端</h2>
     <p class="lead">同一个命题做三遍:给一张参考图,自动生成一个三维场景。三条互相独立的实现互相印证,全部开源。</p>
     <div class="cols media">
-      <div class="col"><img class="fig" style="aspect-ratio:16/7" src="assets/img/sc-endpoints.webp" alt="两个终点 — 参考图与 Blender Cycles 重建并排(166 物体 · 480 spp)"><p class="step">线 1 · UE5 资产库匹配</p><h3>AI 提案,规则裁决</h3><p>UE 5.5 内嵌 Python 前馈管线:标定 → 布局 → 材质 → 匹配装配;阶段间只交换 JSON、可断点续跑;失配退化代理盒。127 actors / 0 报错 / 21 库命中 + 9 代理盒。</p></div>
+      <div class="col"><div class="cmp" style="width:100%;aspect-ratio:16/9;margin-bottom:14px">
+        <img class="a" src="assets/img/sc-ep-ref.webp" alt="参考图">
+        <img class="b" src="assets/img/sc-ep-recon.webp" alt="Blender Cycles 重建">
+        <div class="bar"><div class="knob">⇄</div></div>
+        <span class="tag tagL" style="font-size:12px;padding:4px 9px">参考图</span><span class="tag tagR" style="font-size:12px;padding:4px 9px">重建</span>
+      </div><p class="step">线 1 · UE5 资产库匹配</p><h3>AI 提案,规则裁决</h3><p>UE 5.5 内嵌 Python 前馈管线:标定 → 布局 → 材质 → 匹配装配;阶段间只交换 JSON、可断点续跑;失配退化代理盒。127 actors / 0 报错 / 21 库命中 + 9 代理盒。</p></div>
       <div class="col"><img class="fig" style="aspect-ratio:16/8.5;object-fit:contain" src="assets/img/sc-assetlib.webp" alt="39 模块资产库总览 — 实测最长边全落在 75–118 cm 一条带"><p class="step">线 2 · three.js 程序化</p><h3>规则长出场景</h3><p>一张图拆成可生成的规则清单,几何与贴图全部运行时算出;同一份总平面被烘焙与摆放两处消费。44 897 构件 / 每帧 60 draw call,换个种子约 4 秒。</p></div>
-      <div class="col"><img class="fig" style="aspect-ratio:16/8.5;object-fit:contain" src="assets/img/sc-layout.webp" alt="解出的实例包围盒回投参考图 — 实例名:模块号 · 32 instances"><p class="step">线 3 · Blender 度量闭环</p><h3>像不像,可测量</h3><p>九轮「渲染 → 度量 → 定位病因 → 改」;消失点解相机、投影回原图逐点核对。边缘 F 0.260 → 0.650;与线 1 外参一比,地平线差 91 px。</p></div>
+      <div class="col">
+      <div style="position:relative;margin-bottom:8px">
+        <img class="fig" id="itImg" style="aspect-ratio:900/503;margin:0" src="assets/img/it1.webp" alt="九步迭代播片 — 点击放大当前帧">
+        <span id="itCap" style="position:absolute;top:9px;left:9px;padding:4px 10px;background:rgba(0,0,0,.62);border-radius:6px;font-size:12.5px;color:#ece5d8">01 首次端到端</span>
+        <span id="itMet" style="position:absolute;top:9px;right:9px;padding:4px 10px;background:rgba(0,0,0,.62);border-radius:6px;font-size:12px;color:var(--accent)">edgeF 0.260</span>
+      </div>
+      <div style="display:flex;gap:6px;align-items:center;margin-bottom:12px">
+        <button class="st" id="itPlay" style="padding:3px 12px;font-size:13px">⏸ 暂停</button>
+        <div style="display:flex;gap:5px" id="itDots"></div>
+      </div>
+      <p class="step">线 3 · Blender 度量闭环</p><h3>像不像,可测量</h3><p>九轮「渲染 → 度量 → 定位病因 → 改」,边缘 F 0.260 → 0.650——上方播片即九步迭代实录,下一页拆它是怎么实现的。</p></div>
     </div>
     <div class="foot"><span>三份交互文档:拖动对比 · 逐步播放 · 图上探针 · 参数滑块</span><a class="chip" style="margin-left:auto" href="${L_SC}"${EXT}>仓库:github.com/Seanwilliam2077/AI-PCG-Scene ↗</a></div>
+  </div>` },
+
+{ label:"Blender 渲染 · 怎么实现", html:`
+  <div class="sl">
+    <p class="kick">03 · 开源 · 线 3</p>
+    <h2 style="font-size:52px">Blender 渲染这条路是怎么实现的</h2>
+    <div style="display:flex;gap:24px;margin-top:20px;align-items:flex-start;justify-content:center">
+      <div style="width:392px;flex:none">
+        <img class="fig" style="aspect-ratio:1024/572;margin-bottom:6px" src="assets/img/rc-calib.webp" alt="解出的房间线框与地平线画回参考图核对(点击放大)">
+        <p style="font-size:12.5px;color:var(--muted);text-align:center">相机解算 · 线框与地平线画回原图核对</p>
+      </div>
+      <div style="width:378px;flex:none">
+        <img class="fig" style="aspect-ratio:1700/986;margin-bottom:6px" src="assets/img/rc-compare4.webp" alt="参考图 / 渲染图 / 误差热图 / 边缘叠加四联(点击放大)">
+        <p style="font-size:12.5px;color:var(--muted);text-align:center">度量四联 · 参考 / 渲染 / 误差热图 / 边缘叠加</p>
+      </div>
+      <div style="width:600px;flex:none">
+        <img class="fig" style="aspect-ratio:1200/420;margin-bottom:6px" src="assets/img/rc-curve.webp" alt="九个里程碑上的边缘 F 与 SSIM 曲线(点击放大)">
+        <p style="font-size:12.5px;color:var(--muted);text-align:center">指标曲线 · 九步里程碑的边缘 F / SSIM 全程留档</p>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-block:auto">
+      <p style="font-size:16.5px;line-height:1.64;color:#c9c0ae;border-top:1px solid var(--line);padding-top:12px"><b style="color:var(--accent);font-weight:600">相机是解出来的,不是估的。</b>参考图上抽直线段 → 消失点解出相机视场与机高,再把房间线框、0.5 m 地面栅格和地平线画回原图逐点核对;机位一旦对上就锁死,后面九轮不再动它。</p>
+      <p style="font-size:16.5px;line-height:1.64;color:#c9c0ae;border-top:1px solid var(--line);padding-top:12px"><b style="color:var(--accent);font-weight:600">「像不像」交给度量。</b>每轮 Cycles 渲染完自动打分:SSIM、边缘 F、直方图、曝光差;四联图直接指出哪里错——是内容缺了、颜色偏了,还是位置歪了,不靠眼睛猜。</p>
+      <p style="font-size:16.5px;line-height:1.64;color:#c9c0ae;border-top:1px solid var(--line);padding-top:12px"><b style="color:var(--accent);font-weight:600">九轮只改病因。</b>每轮定位一个病因改一处再重渲:转 Cycles、把参考图里的真海报贴回墙、修相机偏航、逐物体归位……边缘 F 从 0.260 一路走到 0.650,每步指标全程留档、可复查。</p>
+    </div>
+    <div class="foot"><span>166 物体 · 480 spp · 全程无云端调用,Blender 4.2 / Cycles(OptiX)</span><a class="chip" style="margin-left:auto" href="${L_SCP}"${EXT}>交互文档:逐步播放 · 图上探针 ↗</a></div>
   </div>` },
 
 { label:"方法论总图", html:`
@@ -559,24 +600,24 @@ const SLIDES = [
   <div class="sl">
     <p class="kick">04 · 前沿探索 · 公开研究</p>
     <h2>VortexGaussians</h2>
-    <p class="lead">首个以实时前向物理模拟生成火焰烟雾、并作为原生 3DGS 内容渲染的系统:涡粒子与 3D 高斯同为一种点基元——无体素化、无网格化、无模拟到渲染的转换。</p>
+    <p class="lead">首个以实时前向物理模拟生成火焰烟雾、并作为原生 3DGS 内容渲染的系统:涡粒子与 3D 高斯同为一种点基元——无体素化、无网格化、无模拟到渲染的转换。三段实拍录屏,从 Web 端到小场景再到大场景。</p>
     <div class="cols">
-      <div class="col"><img class="fig" style="object-fit:contain" src="assets/img/vg-flame.webp" alt="VortexGaussians 火焰题图"><p class="step">统一基元</p><h3>粒子即高斯</h3><p>火焰与重建出的 3DGS 场景共享一个深度序,互相遮挡正确——烟雾能正确地绕过重建场景的梁柱。</p></div>
-      <div class="col"><img class="fig" style="object-fit:contain" src="assets/img/vg-t250.webp" alt="t = 250 s — 65% charred · 乐高推土机燃烧序列"><p class="step">性能</p><h3>8.9 ms / 帧</h3><p>112 FPS,单文件 WebGL2 原型;模拟与渲染同帧完成,无离线烘焙。</p></div>
-      <div class="col"><img class="fig" style="object-fit:contain" src="assets/img/vg-farm.webp" alt="NVIDIA Omniverse 里的村庄重建燃烧 — 同一求解器 C++17 headless"><p class="step">开放</p><h3>论文页 + Live Demo</h3><p>论文页、实时 Demo 与代码全部公开,浏览器直接跑。</p></div>
+      <div class="col"><video src="assets/vg-web.mp4" autoplay muted loop playsinline preload="metadata" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;border:1px solid var(--line);background:#000;display:block"></video><p class="step" style="margin-top:12px">Web 端 · 求解器对比</p><h3>无网格火焰,移动也稳</h3><p>单文件 WebGL2 原型:同种子同时刻,左 Grid Mode(VIC)、右 Grid-Free(高斯 VPM)。火源移动时无网格解算依然稳定,~17 ms / 帧。</p></div>
+      <div class="col"><video src="assets/vg-small.mp4" autoplay muted loop playsinline preload="metadata" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;border:1px solid var(--line);background:#000;display:block"></video><p class="step" style="margin-top:12px">小场景 · 重建体自燃</p><h3>燃烧写在 splat 上</h3><p>乐高推土机 3DGS 重建:热、燃料、焦化直接存在重建自身的 splat 上,火自行引燃、沿 splat 蔓延,烧过的地方永久焦化。</p></div>
+      <div class="col"><video src="assets/vg-large.mp4" autoplay muted loop playsinline preload="metadata" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;border:1px solid var(--line);background:#000;display:block"></video><p class="step" style="margin-top:12px">大场景 · 村庄级</p><h3>同一求解器,场景级铺开</h3><p>村庄级重建整体燃烧(热度视图):同一求解器 C++17 headless 跑大场景,火焰烟雾与重建场景共享深度序,遮挡正确。</p></div>
     </div>
-    <div class="foot"><a class="chip" style="margin-left:auto" href="${L_VG}"${EXT}>专题页:seanwilliam2077.github.io/VortexGaussians ↗</a></div>
+    <div class="foot"><span>8.9 ms / 帧 · 112 FPS · 论文页 / Live Demo / 代码全部公开</span><a class="chip" style="margin-left:auto" href="${L_VG}"${EXT}>专题页:seanwilliam2077.github.io/VortexGaussians ↗</a></div>
   </div>` },
 
 { label:"总结", html:`
   <div class="sl">
     <p class="kick">05 · Summary</p>
-    <h2>总结 — 三个月做了什么</h2>
+    <h2>总结 — 实际产出与个人贡献</h2>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px 40px;margin-top:26px">
-      <div style="display:flex;gap:18px;border-top:1px solid var(--line);padding-top:14px;align-items:flex-start"><img class="fig" style="width:170px;aspect-ratio:16/10;margin:0;flex:none" src="assets/img/wb-nodegraph.webp" alt="白盒管线节点图 — Image Loader → 三图 → Create PCG Data"><p style="font-size:19.5px;line-height:1.66;color:#c9c0ae;margin:0"><b style="color:var(--text)">白盒管线批产化。</b>一张概念图到可游走白盒,做到无人值守夜跑几百场景;数据采集与一键视频批产并入,单场景全链 47.5 s。</p></div>
-      <div style="display:flex;gap:18px;border-top:1px solid var(--line);padding-top:14px;align-items:flex-start"><img class="fig" style="width:170px;aspect-ratio:16/10;margin:0;flex:none" src="assets/img/gg-veg.webp" alt="GeoGen 植被成果"><p style="font-size:19.5px;line-height:1.66;color:#c9c0ae;margin:0"><b style="color:var(--text)">GeoGen 补齐地形生态。</b>山体一键链(参考图 → 高度图 → 侵蚀 → 生态蒙版),近远景双路线互不覆盖,植被按 16 色分布图落地。</p></div>
-      <div style="display:flex;gap:18px;border-top:1px solid var(--line);padding-top:14px;align-items:flex-start"><img class="fig" style="width:170px;aspect-ratio:16/10;margin:0;flex:none" src="assets/img/sc-layout.webp" alt="实例包围盒回投参考图 — 32 instances"><p style="font-size:19.5px;line-height:1.66;color:#c9c0ae;margin:0"><b style="color:var(--text)">AI PCG Scene 开源。</b>单图到场景的端到端做了三条独立实现互相印证,沉淀成方法论——语义走模型,几何走算法。</p></div>
-      <div style="display:flex;gap:18px;border-top:1px solid var(--line);padding-top:14px;align-items:flex-start"><img class="fig" style="width:170px;aspect-ratio:16/10;margin:0;flex:none" src="assets/img/vg-flame.webp" alt="VortexGaussians"><p style="font-size:19.5px;line-height:1.66;color:#c9c0ae;margin:0"><b style="color:var(--text)">3DGS 前沿起步。</b>游戏场景重建管线端到端跑通,曝光一致性与 probe 路径是下一步;VortexGaussians 公开发布。</p></div>
+      <div style="display:flex;gap:18px;border-top:1px solid var(--line);padding-top:14px;align-items:flex-start"><img class="fig" style="width:170px;aspect-ratio:16/10;margin:0;flex:none" src="assets/img/wb-nodegraph.webp" alt="白盒管线节点图 — Image Loader → 三图 → Create PCG Data"><p style="font-size:19.5px;line-height:1.66;color:#c9c0ae;margin:0"><b style="color:var(--text)">白盒管线批产化。</b>一张概念图 → 可游走白盒,单场景全链 47.5 s;关键节点无头化后无人值守夜跑,300 job 落盘 20 – 35 GB,断点续跑、失败熔断。</p></div>
+      <div style="display:flex;gap:18px;border-top:1px solid var(--line);padding-top:14px;align-items:flex-start"><img class="fig" style="width:170px;aspect-ratio:16/10;margin:0;flex:none" src="assets/img/gg-veg.webp" alt="GeoGen 植被成果"><p style="font-size:19.5px;line-height:1.66;color:#c9c0ae;margin:0"><b style="color:var(--text)">GeoGen 补齐地形生态。</b>山体一键链(参考图 → 高度图 → 侵蚀 → 地形)+ 植被五步,近远景双路线互不覆盖;已并入 AI PCG 编辑器交付使用。</p></div>
+      <div style="display:flex;gap:18px;border-top:1px solid var(--line);padding-top:14px;align-items:flex-start"><img class="fig" style="width:170px;aspect-ratio:16/10;margin:0;flex:none" src="assets/img/sc-layout.webp" alt="实例包围盒回投参考图 — 32 instances"><p style="font-size:19.5px;line-height:1.66;color:#c9c0ae;margin:0"><b style="color:var(--text)">AI PCG Scene 开源。</b>单图到场景三条独立实现互相印证:UE5 端 127 actors 零手摆、Web 端 44 897 构件 60 draw call、Blender 端边缘 F 0.260 → 0.650;沉淀成方法论文档。</p></div>
+      <div style="display:flex;gap:18px;border-top:1px solid var(--line);padding-top:14px;align-items:flex-start"><img class="fig" style="width:170px;aspect-ratio:16/10;margin:0;flex:none" src="assets/img/vg-flame.webp" alt="VortexGaussians"><p style="font-size:19.5px;line-height:1.66;color:#c9c0ae;margin:0"><b style="color:var(--text)">3DGS 前沿起步。</b>游戏场景扫描重建管线端到端跑通;VortexGaussians 公开发布——8.9 ms / 帧(112 FPS)实时火焰烟雾,原生 3DGS 渲染。</p></div>
     </div>
     <svg class="tl" viewBox="0 0 1440 250" style="margin-top:10px" role="img" aria-label="时间线:六月白盒管线,七月批量生产,七至八月 GeoGen,八月 3DGS 扫描重建,八月下旬端到端 PCG 开源">
       <line x1="0" y1="92" x2="1440" y2="92"/>
@@ -592,77 +633,24 @@ const SLIDES = [
       <text x="600" y="202">山体与植被两条路线</text><text x="900" y="202">采集管线端到端跑通</text>
       <text x="1200" y="202">单图到场景·开源</text>
     </svg>
-    <div class="foot"><span>下一页:可交互的操作台 — 白盒布局算法 Demo、视频与全部在线功能,可直接动手体验</span><span style="margin-left:auto;color:var(--accent)">→</span></div>
+    <div class="foot"><span>下一页:对未来的展望 — 与团队方向的契合,与持续创造的价值</span><span style="margin-left:auto;color:var(--accent)">→</span></div>
   </div>` },
 
-{ label:"交互 Demo 汇总", html:`
-  <div class="sl" style="padding:42px 56px 34px">
-    <p class="kick" style="margin-bottom:6px">Playground · 已有功能与视频汇总</p>
-    <h2 style="font-size:40px;margin-bottom:0">操作台 — 每个模块,动手试</h2>
-    <div class="pg">
-      <div class="cell">
-        <div class="hd"><b>① 白盒布局算法</b><span>换种子重排 · 切阶段</span><span class="st2" id="demoStat"></span></div>
-        <div class="bd"><canvas id="cvSem"></canvas></div>
-        <div class="ct">
-          <button class="pb on" data-st="0">语义图</button>
-          <button class="pb" data-st="1">矢量化</button>
-          <button class="pb" data-st="2">白盒</button>
-          <button class="pb" id="btnSeed">种子 ↻</button>
-        </div>
-      </div>
-      <div class="cell">
-        <div class="hd"><b>② GeoGen 地形</b><span>噪声 → 侵蚀 → 生态,同一颗种子</span><span class="st2" id="ggStat"></span></div>
-        <div class="bd"><canvas id="cvGG"></canvas></div>
-        <div class="ct">
-          <button class="pb" data-gg="0">高度图</button>
-          <button class="pb on" data-gg="1">地形晕渲</button>
-          <button class="pb" data-gg="2">生态分布</button>
-          <button class="pb" id="btnGGSeed">种子 ↻</button>
-        </div>
-      </div>
-      <div class="cell">
-        <div class="hd"><b>③ 端到端重建对比</b><span>拖分割线:参考图 vs Blender 重建</span></div>
-        <div class="bd"><div class="cmp" id="cmp-ep">
-          <img class="a" src="assets/img/sc-ep-ref.webp" alt="参考图">
-          <img class="b" src="assets/img/sc-ep-recon.webp" alt="Blender 重建">
-          <div class="bar"><div class="knob">⇄</div></div>
-          <span class="tag tagL" style="font-size:12px;padding:4px 9px">参考图</span><span class="tag tagR" style="font-size:12px;padding:4px 9px">Blender 重建</span>
-        </div></div>
-        <div class="ct"><span style="font-size:12.5px;color:var(--muted)">166 物体 · 480 spp · 机位由解算得到</span></div>
-      </div>
-      <div class="cell">
-        <div class="hd"><b>④ 3DGS 燃烧序列</b><span>VortexGaussians · 点时间步</span></div>
-        <div class="bd"><img class="md" id="vgFrame" src="assets/img/vg-b0.webp" alt="t = 0 — nothing lit"></div>
-        <div class="ct">
-          <button class="pb on" data-vg="0" data-cap="t = 0 · 未点燃">t = 0</button>
-          <button class="pb" data-vg="24" data-cap="t = 24.4 s · 引燃,29 / 75443 splats">t = 24 s</button>
-          <button class="pb" data-vg="100" data-cap="t = 100 s · 12.5% charred">t = 100 s</button>
-          <button class="pb" data-vg="250" data-cap="t = 250 s · 65% charred">t = 250 s</button>
-          <span class="st2" id="vgCap">t = 0 · 未点燃</span>
-        </div>
-      </div>
-      <div class="cell">
-        <div class="hd"><b>⑤ 视频</b><span>点下方切换 · 点画面播放</span></div>
-        <div class="bd"><video id="pgVideo" src="assets/wm-full.mp4" poster="assets/wm-full-poster.webp" controls preload="none" playsinline></video></div>
-        <div class="ct">
-          <button class="pb on" data-vid="assets/wm-full.mp4" data-pos="assets/wm-full-poster.webp">全流程 3:34</button>
-          <button class="pb" data-vid="assets/wm-result.mp4" data-pos="assets/wm-result-poster.webp">成片 0:16</button>
-          <button class="pb" data-vid="assets/geogen-ops.mp4" data-pos="assets/geogen-ops-poster.webp">GeoGen 操作</button>
-          <button class="pb" data-vid="assets/wm-triptych.mp4" data-pos="assets/wm-triptych-poster.webp">三通道 0:11</button>
-        </div>
-      </div>
-      <div class="cell">
-        <div class="hd"><b>⑥ 在线功能直达</b><span>浏览器打开即用</span></div>
-        <div class="lks2">
-          <a class="lk2" href="${L_WBL}"${EXT}><b>白盒 Live</b><span>拖图当场出白盒,导出 GLB</span></a>
-          <a class="lk2" href="${L_VG}"${EXT}><b>VortexGaussians Demo</b><span>实时火焰 × 3DGS,112 FPS</span></a>
-          <a class="lk2" href="${L_WM}"${EXT}><b>白盒管线专题页</b><span>完整流程与更多视频</span></a>
-          <a class="lk2" href="${L_GG}"${EXT}><b>GeoGen 专题页</b><span>生态擦除对比 · 分步 UI</span></a>
-          <a class="lk2" href="${L_SCP}"${EXT}><b>AI PCG Scene 交互文档</b><span>逐步播放 · 图上探针</span></a>
-          <a class="lk2" href="${L_PF}"${EXT}><b>作品集</b><span>SDF · NeRF · 2DGS · XPBD</span></a>
-        </div>
-      </div>
+{ label:"对未来的展望", html:`
+  <div class="sl">
+    <p class="kick">05 · Outlook</p>
+    <h2 style="font-size:48px">对未来的展望 — PCG × 扫描重建 × AI</h2>
+    <p class="lead">团队聚焦 AI PCG 与扫描 / 3D 重建。放到 AI——尤其是世界模型——的坐标系里看,这两条线恰好是世界模型最缺的两块:可控的数据引擎,和落回三维的载体。</p>
+    <div class="cols">
+      <div class="col"><img class="fig" style="aspect-ratio:16/6.5" src="assets/wm-triptych-poster.webp" alt="RGB / 深度 / 法线三通道同步"><p class="step">PCG × 世界模型 · 数据引擎</p><h3>无限量的完美 GT 数据</h3><p>世界模型吃数据,PCG 能无限量产带完美标注的数据:相机轨迹、深度、法线、语义逐帧对齐。这条链我已跑通:白盒 → 运镜 → MRQ → 契约落盘,47.5 s 一个场景、可夜跑几百个,随时能重启供数。</p></div>
+      <div class="col"><img class="fig" style="aspect-ratio:16/6.5" src="assets/img/vg-farm.webp" alt="村庄级 3DGS 重建"><p class="step">扫描重建 × 世界模型 · 现实接口</p><h3>真实进来,生成落回三维</h3><p>扫描重建把真实分布带给模型;反过来,世界模型生成的内容也需要三维一致的载体落地。3DGS 是天然候选——可渲染、可微、点基元统一,VortexGaussians 已证明重建体还能承载实时物理。</p></div>
+      <div class="col"><img class="fig" style="aspect-ratio:16/6.5" src="assets/img/batch-poi.webp" alt="同一白盒长出多种写实风格"><p class="step">合流的未来 · 可交互的世界生成</p><h3>AI 出语义,PCG 与重建管几何</h3><p>「语义走模型、几何走算法」放大看就是未来分工:世界模型管意图与外观,PCG 管可玩的几何,扫描重建管真实感——朝「一句话意图 → 可游走、可交互的世界」合流,而不只是一段视频。</p></div>
     </div>
+    <div style="display:flex;gap:34px;align-items:baseline;border-top:1px solid var(--line);padding-top:9px;margin-top:2px">
+      <span style="font-size:14.5px;letter-spacing:.12em;color:var(--accent);flex:none"><b>持续创造的价值</b></span>
+      <p style="font-size:15.5px;line-height:1.55;color:#c9c0ae;margin:0">工程化(无头批产 · 断点续跑)+ 度量化(指标闭环 · 自动打分)+ 开源沉淀(方法论文档)——做管线的这套方法可复制,团队在 AI PCG 与扫描重建上的任何一条新线都能直接套用。</p>
+    </div>
+    <div class="foot"><span>感谢评审 — 全部工作均可在线查看与运行</span><a class="chip" style="margin-left:auto" href="${L_WBL}"${EXT}>全部专题页入口 ↗</a></div>
   </div>` }
 ];
 
@@ -704,6 +692,7 @@ function show(i, push) {
   if (push !== false) history.replaceState(null, '', '#' + (i + 1));
   fit();
   initCmps();
+  initItPlayer();
   if (i === SLIDES.length - 1) initDemo();
 }
 document.getElementById('btnPrev').addEventListener('click', () => show(cur - 1));
@@ -956,6 +945,36 @@ function initDemo() {
   setTimeout(() => { runDemo(); runGG(); }, 120); // fonts/layout settle
 }
 addEventListener('resize', () => { if (cur === SLIDES.length - 1) { runDemo(); runGG(); } });
+
+/* 九步迭代播片 */
+const IT_STEPS = [["01 首次端到端","edgeF 0.260"],["02 转 Cycles","edgeF 0.584"],["03 海报层","edgeF 0.602"],
+  ["04 线缆管路","edgeF 0.603"],["05 光度定标","edgeF 0.591"],["06 法线 + 门洞","edgeF 0.577"],
+  ["07 并发:海报 + 材质","edgeF 0.617"],["08 相机偏航修正","edgeF 0.620"],["09 并发:逐物体归位","edgeF 0.650"]];
+IT_STEPS.forEach((_, i) => { const im = new Image(); im.src = 'assets/img/it' + (i + 1) + '.webp'; });
+let itTimer = null, itIdx = 0, itPlaying = true;
+function itRender() {
+  const img = document.getElementById('itImg');
+  if (!img) return;
+  img.src = 'assets/img/it' + (itIdx + 1) + '.webp';
+  document.getElementById('itCap').textContent = IT_STEPS[itIdx][0];
+  document.getElementById('itMet').textContent = IT_STEPS[itIdx][1];
+  [...document.getElementById('itDots').children].forEach((d, k) =>
+    d.style.background = k === itIdx ? 'var(--accent)' : 'rgba(255,255,255,.22)');
+}
+function initItPlayer() {
+  if (itTimer) { clearInterval(itTimer); itTimer = null; }
+  const img = document.getElementById('itImg');
+  if (!img) return;
+  const dots = document.getElementById('itDots');
+  dots.innerHTML = IT_STEPS.map(() =>
+    '<i style="width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.22);cursor:pointer;display:inline-block"></i>').join('');
+  [...dots.children].forEach((d, k) => d.onclick = () => { itIdx = k; itPlaying = false;
+    document.getElementById('itPlay').textContent = '▶ 播放'; itRender(); });
+  const btn = document.getElementById('itPlay');
+  btn.onclick = () => { itPlaying = !itPlaying; btn.textContent = itPlaying ? '⏸ 暂停' : '▶ 播放'; };
+  itIdx = 0; itPlaying = true; btn.textContent = '⏸ 暂停'; itRender();
+  itTimer = setInterval(() => { if (itPlaying && document.getElementById('itImg')) { itIdx = (itIdx + 1) % 9; itRender(); } }, 1300);
+}
 
 /* compare sliders (参考 geogen.html 的划拉对比) */
 function initCmps() {
