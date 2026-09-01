@@ -450,86 +450,83 @@ const SLIDES = [
 { label:"03 AI PCG Scene", html:`
   <div class="sl">
     <p class="kick">03 · 开源</p>
-    <h2 style="font-size:48px">AI PCG Scene — 单图到场景 · Blender 度量闭环</h2>
-    <p class="lead">一张参考图,自动生成可渲染的三维场景:资产由 AI 生成,搭建与「像不像」全部交给可测量的度量循环。</p>
-    <div class="cols media">
-      <div class="col"><img class="fig" style="aspect-ratio:2086/1294;object-fit:contain" src="assets/img/sc-pipeline.webp" alt="管线四步:参考图 → VLM 检测打标 → 布局求解回投核对 → Cycles 渲染(点击放大)"><p class="step">① 整条管线怎么跑</p><h3>单图进,场景出</h3><p>参考图 → VLM 检测打标 → 消失点解出相机 → 布局求解(包围盒回投原图核对)→ Blender Cycles 渲染;阶段间只交换 JSON,每一步都能回看。</p></div>
-      <div class="col"><img class="fig" style="aspect-ratio:920/584;object-fit:contain" src="assets/img/sc-assetgen.webp" alt="资产生成:混元图生 3D 四视图转台 + 文生图 2D 贴图(点击放大)"><p class="step">② 资产怎么来</p><h3>3D 走混元,2D 走文生图</h3><p>三维资产用混元图生 3D 逐个生成、四视图转台逐个验收;海报和屏幕这类 2D 内容用文生图直出贴图、透视整流后贴回场景。全场 166 物体。</p></div>
-      <div class="col">
-      <div style="position:relative;margin-bottom:8px">
-        <img class="fig" id="itImg" style="aspect-ratio:900/503;margin:0" src="assets/img/it1.webp" alt="九步迭代播片 — 点击放大当前帧">
-        <span id="itCap" style="position:absolute;top:9px;left:9px;padding:4px 10px;background:rgba(0,0,0,.62);border-radius:6px;font-size:12.5px;color:#ece5d8">01 首次端到端</span>
-        <span id="itMet" style="position:absolute;top:9px;right:9px;padding:4px 10px;background:rgba(0,0,0,.62);border-radius:6px;font-size:12px;color:var(--accent)">edgeF 0.260</span>
+    <h2 style="font-size:50px">AI PCG Scene — 单图到场景</h2>
+    <p class="lead">一张参考图,自动生成可渲染的三维场景。左:拖动对比成品;右:九轮迭代实录。</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:44px;margin-block:auto;align-items:start">
+      <div>
+        <div class="cmp" style="width:100%;aspect-ratio:950/558;margin-bottom:14px">
+          <img class="a" src="assets/img/sc-ep-ref.webp" alt="参考图">
+          <img class="b" src="assets/img/sc-ep-recon.webp" alt="Blender Cycles 渲染">
+          <div class="bar"><div class="knob">⇄</div></div>
+          <span class="tag tagL" style="font-size:12px;padding:4px 9px">参考图</span><span class="tag tagR" style="font-size:12px;padding:4px 9px">Cycles 渲染</span>
+        </div>
+        <p class="step">整条管线怎么跑</p>
+        <p style="font-size:16.5px;line-height:1.62;color:#c9c0ae">参考图 → VLM 检测打标 → 消失点解出相机 → 资产 AI 生成 → 布局求解(包围盒回投原图核对)→ Blender Cycles 渲染。阶段间只交换 JSON,每一步都能回看核对。</p>
       </div>
-      <div style="display:flex;gap:6px;align-items:center;margin-bottom:12px">
-        <button class="st" id="itPlay" style="padding:3px 12px;font-size:13px">⏸ 暂停</button>
-        <div style="display:flex;gap:5px" id="itDots"></div>
+      <div>
+        <div style="position:relative;margin-bottom:8px">
+          <img class="fig" id="itImg" style="aspect-ratio:900/503;margin:0" src="assets/img/it1.webp" alt="九步迭代播片 — 点击放大当前帧">
+          <span id="itCap" style="position:absolute;top:9px;left:9px;padding:4px 10px;background:rgba(0,0,0,.62);border-radius:6px;font-size:12.5px;color:#ece5d8">01 首次端到端</span>
+          <span id="itMet" style="position:absolute;top:9px;right:9px;padding:4px 10px;background:rgba(0,0,0,.62);border-radius:6px;font-size:12px;color:var(--accent)">edgeF 0.260</span>
+        </div>
+        <div style="display:flex;gap:6px;align-items:center;margin-bottom:10px">
+          <button class="st" id="itPlay" style="padding:3px 12px;font-size:13px">⏸ 暂停</button>
+          <div style="display:flex;gap:5px" id="itDots"></div>
+        </div>
+        <p class="step">如何迭代</p>
+        <p style="font-size:16.5px;line-height:1.62;color:#c9c0ae">每轮渲染完自动打分(SSIM · 边缘 F · 曝光差),定位一个病因、只改一处、再重渲——九轮把边缘 F 从 0.260 提到 0.650,每步指标留档可复查。</p>
       </div>
-      <p class="step">③ 迭代 · 度量闭环</p><h3>像不像,可测量</h3><p>九轮「渲染 → 度量 → 定位病因 → 改」,边缘 F 0.260 → 0.650——上方播片即九步迭代实录,下一页拆它是怎么实现的。</p></div>
     </div>
-    <div class="foot"><span>交互文档:逐步播放 · 图上探针 · 拖动对比</span><a class="chip" style="margin-left:auto" href="${L_SC}"${EXT}>仓库:github.com/Seanwilliam2077/AI-PCG-Scene ↗</a></div>
+    <div class="foot"><span>下一页拆解:从一张图,怎么做到</span><a class="chip" style="margin-left:auto" href="${L_SC}"${EXT}>仓库:github.com/Seanwilliam2077/AI-PCG-Scene ↗</a></div>
   </div>` },
 
-{ label:"Blender 渲染 · 怎么实现", html:`
+{ label:"从一张图怎么做到", html:`
   <div class="sl">
-    <p class="kick">03 · 开源 · 度量闭环</p>
-    <h2 style="font-size:52px">Blender 渲染这条路是怎么实现的</h2>
-    <div style="display:flex;gap:24px;margin-top:20px;align-items:flex-start;justify-content:center">
-      <div style="width:392px;flex:none">
-        <img class="fig" style="aspect-ratio:1024/572;margin-bottom:6px" src="assets/img/rc-calib.webp" alt="解出的房间线框与地平线画回参考图核对(点击放大)">
-        <p style="font-size:12.5px;color:var(--muted);text-align:center">相机解算 · 线框与地平线画回原图核对</p>
+    <p class="kick">03 · 开源 · 展开</p>
+    <h2>从一张图,怎么做到</h2>
+    <div style="display:flex;gap:24px;margin-top:22px;align-items:flex-start;justify-content:center">
+      <div style="width:354px;flex:none">
+        <img class="fig" style="aspect-ratio:1024/572;margin-bottom:8px" src="assets/img/rc-calib.webp" alt="房间线框与地平线画回参考图核对(点击放大)">
+        <p class="step">① 相机是解出来的</p>
+        <p style="font-size:15.5px;line-height:1.6;color:#c9c0ae">参考图上抽直线段,消失点解出视场与机高;线框和地平线画回原图逐点核对,对上就锁死。</p>
       </div>
-      <div style="width:378px;flex:none">
-        <img class="fig" style="aspect-ratio:1700/986;margin-bottom:6px" src="assets/img/rc-compare4.webp" alt="参考图 / 渲染图 / 误差热图 / 边缘叠加四联(点击放大)">
-        <p style="font-size:12.5px;color:var(--muted);text-align:center">度量四联 · 参考 / 渲染 / 误差热图 / 边缘叠加</p>
+      <div style="width:354px;flex:none">
+        <img class="fig" style="aspect-ratio:920/584;object-fit:contain;margin-bottom:8px" src="assets/img/sc-assetgen.webp" alt="混元图生 3D 四视图 + 文生图贴图(点击放大)">
+        <p class="step">② 资产 AI 生成</p>
+        <p style="font-size:15.5px;line-height:1.6;color:#c9c0ae">3D 用混元图生 3D 逐个生成、四视图转台验收;海报屏幕等 2D 用文生图直出贴图。全场 166 物体。</p>
       </div>
-      <div style="width:600px;flex:none">
-        <img class="fig" style="aspect-ratio:1200/420;margin-bottom:6px" src="assets/img/rc-curve.webp" alt="九个里程碑上的边缘 F 与 SSIM 曲线(点击放大)">
-        <p style="font-size:12.5px;color:var(--muted);text-align:center">指标曲线 · 九步里程碑的边缘 F / SSIM 全程留档</p>
+      <div style="width:354px;flex:none">
+        <img class="fig" style="aspect-ratio:1024/572;margin-bottom:8px" src="assets/img/sc-layout.webp" alt="实例包围盒回投参考图 — 32 instances(点击放大)">
+        <p class="step">③ 布局求解 · DCC 摆放</p>
+        <p style="font-size:15.5px;line-height:1.6;color:#c9c0ae">每个实例的包围盒回投参考图逐个核对(32 instances),按解出的位姿在 Blender 里自动摆放。</p>
+      </div>
+      <div style="width:354px;flex:none">
+        <img class="fig" style="aspect-ratio:1400/812;object-fit:contain;margin-bottom:8px" src="assets/img/rc-compare4.webp" alt="参考 / 渲染 / 误差热图 / 边缘叠加四联(点击放大)">
+        <p class="step">④ 像不像,交给度量</p>
+        <p style="font-size:15.5px;line-height:1.6;color:#c9c0ae">每轮 Cycles 渲染完自动打分:SSIM、边缘 F、误差热图、边缘叠加——四联图直接指出哪里错,不靠眼睛猜。</p>
       </div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-block:auto">
-      <p style="font-size:16.5px;line-height:1.64;color:#c9c0ae;border-top:1px solid var(--line);padding-top:12px"><b style="color:var(--accent);font-weight:600">相机是解出来的,不是估的。</b>参考图上抽直线段 → 消失点解出相机视场与机高,再把房间线框、0.5 m 地面栅格和地平线画回原图逐点核对;机位一旦对上就锁死,后面九轮不再动它。</p>
-      <p style="font-size:16.5px;line-height:1.64;color:#c9c0ae;border-top:1px solid var(--line);padding-top:12px"><b style="color:var(--accent);font-weight:600">「像不像」交给度量。</b>每轮 Cycles 渲染完自动打分:SSIM、边缘 F、直方图、曝光差;四联图直接指出哪里错——是内容缺了、颜色偏了,还是位置歪了,不靠眼睛猜。</p>
-      <p style="font-size:16.5px;line-height:1.64;color:#c9c0ae;border-top:1px solid var(--line);padding-top:12px"><b style="color:var(--accent);font-weight:600">九轮只改病因。</b>每轮定位一个病因改一处再重渲:转 Cycles、把参考图里的真海报贴回墙、修相机偏航、逐物体归位……边缘 F 从 0.260 一路走到 0.650,每步指标全程留档、可复查。</p>
-    </div>
-    <div class="foot"><span>166 物体 · 480 spp · 全程无云端调用,Blender 4.2 / Cycles(OptiX)</span><a class="chip" style="margin-left:auto" href="${L_SCP}"${EXT}>交互文档:逐步播放 · 图上探针 ↗</a></div>
+    <div class="foot"><span>166 物体 · 480 spp · Blender 4.2 / Cycles(OptiX)</span><a class="chip" style="margin-left:auto" href="${L_SCP}"${EXT}>交互文档:逐步播放 · 图上探针 ↗</a></div>
   </div>` },
 
-{ label:"方法论总图", html:`
-  <div class="sl" style="padding:46px 76px 40px">
-    <p class="kick" style="margin-bottom:8px">03 · 开源 · 方法论</p>
-    <h2 style="font-size:46px;margin-bottom:12px">模型很会说「这是什么」,很不会说「有多大、在哪里」</h2>
-    <p style="font-size:19px;color:#c9c0ae;margin-bottom:16px">所以:语义交给模型,几何交给确定性算法;模型给出的几何量只当提示 —— 拿不到它,管线也必须照样出结果。</p>
-    <div style="display:flex;flex-direction:column;gap:12px;flex:1;min-height:0;justify-content:space-evenly">
-      <div style="border:1.5px dashed #5a9fd6;border-radius:10px;padding:14px 18px 16px">
-        <p style="font-size:16px;letter-spacing:.08em;color:#7db8e8;margin-bottom:9px"><b>语义层 · 交给模型</b>　类别 · 支撑关系 · 文字 · 材质倾向 —— 输出只当提示,不进关键路径</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
-          <p style="font-size:15.5px;line-height:1.6;color:#c2b9a8"><b style="color:#ece5d8">单遍欠召回是结构性的。</b>同一份提示词只换 crop 跑四遍召回:整图 21 个,另外三遍补 49 个 = 70;这种漏,调提示词补不回来。</p>
-          <p style="font-size:15.5px;line-height:1.6;color:#c2b9a8"><b style="color:#ece5d8">模型报的尺寸只当交叉校验。</b>语义字段人核对过就冻结;模型估的尺寸不参与任何缩放,偏差 > 2 倍只打标记 —— 39 个模块里 25 个中招。</p>
-          <p style="font-size:15.5px;line-height:1.6;color:#c2b9a8"><b style="color:#ece5d8">模型的位姿输出只做旁证。</b>九自由度三维盒只给偏航一条交叉证据;让模型写解算器,不要让它看图报数:当估计器用误差 ±30–50%。</p>
-        </div>
-      </div>
-      <div style="border:1.5px solid #4fbf7f;border-radius:10px;padding:14px 18px 16px">
-        <p style="font-size:16px;letter-spacing:.08em;color:#6fd39a;margin-bottom:9px"><b>几何层 · 交给确定性算法</b>　尺度 · 位置 · 姿态 —— 这是主干,这条链上不出现模型;可解的几何量不交给模型估</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
-          <p style="font-size:15.5px;line-height:1.6;color:#c2b9a8"><b style="color:#ece5d8">框的取舍靠坐标判据,不靠模型。</b>碰人工切缝的框丢弃,碰真实图边的保留并打「被裁断」标记;前提是重叠带宽于最大跨缝物体。</p>
-          <p style="font-size:15.5px;line-height:1.6;color:#c2b9a8"><b style="color:#ece5d8">几何字段永远从实测覆盖。</b>注册表不可信,实测才是裁判:矮桌变体实测顶面比模型低 35 cm,桌上的东西整批悬空。</p>
-          <p style="font-size:15.5px;line-height:1.6;color:#c2b9a8"><b style="color:#ece5d8">位姿是「解 + 验」,不是「估」。</b>像素 → 射线 → 与声明的支撑面求交 → 米;换 DCC 改的只是搬运层六件事(手性 / 单位 / 上轴 / 枢轴 / 欧拉序 / FOV 轴)。</p>
-        </div>
-      </div>
-      <div style="border:1.5px solid var(--accent);border-radius:10px;padding:14px 18px 16px">
-        <p style="font-size:16px;letter-spacing:.08em;color:var(--accent);margin-bottom:9px"><b>闸门 · 不通过就退回</b>　并把拒收理由记下来 —— 这是这套方法与「一路前馈」的全部区别</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px">
-          <p style="font-size:15px;line-height:1.55;color:#c2b9a8"><b style="color:#ece5d8">① 受理窗口。</b>hfov 出 [30°,120°] 拒收,出 (35°,110°) 置信 ×0.2;同一张参考图上真的解出过 15° 和 155°。</p>
-          <p style="font-size:15px;line-height:1.55;color:#c2b9a8"><b style="color:#ece5d8">② 一致性检查。</b>几个已知高度的物体各自反解机高,取 MAD/median;它只说至少有一个错了 —— 线 1 记了 0.35,照样交付。</p>
-          <p style="font-size:15px;line-height:1.55;color:#c2b9a8"><b style="color:#ece5d8">③ 余量门。</b>dD/dpx = h·f / margin²:余量 273 px 解 1.4 m、38 px 解 9.7 m,同一像素误差在两端差 50 倍。</p>
-          <p style="font-size:15px;line-height:1.55;color:#c2b9a8"><b style="color:#ece5d8">④ 重投影核对。</b>把解算结果画回参考图,点阵双向投影验渲染器与投影器一致;唯一能抓到全局系统性偏移的手段。</p>
-        </div>
-        <p style="font-size:14.5px;color:var(--accent);margin-top:8px">任一闸门不过 → 退回上一步重解,而不是带着一个自洽但错误的解继续往下走</p>
-      </div>
+{ label:"管线总结", html:`
+  <div class="sl">
+    <p class="kick">03 · 开源 · 总结</p>
+    <h2>一条管线:图 → 资产 → DCC</h2>
+    <p class="lead">把前两页收成一张简约的流程:唯一输入是一张图,产出是 DCC 里可渲染、可继续编辑的场景。</p>
+    <div style="display:flex;gap:16px;align-items:stretch;margin-block:auto">
+      <div style="background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:20px 18px;flex:1;min-width:0"><p style="font-size:19px;color:var(--text);margin-bottom:8px;font-weight:600">📷 参考图</p><p style="font-size:14.5px;line-height:1.6;color:#c9c0ae;margin:0">一张图,唯一输入;不限风格与来源。</p></div>
+      <span style="font-size:30px;color:var(--accent);flex:none;align-self:center">→</span>
+      <div style="background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:20px 18px;flex:1;min-width:0"><p style="font-size:19px;color:var(--text);margin-bottom:8px;font-weight:600">🔍 图像理解</p><p style="font-size:14.5px;line-height:1.6;color:#c9c0ae;margin:0">VLM 检测与打标;直线段 → 消失点解出相机并锁死。</p></div>
+      <span style="font-size:30px;color:var(--accent);flex:none;align-self:center">→</span>
+      <div style="background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:20px 18px;flex:1;min-width:0"><p style="font-size:19px;color:var(--text);margin-bottom:8px;font-weight:600">🧱 资产生成</p><p style="font-size:14.5px;line-height:1.6;color:#c9c0ae;margin:0">3D:混元图生 3D,四视图验收;2D:文生图直出贴图。</p></div>
+      <span style="font-size:30px;color:var(--accent);flex:none;align-self:center">→</span>
+      <div style="background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:20px 18px;flex:1;min-width:0"><p style="font-size:19px;color:var(--text);margin-bottom:8px;font-weight:600">🎬 DCC 摆放</p><p style="font-size:14.5px;line-height:1.6;color:#c9c0ae;margin:0">布局求解、包围盒回投核对;按位姿在 Blender 自动装配。</p></div>
+      <span style="font-size:30px;color:var(--accent);flex:none;align-self:center">→</span>
+      <div style="background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:20px 18px;flex:1;min-width:0"><p style="font-size:19px;color:var(--text);margin-bottom:8px;font-weight:600">📏 渲染 × 度量 ↺</p><p style="font-size:14.5px;line-height:1.6;color:#c9c0ae;margin:0">Cycles 渲染自动打分,定位病因改一处再渲;九轮 0.260 → 0.650。</p></div>
     </div>
-    <div class="foot" style="margin-top:16px"><span>三条实现撞出来的通用做法,不绑定本仓库代码 · 数据可一键复跑导出</span><a class="chip" style="margin-left:auto" href="${L_SCP}"${EXT}>交互文档 ↗</a><a class="chip" href="${L_WBL}"${EXT}>白盒 Live ↗</a></div>
+    <p style="text-align:center;font-size:16px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px">方法论一句话:<b style="color:var(--accent)">语义走模型,几何走算法</b> —— 模型只提案,规则与度量做裁决。</p>
+    <div class="foot"><span>三份交互文档与全部源码开源</span><a class="chip" style="margin-left:auto" href="${L_SC}"${EXT}>仓库:github.com/Seanwilliam2077/AI-PCG-Scene ↗</a></div>
   </div>` },
 
 { label:"04 为什么做 Physical GS", html:`
