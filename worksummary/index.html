@@ -327,7 +327,7 @@ const SLIDES = [
     ["02","GeoGen — 山体与植被生成","编辑器模式 · 近远景双路线",7],
     ["03","Frontier Lab 3DGS 探索","为什么做 Native Fluid GS · 三篇灵感 · VortexGaussians",10],
     ["04","AI PCG Scene — 单图到场景的端到端","资产 AI 生成 · Blender 度量闭环 · 开源",12],
-    ["05","总结与展望","实际产出与个人贡献 · 未来方向",15]] },
+    ["05","总结与展望","实际产出与个人贡献 · 未来方向",14]] },
 
 { label:"01 白盒生成管线", html:`
   <div class="sl" style="padding-top:44px;padding-bottom:44px">
@@ -519,50 +519,37 @@ const SLIDES = [
 { label:"从一张图怎么做到", html:`
   <div class="sl">
     <p class="kick">04 · 开源 · 展开</p>
-    <h2>从一张图,怎么做到</h2>
-    <div style="display:flex;gap:24px;margin-top:22px;align-items:flex-start;justify-content:center">
-      <div style="width:354px;flex:none">
+    <h2 style="font-size:46px;margin-bottom:14px">从一张图,怎么做到</h2>
+    <div style="display:flex;gap:12px;align-items:center;justify-content:center;margin-bottom:22px">
+      <span style="padding:8px 18px;border:1px solid var(--line);border-radius:22px;font-size:15.5px;color:var(--text);background:rgba(255,255,255,.03);white-space:nowrap">📷 参考图</span><span style="font-size:22px;color:var(--accent)">→</span>
+      <span style="padding:8px 18px;border:1px solid var(--line);border-radius:22px;font-size:15.5px;color:var(--text);background:rgba(255,255,255,.03);white-space:nowrap">🔍 图像理解 · 解相机</span><span style="font-size:22px;color:var(--accent)">→</span>
+      <span style="padding:8px 18px;border:1px solid var(--line);border-radius:22px;font-size:15.5px;color:var(--text);background:rgba(255,255,255,.03);white-space:nowrap">🧱 资产生成</span><span style="font-size:22px;color:var(--accent)">→</span>
+      <span style="padding:8px 18px;border:1px solid var(--line);border-radius:22px;font-size:15.5px;color:var(--text);background:rgba(255,255,255,.03);white-space:nowrap">🎬 DCC 摆放</span><span style="font-size:22px;color:var(--accent)">→</span>
+      <span style="padding:8px 18px;border:1px solid var(--line);border-radius:22px;font-size:15.5px;color:var(--text);background:rgba(255,255,255,.03);white-space:nowrap">📏 渲染 × 度量 ↺</span>
+    </div>
+    <div style="display:flex;gap:24px;align-items:flex-start;justify-content:center;margin-block:auto">
+      <div style="width:368px;flex:none">
         <img class="fig" style="aspect-ratio:1024/572;margin-bottom:8px" src="assets/img/rc-calib.webp" alt="房间线框与地平线画回参考图核对(点击放大)">
         <p class="step">① 相机是解出来的</p>
         <p style="font-size:15.5px;line-height:1.6;color:#c9c0ae">参考图上抽直线段,消失点解出视场与机高;线框和地平线画回原图逐点核对,对上就锁死。</p>
       </div>
-      <div style="width:354px;flex:none">
-        <img class="fig" style="aspect-ratio:920/584;object-fit:contain;margin-bottom:8px" src="assets/img/sc-assetgen.webp" alt="混元图生 3D 四视图 + 文生图贴图(点击放大)">
+      <div style="width:368px;flex:none">
+        <img class="fig" style="aspect-ratio:928/484;object-fit:contain;margin-bottom:8px" src="assets/img/sc-hy3d.webp" alt="混元图生 3D 生成的多个资产转台(点击放大)">
         <p class="step">② 资产 AI 生成</p>
-        <p style="font-size:15.5px;line-height:1.6;color:#c9c0ae">3D 用混元图生 3D 逐个生成、四视图转台验收;海报屏幕等 2D 用文生图直出贴图。全场 166 物体。</p>
+        <p style="font-size:15.5px;line-height:1.6;color:#c9c0ae">3D 用混元图生 3D 逐个生成、多视图验收;2D 贴图纹理由 agent 程序化 PCG 生成,海报从参考图矫正回贴。全场 166 物体。</p>
       </div>
-      <div style="width:354px;flex:none">
+      <div style="width:368px;flex:none">
         <img class="fig" style="aspect-ratio:1024/572;margin-bottom:8px" src="assets/img/sc-layout.webp" alt="实例包围盒回投参考图 — 32 instances(点击放大)">
         <p class="step">③ 布局求解 · DCC 摆放</p>
         <p style="font-size:15.5px;line-height:1.6;color:#c9c0ae">每个实例的包围盒回投参考图逐个核对(32 instances),按解出的位姿在 Blender 里自动摆放。</p>
       </div>
-      <div style="width:354px;flex:none">
+      <div style="width:368px;flex:none">
         <img class="fig" style="aspect-ratio:1400/812;object-fit:contain;margin-bottom:8px" src="assets/img/rc-compare4.webp" alt="参考 / 渲染 / 误差热图 / 边缘叠加四联(点击放大)">
         <p class="step">④ 像不像,交给度量</p>
         <p style="font-size:15.5px;line-height:1.6;color:#c9c0ae">每轮 Cycles 渲染完自动打分:SSIM、边缘 F、误差热图、边缘叠加——四联图直接指出哪里错,不靠眼睛猜。</p>
       </div>
     </div>
-    <div class="foot"><span>166 物体 · 480 spp · Blender 4.2 / Cycles(OptiX)</span><a class="chip" style="margin-left:auto" href="${L_SCP}"${EXT}>交互文档:逐步播放 · 图上探针 ↗</a></div>
-  </div>` },
-
-{ label:"管线总结", html:`
-  <div class="sl">
-    <p class="kick">04 · 开源 · 总结</p>
-    <h2>一条管线:图 → 资产 → DCC</h2>
-    <p class="lead">把前两页收成一张简约的流程:唯一输入是一张图,产出是 DCC 里可渲染、可继续编辑的场景。</p>
-    <div style="display:flex;gap:16px;align-items:stretch;margin-block:auto">
-      <div style="background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:20px 18px;flex:1;min-width:0"><p style="font-size:19px;color:var(--text);margin-bottom:8px;font-weight:600">📷 参考图</p><p style="font-size:14.5px;line-height:1.6;color:#c9c0ae;margin:0">一张图,唯一输入;不限风格与来源。</p></div>
-      <span style="font-size:30px;color:var(--accent);flex:none;align-self:center">→</span>
-      <div style="background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:20px 18px;flex:1;min-width:0"><p style="font-size:19px;color:var(--text);margin-bottom:8px;font-weight:600">🔍 图像理解</p><p style="font-size:14.5px;line-height:1.6;color:#c9c0ae;margin:0">VLM 检测与打标;直线段 → 消失点解出相机并锁死。</p></div>
-      <span style="font-size:30px;color:var(--accent);flex:none;align-self:center">→</span>
-      <div style="background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:20px 18px;flex:1;min-width:0"><p style="font-size:19px;color:var(--text);margin-bottom:8px;font-weight:600">🧱 资产生成</p><p style="font-size:14.5px;line-height:1.6;color:#c9c0ae;margin:0">3D:混元图生 3D,四视图验收;2D:文生图直出贴图。</p></div>
-      <span style="font-size:30px;color:var(--accent);flex:none;align-self:center">→</span>
-      <div style="background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:20px 18px;flex:1;min-width:0"><p style="font-size:19px;color:var(--text);margin-bottom:8px;font-weight:600">🎬 DCC 摆放</p><p style="font-size:14.5px;line-height:1.6;color:#c9c0ae;margin:0">布局求解、包围盒回投核对;按位姿在 Blender 自动装配。</p></div>
-      <span style="font-size:30px;color:var(--accent);flex:none;align-self:center">→</span>
-      <div style="background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:20px 18px;flex:1;min-width:0"><p style="font-size:19px;color:var(--text);margin-bottom:8px;font-weight:600">📏 渲染 × 度量 ↺</p><p style="font-size:14.5px;line-height:1.6;color:#c9c0ae;margin:0">Cycles 渲染自动打分,定位病因改一处再渲;九轮 0.260 → 0.650。</p></div>
-    </div>
-    <p style="text-align:center;font-size:16px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px">方法论一句话:<b style="color:var(--accent)">语义走模型,几何走算法</b> —— 模型只提案,规则与度量做裁决。</p>
-    <div class="foot"><span>三份交互文档与全部源码开源</span><a class="chip" style="margin-left:auto" href="${L_SC}"${EXT}>仓库:github.com/Seanwilliam2077/AI-PCG-Scene ↗</a></div>
+    <div class="foot"><span>方法论一句话:<b style="color:var(--accent)">语义走模型,几何走算法</b> —— 模型只提案,规则与度量做裁决</span><a class="chip" style="margin-left:auto" href="${L_SCP}"${EXT}>交互文档:逐步播放 · 图上探针 ↗</a></div>
   </div>` },
 
 { label:"总结", html:`
