@@ -567,26 +567,42 @@ const SLIDES = [
 { label:"总结", html:`
   <div class="sl">
     <p class="kick">05 · Summary</p>
-    <h2>总结 — 实际产出与个人贡献</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px 40px;margin-top:26px">
-      <div style="display:flex;gap:18px;border-top:1px solid var(--line);padding-top:14px;align-items:flex-start"><img class="fig" style="width:170px;aspect-ratio:16/10;margin:0;flex:none" src="assets/img/wb-nodegraph.webp" alt="白盒管线节点图 — Image Loader → 三图 → Create PCG Data"><p style="font-size:19.5px;line-height:1.66;color:#c9c0ae;margin:0"><b style="color:var(--text)">白盒管线批产化。</b>一张概念图 → 可游走白盒,单场景全链 47.5 s;关键节点无头化后无人值守夜跑,300 job 落盘 20 – 35 GB,断点续跑、失败熔断。</p></div>
-      <div style="display:flex;gap:18px;border-top:1px solid var(--line);padding-top:14px;align-items:flex-start"><img class="fig" style="width:170px;aspect-ratio:16/10;margin:0;flex:none" src="assets/img/gg-veg.webp" alt="GeoGen 植被成果"><p style="font-size:19.5px;line-height:1.66;color:#c9c0ae;margin:0"><b style="color:var(--text)">GeoGen 补齐地形生态。</b>山体一键链(参考图 → 高度图 → 侵蚀 → 地形)+ 植被五步,近远景双路线互不覆盖;已并入 AI PCG 编辑器交付使用。</p></div>
-      <div style="display:flex;gap:18px;border-top:1px solid var(--line);padding-top:14px;align-items:flex-start"><img class="fig" style="width:170px;aspect-ratio:16/10;margin:0;flex:none" src="assets/img/sc-layout.webp" alt="实例包围盒回投参考图 — 32 instances"><p style="font-size:19.5px;line-height:1.66;color:#c9c0ae;margin:0"><b style="color:var(--text)">AI PCG Scene 开源。</b>单图到场景三条独立实现互相印证:UE5 端 127 actors 零手摆、Web 端 44 897 构件 60 draw call、Blender 端边缘 F 0.260 → 0.650;沉淀成方法论文档。</p></div>
-      <div style="display:flex;gap:18px;border-top:1px solid var(--line);padding-top:14px;align-items:flex-start"><img class="fig" style="width:170px;aspect-ratio:16/10;margin:0;flex:none" src="assets/img/vg-flame.webp" alt="VortexGaussians"><p style="font-size:19.5px;line-height:1.66;color:#c9c0ae;margin:0"><b style="color:var(--text)">3DGS 前沿起步。</b>游戏场景扫描重建管线端到端跑通;VortexGaussians 公开发布——8.9 ms / 帧(112 FPS)实时火焰烟雾,原生 3DGS 渲染。</p></div>
+    <h2>总结 — 一半工程,一半探索</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 44px;margin-top:24px">
+      <div style="border-right:1px solid var(--line);padding-right:44px;margin-right:-44px">
+        <p style="font-size:15px;letter-spacing:.14em;margin:0 0 10px;text-align:center;color:#D2AF37"><b>工程 · 落地交付</b></p>
+        <div style="display:flex;gap:20px;justify-content:center;align-items:flex-start">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><img class="fig" style="height:192px;width:auto;max-width:100%;object-fit:contain;border-radius:8px;border:1px solid var(--line);cursor:zoom-in" src="assets/img/batch-poi.webp" alt="批量白盒与多风格成图(点击放大)"><p style="font-size:14.5px;color:var(--muted);margin:0"><b style="color:var(--text)">批量白盒管线</b> · 06 – 07 月</p></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><img class="fig" style="height:192px;width:auto;max-width:100%;object-fit:contain;border-radius:8px;border:1px solid var(--line);cursor:zoom-in" src="assets/img/gg-veg.webp" alt="GeoGen 整体生态(点击放大)"><p style="font-size:14.5px;color:var(--muted);margin:0"><b style="color:var(--text)">GeoGen 山体植被</b> · 07 – 09 月</p></div>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:15px;letter-spacing:.14em;margin:0 0 10px;text-align:center;color:#c96f4a"><b>探索 · 前沿储备</b></p>
+        <div style="display:flex;gap:20px;justify-content:center;align-items:flex-start">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><img class="fig" style="height:192px;width:auto;max-width:100%;object-fit:contain;border-radius:8px;border:1px solid var(--line);cursor:zoom-in" src="assets/img/vg-farm.webp" alt="3DGS 村庄级重建(点击放大)"><p style="font-size:14.5px;color:var(--muted);margin:0"><b style="color:var(--text)">3DGS</b> · 06 月中 – 至今</p></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><img class="fig" style="height:192px;width:auto;max-width:100%;object-fit:contain;border-radius:8px;border:1px solid var(--line);cursor:zoom-in" src="assets/img/sc-ep-recon.webp" alt="Web AI PCG 单图重建成品(点击放大)"><p style="font-size:14.5px;color:var(--muted);margin:0"><b style="color:var(--text)">Web AI PCG</b> · 08 月中 – 至今</p></div>
+        </div>
+      </div>
     </div>
-    <svg class="tl" viewBox="0 0 1440 250" style="margin-top:10px" role="img" aria-label="时间线:六月白盒管线,七月批量生产,七至八月 GeoGen,八月 3DGS 扫描重建,八月下旬端到端 PCG 开源">
-      <line x1="0" y1="92" x2="1440" y2="92"/>
-      <text class="d" x="0" y="52">06 月</text><text class="d" x="300" y="52">07 月</text>
-      <text class="d" x="600" y="52">07 — 08 月</text><text class="d" x="900" y="52">08 月</text>
-      <text class="d hi" x="1200" y="52">08 月下</text>
-      <circle cx="8" cy="92" r="7"/><circle cx="308" cy="92" r="7"/><circle cx="608" cy="92" r="7"/>
-      <circle cx="908" cy="92" r="7"/><circle class="hi" cx="1208" cy="92" r="8"/>
-      <text class="lb" x="0" y="152">白盒管线</text><text class="lb" x="300" y="152">批量生产</text>
-      <text class="lb" x="600" y="152">GeoGen</text><text class="lb" x="900" y="152">3DGS 扫描重建</text>
-      <text class="lb" x="1200" y="152">端到端 PCG</text>
-      <text x="0" y="202">节点图与无头化</text><text x="300" y="202">夜跑批产·视频与数据全链</text>
-      <text x="600" y="202">山体与植被两条路线</text><text x="900" y="202">采集管线端到端跑通</text>
-      <text x="1200" y="202">单图到场景·开源</text>
+    <svg viewBox="0 0 1440 268" style="width:100%;margin-block:auto" role="img" aria-label="时间线:工程线为批量白盒管线 6 至 7 月与 GeoGen 山体植被 7 至 9 月;探索线为 3DGS 6 月中至今与 Web AI PCG 8 月中至今">
+      <defs><marker id="tlar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="context-stroke"/></marker></defs>
+      <g font-size="17" fill="#8f866f">
+        <text x="40" y="30">06 月</text><text x="440" y="30">07 月</text><text x="840" y="30">08 月</text><text x="1240" y="30">09 月 · 至今</text>
+      </g>
+      <g font-size="15.5" fill="#8f866f">
+        <rect x="1062" y="16" width="14" height="14" rx="3" fill="#D2AF37"/><text x="1082" y="29">工程</text>
+        <rect x="1140" y="16" width="14" height="14" rx="3" fill="#c96f4a"/><text x="1160" y="29">探索</text>
+      </g>
+      <g stroke="#3a352a" stroke-dasharray="3 5">
+        <line x1="40" y1="44" x2="40" y2="252"/><line x1="440" y1="44" x2="440" y2="252"/>
+        <line x1="840" y1="44" x2="840" y2="252"/><line x1="1240" y1="44" x2="1240" y2="252"/>
+      </g>
+      <g font-size="16.5" fill="#ece5d8">
+        <rect x="40" y="62" width="800" height="24" rx="12" fill="#D2AF37" opacity=".88"/><text x="48" y="56">批量白盒管线</text>
+        <rect x="440" y="114" width="850" height="24" rx="12" fill="#D2AF37" opacity=".6"/><text x="448" y="108">GeoGen 山体植被</text>
+        <rect x="240" y="166" width="1130" height="24" rx="12" fill="#c96f4a" opacity=".85"/><line x1="1370" y1="178" x2="1398" y2="178" stroke="#c96f4a" stroke-width="3" marker-end="url(#tlar)"/><text x="248" y="160">3DGS 扫描重建 · Physical GS</text>
+        <rect x="1040" y="218" width="330" height="24" rx="12" fill="#c96f4a" opacity=".55"/><line x1="1370" y1="230" x2="1398" y2="230" stroke="#c96f4a" stroke-width="3" marker-end="url(#tlar)"/><text x="1048" y="212">Web AI PCG</text>
+      </g>
     </svg>
     <div class="foot"><span>下一页:对未来的展望 — 与团队方向的契合,与持续创造的价值</span><span style="margin-left:auto;color:var(--accent)">→</span></div>
   </div>` },
