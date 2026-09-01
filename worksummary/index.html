@@ -378,11 +378,12 @@ const SLIDES = [
   <div class="sl">
     <p class="kick">01 · AI PCG 编辑器</p>
     <h2>世界模型自动化管线</h2>
-    <p class="lead">六步全链:LLM 组合 → 三图 → PCG 白盒 → 程序化运镜 → MRQ 渲染 → 编码落盘,产物按数据集契约交付——原为世界模型训练数据设计,方向未采纳落地,批量与自动化能力沉淀回白盒管线。</p>
+    <p class="lead">产物按数据集契约交付 —— 原为世界模型训练数据设计,方向未采纳,批量与自动化能力沉淀回白盒管线。</p>
+    <img class="fig" style="aspect-ratio:1863/351;margin:22px 0 0;object-fit:contain;background:#f4f1fa" src="assets/img/flow-strip.webp" alt="六步全链:LLM 提示词组合 → AI 三图生成 → PCG 场景白盒 → 自动相机漫游 → MRQ 渲染 → 编码输出">
     <div class="cols media">
-      <div class="col"><img class="fig" src="assets/img/flow-camera.webp" alt="程序化运镜流程图"><p class="step">STAGE 1 · 2</p><h3>程序化运镜</h3><p>建筑群包围盒定轨道,orbit / dolly / crane 模版按 job 随机;内参与对焦显式固定,位姿按轨迹参数解析重算,无采样误差。</p></div>
-      <div class="col"><img class="fig" src="assets/img/flow-render.webp" alt="MRQ 渲染与编码流程图"><p class="step">STAGE 3</p><h3>MRQ 无损渲染</h3><p>固定曝光、关运动模糊、空间采样抗锯齿;RGB 之外输出 32 位深度与法线,逐帧位姿写入 cameras.json 作数据真源。</p></div>
-      <div class="col"><img class="fig" src="assets/img/flow-dataset.webp" alt="数据集契约与训练价值"><p class="step">STAGE 4 · 5</p><h3>坐标转换与打包</h3><p>UE 约定转 OpenCV 相机约定并以合成位姿单测;深度换米、内参换算 K;产物校验后按目录契约落盘,下游直接组装。</p></div>
+      <div class="col"><p class="step">STAGE 1 · 2</p><h3>程序化运镜</h3><p>建筑群包围盒定轨道,orbit / dolly / crane 模版按 job 随机;内参与对焦显式固定,位姿按轨迹参数解析重算,无采样误差。</p></div>
+      <div class="col"><p class="step">STAGE 3</p><h3>MRQ 无损渲染</h3><p>固定曝光、关运动模糊、空间采样抗锯齿;RGB 之外输出 32 位深度与法线,逐帧位姿写入 cameras.json 作数据真源。</p></div>
+      <div class="col"><p class="step">STAGE 4 · 5</p><h3>坐标转换与打包</h3><p>UE 约定转 OpenCV 相机约定并以合成位姿单测;深度换米、内参换算 K;产物校验后按目录契约落盘,下游直接组装。</p></div>
     </div>
     <div class="foot"><span>rgb / depth / normal / cameras.json / capture_meta —— 目录 schema 即交付契约</span><a class="chip" style="margin-left:auto" href="${L_WM}"${EXT}>流程与视频 ↗</a></div>
   </div>` },
