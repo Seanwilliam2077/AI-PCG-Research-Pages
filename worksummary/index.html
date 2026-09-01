@@ -418,7 +418,7 @@ const SLIDES = [
         <p style="font-size:18px;line-height:1.66;color:#c9c0ae;border-top:1px solid var(--line);padding-top:13px;margin-top:13px"><b style="color:var(--accent);font-weight:600">③ 工具模块。</b>AI 生图分辨率 1K / 2K / 4K,Landscape ⇆ StaticMesh 互转,出图模型随时切换、Output Log 查排队;产物全是图片,零副作用可无限重来。</p>
       </div>
     </div>
-    <div class="foot"><span>后两页展开:远景与山峰 · 植被五步</span><a class="chip" style="margin-left:auto" href="${L_GG}"${EXT}>专题页:GeoGen 山脉与植被 ↗</a></div>
+    <div class="foot"><span>后两页展开:山脉四景 · 植被生成</span><a class="chip" style="margin-left:auto" href="${L_GG}"${EXT}>专题页:GeoGen 山脉与植被 ↗</a></div>
   </div>` },
 
 { label:"GeoGen · 山脉生成", html:`
@@ -434,51 +434,17 @@ const SLIDES = [
     <div class="foot"><span>四类景别,同一条山脉生成链 · 点图放大</span><a class="chip" style="margin-left:auto" href="${L_GG}"${EXT}>专题页:GeoGen 山脉与植被 ↗</a></div>
   </div>` },
 
-{ label:"GeoGen · 植被五步", html:`
+{ label:"GeoGen · 植被生成", html:`
   <div class="sl">
     <p class="kick">02 · AI PCG 编辑器</p>
-    <h2>GeoGen — 植被生成(五步)</h2>
-    <div style="display:flex;gap:24px;margin-top:20px;align-items:flex-start;justify-content:center">
-      <div style="width:248px;flex:none">
-        <img class="fig" style="aspect-ratio:1/1;margin-bottom:8px" src="assets/img/gg2-biome.webp" alt="生成的生态分布图(点击放大)">
-        <p style="font-size:14px;color:var(--muted);text-align:center">① 生成的生态分布图</p>
-      </div>
-      <div style="width:336px;flex:none">
-        <img class="fig" style="aspect-ratio:1473/1089;margin-bottom:8px" src="assets/img/gg-landed.webp" alt="生态分布图落地与提取的山峰(点击放大)">
-        <p style="font-size:14px;color:var(--muted);text-align:center">② 生态地表应用后的地形</p>
-      </div>
-      <div style="width:373px;flex:none">
-        <img class="fig" style="aspect-ratio:1500/996;margin-bottom:8px" src="assets/img/gg-vegcfg.webp" alt="植被配置面板 — 生态 Layer 与植被 mesh 列表(点击放大)">
-        <p style="font-size:14px;color:var(--muted);text-align:center">④ 植被资产配置</p>
-      </div>
-      <div style="width:456px;flex:none">
-        <img class="fig" style="aspect-ratio:1200/653;margin-bottom:8px" src="assets/img/gg-veg.webp" alt="植被生成成果(点击放大)">
-        <p style="font-size:14px;color:var(--muted);text-align:center">⑤ 生成的整体生态</p>
-      </div>
+    <h2>GeoGen — 植被生成</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px 40px;margin-block:auto;justify-items:center">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><img class="fig" style="height:262px;width:auto;max-width:100%;object-fit:contain;border-radius:8px;border:1px solid var(--line);cursor:zoom-in" src="assets/img/gg2-biome.webp" alt="生成的生态分布图(点击放大)"><p style="font-size:15px;color:var(--muted);margin:0">生成的<b style="color:var(--accent)">生态分布图</b></p></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><img class="fig" style="height:262px;width:auto;max-width:100%;object-fit:contain;border-radius:8px;border:1px solid var(--line);cursor:zoom-in" src="assets/img/gg-landed.webp" alt="生态地表应用后的地形(点击放大)"><p style="font-size:15px;color:var(--muted);margin:0">生态地表<b style="color:var(--accent)">应用后的地形</b></p></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><img class="fig" style="height:262px;width:auto;max-width:100%;object-fit:contain;border-radius:8px;border:1px solid var(--line);cursor:zoom-in" src="assets/img/gg-vegcfg.webp" alt="植被资产配置面板(点击放大)"><p style="font-size:15px;color:var(--muted);margin:0">按生态层<b style="color:var(--accent)">配置植被资产</b></p></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><img class="fig" style="height:262px;width:auto;max-width:100%;object-fit:contain;border-radius:8px;border:1px solid var(--line);cursor:zoom-in" src="assets/img/gg-veg.webp" alt="生成的整体生态(点击放大)"><p style="font-size:15px;color:var(--muted);margin:0">一键长出的<b style="color:var(--accent)">整体生态</b></p></div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:22px;margin-block:auto">
-      <div style="border-top:1px solid var(--line);padding-top:12px">
-        <p style="font-size:14.5px;letter-spacing:.1em;color:var(--accent);margin-bottom:7px"><b>① 生成分布区域</b></p>
-        <p style="font-size:15px;line-height:1.62;color:#c9c0ae">植被模块选近中景,点「生成生态分布图」;远景暂不支持,功能开发中。</p>
-      </div>
-      <div style="border-top:1px solid var(--line);padding-top:12px">
-        <p style="font-size:14.5px;letter-spacing:.1em;color:var(--accent);margin-bottom:7px"><b>② 导入生态 Mask</b></p>
-        <p style="font-size:15px;line-height:1.62;color:#c9c0ae">先保存关卡,点「导入并应用生态地表」;漏识别区域调 Color Tolerance 后 Re-analyze,确认再 Import。</p>
-      </div>
-      <div style="border-top:1px solid var(--line);padding-top:12px">
-        <p style="font-size:14.5px;letter-spacing:.1em;color:var(--accent);margin-bottom:7px"><b>③ 局部修改</b></p>
-        <p style="font-size:15px;line-height:1.62;color:#c9c0ae">「局部修改植被分布」按生态层手改当前 mask,Save 保存;再点「退出局部修改」离开手动模式。</p>
-      </div>
-      <div style="border-top:1px solid var(--line);padding-top:12px">
-        <p style="font-size:14.5px;letter-spacing:.1em;color:var(--accent);margin-bottom:7px"><b>④ 资产配置</b></p>
-        <p style="font-size:15px;line-height:1.62;color:#c9c0ae">每个 Layer 点「配置」打开面板,添加或从内容浏览器批量拖拽植被资产;密度与噪声参数控制生成密度和随机感。</p>
-      </div>
-      <div style="border-top:1px solid var(--line);padding-top:12px">
-        <p style="font-size:14.5px;letter-spacing:.1em;color:var(--accent);margin-bottom:7px"><b>⑤ 生成生态</b></p>
-        <p style="font-size:15px;line-height:1.62;color:#c9c0ae">各 Layer 配置完点「生成 / 刷新植被」,一次长出整体生态。</p>
-      </div>
-    </div>
-    <div class="foot"><span>植被只改地表生态、不动地形高度;与山体侧互不覆盖</span><a class="chip" style="margin-left:auto" href="${L_GG}"${EXT}>专题页:GeoGen 山脉与植被 ↗</a></div>
+    <div class="foot"><span>植被只改地表生态、不动地形高度;与山体侧互不覆盖 · 点图放大</span><a class="chip" style="margin-left:auto" href="${L_GG}"${EXT}>专题页:GeoGen 山脉与植被 ↗</a></div>
   </div>` },
 
 { label:"03 AI PCG Scene", html:`
