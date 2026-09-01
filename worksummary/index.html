@@ -362,14 +362,14 @@ const SLIDES = [
 { label:"批量白盒生产", html:`
   <div class="sl" style="padding-top:52px">
     <p class="kick">01 · AI PCG 编辑器</p>
-    <h2 style="font-size:58px">BatchPCG — 批量白盒与 POI 成图</h2>
+    <h2 style="font-size:58px">BatchPCG — 从白盒到 POI 成图</h2>
     <div style="display:grid;grid-template-columns:790px 1fr;gap:48px;margin-block:auto;align-items:center">
       <img class="fig" style="aspect-ratio:1480/795;margin:0;object-fit:contain" src="assets/img/batch-poi.webp" alt="report 批量生图:白盒 + 人形 POI → 废弃都市 / 雪山 / 黄昏森林等多种写实风格(点击放大)">
       <div>
-        <p class="lead" style="font-size:20px;margin-bottom:16px">关键节点全部无头化(五个 Python 入口):维护一份 prompt 清单即可夜跑几百个场景。</p>
-        <p style="font-size:17px;line-height:1.62;color:#c9c0ae;border-top:1px solid var(--line);padding-top:12px"><b style="color:var(--accent);font-weight:600">三阶段编排。</b>云端生图 → 编辑器内状态机 → 汇总报告;每 25 job 重启编辑器规避内存累积,断点续跑、失败熔断、离屏真 GPU 渲染。</p>
-        <p style="font-size:17px;line-height:1.62;color:#c9c0ae;border-top:1px solid var(--line);padding-top:12px;margin-top:12px"><b style="color:var(--accent);font-weight:600">白盒生成后补上相关 POI。</b>在生成的白盒里自动放置人形参照与兴趣点机位,连同风格提示词一起交给文生图——同一座白盒批量长出废弃都市、雪山、黄昏森林等多种写实风格(左图),人物与场景比例始终可信。</p>
-        <p style="font-size:17px;line-height:1.62;color:#c9c0ae;border-top:1px solid var(--line);padding-top:12px;margin-top:12px"><b style="color:var(--accent);font-weight:600">产物与规模。</b>每 job 落盘三图 + 布局 JSON、r16 / 16-bit PNG 地形(附 UE 导入四参数)、scene.obj 六类分组白模;300 job 夜跑 20 – 35 GB,语义纯度低于 0.90 告警。</p>
+        <p class="lead" style="font-size:21px;margin-bottom:18px">批产出来的场景只有地形和白盒体块——这一步补上 POI,让白盒直接能出图。</p>
+        <p style="font-size:18.5px;line-height:1.7;color:#c9c0ae;border-top:1px solid var(--line);padding-top:14px"><b style="color:var(--accent);font-weight:600">放 POI。</b>在白盒里自动放置人形参照与兴趣点机位,锁定构图与人物-场景比例。</p>
+        <p style="font-size:18.5px;line-height:1.7;color:#c9c0ae;border-top:1px solid var(--line);padding-top:14px;margin-top:14px"><b style="color:var(--accent);font-weight:600">风格成图。</b>POI 机位截图连同风格提示词交给文生图——同一座白盒长出废弃都市、雪山、黄昏森林等多种写实风格(左图)。</p>
+        <p style="font-size:18.5px;line-height:1.7;color:#c9c0ae;border-top:1px solid var(--line);padding-top:14px;margin-top:14px"><b style="color:var(--accent);font-weight:600">批量。</b>全链无头化,一份 prompt 清单即可夜跑几百个场景,产物随批落盘。</p>
       </div>
     </div>
     <div class="foot"><span>report 批量生图 · 点图放大逐组细看</span><a class="chip" style="margin-left:auto" href="${L_WM}"${EXT}>管线专题页 ↗</a></div>
