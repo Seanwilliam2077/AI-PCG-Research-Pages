@@ -359,34 +359,26 @@ const SLIDES = [
   </div>` },
 
 { label:"批量白盒生产", html:`
-  <div class="sl">
+  <div class="sl" style="padding-top:52px">
     <p class="kick">01 · AI PCG 编辑器</p>
-    <h2>BatchPCG — 无人值守批量</h2>
-    <p class="lead">关键节点全部无头化(五个 Python 入口 + 重置与收敛轮询):维护一份 prompt 清单即可夜跑几百个场景。</p>
-    <div style="display:grid;grid-template-columns:1.05fr 1fr;gap:44px;margin-block:auto;align-items:start">
-      <table style="margin:0;font-size:19.5px">
-        <thead><tr><th>产物</th><th>规格</th><th>说明</th></tr></thead>
-        <tbody>
-          <tr><td>生成图与布局</td><td class="num">3 图 + JSON</td><td>写实航拍 / 语义分块 / 高度图,布局文档随批落盘</td></tr>
-          <tr><td>地形文件</td><td class="num">r16 + 16-bit PNG</td><td>附世界尺寸与高度标定、UE Landscape 导入四参数</td></tr>
-          <tr><td>整景白模</td><td class="num">scene.obj</td><td>地形 / 地块 / 建筑 / 植物 / 围墙 / 道路六类分组</td></tr>
-          <tr><td>磁盘预算</td><td class="num">20 – 35 GB</td><td>300 job 夜跑总量(Low 档);语义纯度低于 0.90 告警</td></tr>
-        </tbody>
-      </table>
+    <h2 style="font-size:58px">BatchPCG — 批量白盒与 POI 成图</h2>
+    <div style="display:grid;grid-template-columns:790px 1fr;gap:48px;margin-block:auto;align-items:center">
+      <img class="fig" style="aspect-ratio:1500/892;margin:0" src="assets/img/batch-poi.webp" alt="report 批量生图:白盒 + 人形 POI → 废弃都市 / 雪山 / 黄昏森林等多种写实风格(点击放大)">
       <div>
-        <img class="fig" style="aspect-ratio:21/9;margin-bottom:10px" src="assets/img/flow-overview.webp" alt="六步管线总览流程图">
-        <img class="fig" style="aspect-ratio:16/5;margin-bottom:4px" src="assets/img/batch-report.webp" alt="世界模型 report · 批量生图结果(白盒 → 多风格成图 · 主观视角序列)">
-        <p style="font-size:13.5px;color:var(--muted)">report 批量生图:白盒 → 多风格成图 · 主观视角序列(点击放大)</p>
+        <p class="lead" style="font-size:20px;margin-bottom:16px">关键节点全部无头化(五个 Python 入口):维护一份 prompt 清单即可夜跑几百个场景。</p>
+        <p style="font-size:17px;line-height:1.62;color:#c9c0ae;border-top:1px solid var(--line);padding-top:12px"><b style="color:var(--accent);font-weight:600">三阶段编排。</b>云端生图 → 编辑器内状态机 → 汇总报告;每 25 job 重启编辑器规避内存累积,断点续跑、失败熔断、离屏真 GPU 渲染。</p>
+        <p style="font-size:17px;line-height:1.62;color:#c9c0ae;border-top:1px solid var(--line);padding-top:12px;margin-top:12px"><b style="color:var(--accent);font-weight:600">白盒生成后补上相关 POI。</b>在生成的白盒里自动放置人形参照与兴趣点机位,连同风格提示词一起交给文生图——同一座白盒批量长出废弃都市、雪山、黄昏森林等多种写实风格(左图),人物与场景比例始终可信。</p>
+        <p style="font-size:17px;line-height:1.62;color:#c9c0ae;border-top:1px solid var(--line);padding-top:12px;margin-top:12px"><b style="color:var(--accent);font-weight:600">产物与规模。</b>每 job 落盘三图 + 布局 JSON、r16 / 16-bit PNG 地形(附 UE 导入四参数)、scene.obj 六类分组白模;300 job 夜跑 20 – 35 GB,语义纯度低于 0.90 告警。</p>
       </div>
     </div>
-    <div class="foot"><span>三阶段编排:云端生图 → 编辑器内状态机 → 汇总报告 · 每 25 job 重启编辑器 · 断点续跑 · 失败熔断 · 离屏真 GPU 渲染</span></div>
+    <div class="foot"><span>report 批量生图 · 点图放大逐组细看</span><a class="chip" style="margin-left:auto" href="${L_WM}"${EXT}>管线专题页 ↗</a></div>
   </div>` },
 
-{ label:"数据采集与视频批产", html:`
+{ label:"世界模型自动化管线", html:`
   <div class="sl">
     <p class="kick">01 · AI PCG 编辑器</p>
-    <h2>数据采集与视频批产</h2>
-    <p class="lead">批量能力的延伸:白盒之上自动运镜、无损渲染、坐标转换,按数据集契约落盘——原为世界模型训练数据设计,该方向未采纳落地,能力沉淀回本管线。</p>
+    <h2>世界模型自动化管线</h2>
+    <p class="lead">六步全链:LLM 组合 → 三图 → PCG 白盒 → 程序化运镜 → MRQ 渲染 → 编码落盘,产物按数据集契约交付——原为世界模型训练数据设计,方向未采纳落地,批量与自动化能力沉淀回白盒管线。</p>
     <div class="cols media">
       <div class="col"><img class="fig" src="assets/img/flow-camera.webp" alt="程序化运镜流程图"><p class="step">STAGE 1 · 2</p><h3>程序化运镜</h3><p>建筑群包围盒定轨道,orbit / dolly / crane 模版按 job 随机;内参与对焦显式固定,位姿按轨迹参数解析重算,无采样误差。</p></div>
       <div class="col"><img class="fig" src="assets/img/flow-render.webp" alt="MRQ 渲染与编码流程图"><p class="step">STAGE 3</p><h3>MRQ 无损渲染</h3><p>固定曝光、关运动模糊、空间采样抗锯齿;RGB 之外输出 32 位深度与法线,逐帧位姿写入 cameras.json 作数据真源。</p></div>
