@@ -326,9 +326,9 @@ const SLIDES = [
   </div>`, ov:[
     ["01","白盒生成管线 — 批量生产与数据采集","Create PCG Data · BatchPCG · 47.5 s 全链",3],
     ["02","GeoGen — 山体与植被生成","编辑器模式 · 近远景双路线",7],
-    ["03","AI PCG Scene — 单图到场景的端到端","三条实现 + 方法论 · 开源",9],
-    ["04","3DGS — 场景重建与 VortexGaussians","probe 采集 · 原生 3DGS 火焰烟雾",11],
-    ["05","总结 — 三个月做了什么","里程碑时间线 · 有可交互 Demo 可供体验",13]] },
+    ["03","AI PCG Scene — 单图到场景的端到端","三条实现 + 方法论 · 开源",10],
+    ["04","3DGS — 场景重建与 VortexGaussians","probe 采集 · 原生 3DGS 火焰烟雾",12],
+    ["05","总结 — 三个月做了什么","里程碑时间线 · 有可交互 Demo 可供体验",14]] },
 
 { label:"01 白盒生成管线", html:`
   <div class="sl" style="padding-top:44px;padding-bottom:44px">
@@ -404,17 +404,17 @@ const SLIDES = [
     </div>
   </div>` },
 
-{ label:"02 GeoGen · 山体", html:`
+{ label:"02 GeoGen · 山脉生成", html:`
   <div class="sl">
     <p class="kick">02 · AI PCG 编辑器</p>
-    <h2 style="font-size:58px">GeoGen — 山体一键生成链</h2>
+    <h2 style="font-size:58px">GeoGen — 山脉生成 · 近中景</h2>
     <div style="display:grid;grid-template-columns:520px 1fr;gap:52px;margin-block:auto;align-items:start">
       <div>
         <div class="cmp" id="cmp-gg" style="width:520px;height:520px">
           <img class="a" src="assets/img/gg2-ref.webp" alt="环绕顶视原图">
           <img class="b" src="assets/img/gg2-height.webp" alt="对比图层">
           <div class="bar"><div class="knob">⇄</div></div>
-          <span class="tag tagL">原图</span><span class="tag tagR" id="cmp-gg-tag">高度估计</span>
+          <span class="tag tagL">环绕参考图</span><span class="tag tagR" id="cmp-gg-tag">高度估计</span>
         </div>
         <div style="display:flex;gap:9px;margin-top:12px;align-items:center">
           <span style="font-size:14px;color:var(--muted)">对比图层:</span>
@@ -423,40 +423,81 @@ const SLIDES = [
         </div>
       </div>
       <div>
-        <p class="lead" style="font-size:21.5px;margin-bottom:20px">地形 / 蒙版 / 城市 / 工具四套面板收进一个编辑器模式;近中景与远景两条路线各持一套流水线节点,互不覆盖。拖动分割线,对比参考图与推理出的高度、生态。</p>
-        <p style="font-size:18px;line-height:1.66;color:#c9c0ae;border-top:1px solid var(--line);padding-top:13px"><b style="color:var(--accent);font-weight:600">环绕参考图。</b>多张参考图 AI 合成「中央平地、四周环山」俯视图;笔刷蒙版 + 文字指令局部重绘,未涂抹像素逐字节保真。</p>
-        <p style="font-size:18px;line-height:1.66;color:#c9c0ae;border-top:1px solid var(--line);padding-top:13px;margin-top:13px"><b style="color:var(--accent);font-weight:600">AI 高度图。</b>让图像模型按海拔推理成图:雪线读作高地、河谷读作最低;多图按生态特征排序,产出连续地形而非拼贴。</p>
-        <p style="font-size:18px;line-height:1.66;color:#c9c0ae;border-top:1px solid var(--line);padding-top:13px;margin-top:13px"><b style="color:var(--accent);font-weight:600">侵蚀与生态蒙版。</b>服务器侵蚀(1K 约 20 秒 / 2K 约 90 秒);生态蒙版排在侵蚀后,沿真实冲刷纹理划分植被、岩石与积雪。</p>
+        <p style="font-size:18.5px;line-height:1.68;color:#c9c0ae;border-top:1px solid var(--line);padding-top:13px"><b style="color:var(--accent);font-weight:600">① 参考图 → 环绕合成。</b>近中景导入 1 – 6 张参考图,「3D 布局」里环绕预览、按 1 – 9 排序;点合成环绕参考图得到环绕顶视图,不满意就用 2D 局部重绘——笔刷涂抹区域 + 一句文字改写(如「变成草地」),未涂抹像素逐字节保真。</p>
+        <p style="font-size:18.5px;line-height:1.68;color:#c9c0ae;border-top:1px solid var(--line);padding-top:13px;margin-top:13px"><b style="color:var(--accent);font-weight:600">② 一键生成 Landscape。</b>目标 Landscape 确认生成位置,大小自动匹配选定地形;一键跑完「高度图 → 侵蚀 → 地形」,后续用整体高度倍率微调。</p>
+        <p style="font-size:18.5px;line-height:1.68;color:#c9c0ae;border-top:1px solid var(--line);padding-top:13px;margin-top:13px"><b style="color:var(--accent);font-weight:600">③ 排队与容错。</b>较长时间未出图多为模型排队占线——Output Log 可查,顶部可随时切换出图模型;四步产物全是图片,零副作用可无限重来。</p>
       </div>
     </div>
-    <div class="foot"><span>四步产物全是图片、零副作用可无限重来</span><a class="chip" style="margin-left:auto" href="${L_GG}"${EXT}>专题页:GeoGen 山脉与植被 ↗</a></div>
+    <div class="foot"><span>工具区:AI 生图分辨率 1K / 2K / 4K · Landscape ⇆ StaticMesh 互转</span><a class="chip" style="margin-left:auto" href="${L_GG}"${EXT}>专题页:GeoGen 山脉与植被 ↗</a></div>
   </div>` },
 
-{ label:"GeoGen · 落地与植被", html:`
+{ label:"GeoGen · 远景与山峰", html:`
   <div class="sl">
     <p class="kick">02 · AI PCG 编辑器</p>
-    <h2>GeoGen — 落地与植被</h2>
-    <div style="display:flex;gap:24px;margin-block:auto;align-items:flex-start;justify-content:center">
-      <div style="width:565px;flex:none">
-        <img class="fig" style="aspect-ratio:1964/932;margin-bottom:12px" src="assets/img/gg-editor.webp" alt="GeoGen 地形面板与一键生成的白模地形(原始比例,点击放大)">
-        <p class="step" style="font-size:15px;letter-spacing:.12em;color:var(--accent);margin-bottom:8px">近中景落地</p>
-        <h3 style="font-family:var(--serif);font-weight:600;font-size:27px;margin-bottom:8px">面积直定</h3>
-        <p style="font-size:17px;line-height:1.66;color:#c9c0ae;text-align:justify">地形面积由用户直接指定(上限 2500 km²),每格尺度现算,切分辨率档不漂移;边界包络坡角只削戳破处;交接 Genesis 按顶点数对齐导出。</p>
+    <h2>GeoGen — 远景与山峰</h2>
+    <div style="display:flex;gap:24px;margin-top:20px;align-items:flex-start;justify-content:center">
+      <div style="width:500px;flex:none">
+        <img class="fig" style="aspect-ratio:1400/780;margin-bottom:8px" src="assets/img/gg-far-mesh.webp" alt="远景一键生成的 mesh 山体(点击放大)">
+        <p style="font-size:14px;color:var(--muted);text-align:center">远景一键生成 · mesh 山体</p>
       </div>
-      <div style="width:355px;flex:none">
-        <img class="fig" style="aspect-ratio:1473/1089;margin-bottom:12px" src="assets/img/gg-landed.webp" alt="生态蒙版落地与提取的山峰(原始比例,点击放大)">
-        <p class="step" style="font-size:15px;letter-spacing:.12em;color:var(--accent);margin-bottom:8px">远景产物</p>
-        <h3 style="font-family:var(--serif);font-weight:600;font-size:27px;margin-bottom:8px">烘成网格</h3>
-        <p style="font-size:17px;line-height:1.66;color:#c9c0ae;text-align:justify">默认烘成单一连续静态网格;「提取山峰」逐座抠峰散布地平线;同顶点数从 2 km 拉到 8 km,显存不变。</p>
+      <div style="width:530px;flex:none">
+        <img class="fig" style="aspect-ratio:1400/733;margin-bottom:8px" src="assets/img/gg-spread.webp" alt="中远景按方位铺开(点击放大)">
+        <p style="font-size:14px;color:var(--muted);text-align:center">中远景铺开 · 方位 / 层数 / 面积自选</p>
       </div>
-      <div style="width:480px;flex:none">
-        <img class="fig" style="aspect-ratio:1200/653;margin-bottom:12px" src="assets/img/gg-veg.webp" alt="黄昏植被落地成果(原始比例,点击放大)">
-        <p class="step" style="font-size:15px;letter-spacing:.12em;color:var(--accent);margin-bottom:8px">植被生成</p>
-        <h3 style="font-family:var(--serif);font-weight:600;font-size:27px;margin-bottom:8px">生态分布图</h3>
-        <p style="font-size:17px;line-height:1.66;color:#c9c0ae;text-align:justify">双来源各持独立结果;16 色蒙版一键导入 Genesis 为每层绑 PCG Graph;只跑 VegetationOnly、不改地形高度;贴地、陡坡 30° 与崖边禁植。</p>
+      <div style="width:556px;flex:none">
+        <img class="fig" style="aspect-ratio:1400/702;margin-bottom:8px" src="assets/img/gg-peaklib.webp" alt="山峰图库与生成的双峰(点击放大)">
+        <p style="font-size:14px;color:var(--muted);text-align:center">山峰图库 · 预设 / 参考图 / Heightmap</p>
       </div>
     </div>
-    <div class="foot"><span>植被侧「只跑 VegetationOnly」与山体侧「只跑权重图章」互为镜像</span><a class="chip" style="margin-left:auto" href="${L_GG}"${EXT}>专题页:GeoGen 山脉与植被 ↗</a></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-block:auto">
+      <p style="font-size:16.5px;line-height:1.66;color:#c9c0ae;border-top:1px solid var(--line);padding-top:12px"><b style="color:var(--accent);font-weight:600">远景一键生成。</b>切到远景模块,一张参考图、与近中景同一逻辑:合成俯视参考图 → 高度图 → 侵蚀 → 一键生成 mesh 地形,山体高度倍率可调。</p>
+      <p style="font-size:16.5px;line-height:1.66;color:#c9c0ae;border-top:1px solid var(--line);padding-top:12px"><b style="color:var(--accent);font-weight:600">中远景铺开。</b>有近景地形即可铺:罗盘格自选方位,层数与面积自定;山体控制各方位,空方位以缓坡平原补齐。</p>
+      <p style="font-size:16.5px;line-height:1.66;color:#c9c0ae;border-top:1px solid var(--line);padding-top:12px"><b style="color:var(--accent);font-weight:600">山峰丰富边际线。</b>切到山峰:从预制库挑选,或导入山峰参考图 / Heightmap,「AI 生成图章」从一张参考图迭代;点击生成独立山峰 mesh 散布地平线。</p>
+    </div>
+    <div class="foot"><span>远景默认烘成连续静态网格,移动 / 旋转 / 复制全是引擎原生行为</span><a class="chip" style="margin-left:auto" href="${L_GG}"${EXT}>专题页:GeoGen 山脉与植被 ↗</a></div>
+  </div>` },
+
+{ label:"GeoGen · 植被五步", html:`
+  <div class="sl">
+    <p class="kick">02 · AI PCG 编辑器</p>
+    <h2>GeoGen — 植被生成(五步)</h2>
+    <div style="display:flex;gap:24px;margin-top:20px;align-items:flex-start;justify-content:center">
+      <div style="width:300px;flex:none">
+        <img class="fig" style="aspect-ratio:1/1;margin-bottom:8px" src="assets/img/gg2-biome.webp" alt="生成的生态分布图(点击放大)">
+        <p style="font-size:14px;color:var(--muted);text-align:center">① 生成的生态分布图</p>
+      </div>
+      <div style="width:406px;flex:none">
+        <img class="fig" style="aspect-ratio:1473/1089;margin-bottom:8px" src="assets/img/gg-landed.webp" alt="生态分布图落地与提取的山峰(点击放大)">
+        <p style="font-size:14px;color:var(--muted);text-align:center">② 生态地表应用后的地形</p>
+      </div>
+      <div style="width:551px;flex:none">
+        <img class="fig" style="aspect-ratio:1200/653;margin-bottom:8px" src="assets/img/gg-veg.webp" alt="植被生成成果(点击放大)">
+        <p style="font-size:14px;color:var(--muted);text-align:center">⑤ 生成的整体生态</p>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:22px;margin-block:auto">
+      <div style="border-top:1px solid var(--line);padding-top:12px">
+        <p style="font-size:14.5px;letter-spacing:.1em;color:var(--accent);margin-bottom:7px"><b>① 生成分布区域</b></p>
+        <p style="font-size:15px;line-height:1.62;color:#c9c0ae">植被模块选近中景,点「生成生态分布图」;远景暂不支持,功能开发中。</p>
+      </div>
+      <div style="border-top:1px solid var(--line);padding-top:12px">
+        <p style="font-size:14.5px;letter-spacing:.1em;color:var(--accent);margin-bottom:7px"><b>② 导入生态 Mask</b></p>
+        <p style="font-size:15px;line-height:1.62;color:#c9c0ae">先保存关卡,点「导入并应用生态地表」;漏识别区域调 Color Tolerance 后 Re-analyze,确认再 Import。</p>
+      </div>
+      <div style="border-top:1px solid var(--line);padding-top:12px">
+        <p style="font-size:14.5px;letter-spacing:.1em;color:var(--accent);margin-bottom:7px"><b>③ 局部修改</b></p>
+        <p style="font-size:15px;line-height:1.62;color:#c9c0ae">「局部修改植被分布」按生态层手改当前 mask,Save 保存;再点「退出局部修改」离开手动模式。</p>
+      </div>
+      <div style="border-top:1px solid var(--line);padding-top:12px">
+        <p style="font-size:14.5px;letter-spacing:.1em;color:var(--accent);margin-bottom:7px"><b>④ 资产配置</b></p>
+        <p style="font-size:15px;line-height:1.62;color:#c9c0ae">每个 Layer 点「配置」打开面板,添加或从内容浏览器批量拖拽植被资产;密度与噪声参数控制生成密度和随机感。</p>
+      </div>
+      <div style="border-top:1px solid var(--line);padding-top:12px">
+        <p style="font-size:14.5px;letter-spacing:.1em;color:var(--accent);margin-bottom:7px"><b>⑤ 生成生态</b></p>
+        <p style="font-size:15px;line-height:1.62;color:#c9c0ae">各 Layer 配置完点「生成 / 刷新植被」,一次长出整体生态。</p>
+      </div>
+    </div>
+    <div class="foot"><span>植被只改地表生态、不动地形高度;与山体侧互不覆盖</span><a class="chip" style="margin-left:auto" href="${L_GG}"${EXT}>专题页:GeoGen 山脉与植被 ↗</a></div>
   </div>` },
 
 { label:"03 AI PCG Scene", html:`
