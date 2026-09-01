@@ -326,7 +326,7 @@ const SLIDES = [
     ["01","白盒生成管线 — 批量生产与数据采集","Create PCG Data · BatchPCG · 47.5 s 全链",3],
     ["02","GeoGen — 山体与植被生成","编辑器模式 · 近远景双路线",7],
     ["03","AI PCG Scene — 单图到场景的端到端","资产 AI 生成 · Blender 度量闭环 · 开源",10],
-    ["04","3DGS — 场景重建与 VortexGaussians","probe 采集 · 原生 3DGS 火焰烟雾",13],
+    ["04","3DGS — 为什么做 Physical GS","动机与三篇灵感 · VortexGaussians 实时火焰",13],
     ["05","总结与展望","实际产出与个人贡献 · 未来方向",15]] },
 
 { label:"01 白盒生成管线", html:`
@@ -566,16 +566,26 @@ const SLIDES = [
     <div class="foot" style="margin-top:16px"><span>三条实现撞出来的通用做法,不绑定本仓库代码 · 数据可一键复跑导出</span><a class="chip" style="margin-left:auto" href="${L_SCP}"${EXT}>交互文档 ↗</a><a class="chip" href="${L_WBL}"${EXT}>白盒 Live ↗</a></div>
   </div>` },
 
-{ label:"04 3DGS 场景重建", html:`
+{ label:"04 为什么做 Physical GS", html:`
   <div class="sl">
-    <p class="kick">04 · 前沿探索</p>
-    <h2>3DGS — 游戏场景重建</h2>
-    <p class="lead">沿烘焙 probe 点连线生成采集路径自动采数据,重建为编辑器内可查看的 3DGS 资产,并完成定制引擎的渲染集成验证;采集管线已迭代约 20 次。</p>
-    <div class="cols two">
-      <div class="col"><div class="ph">图片占位 — 待补:暗区场景 3DGS 重建效果截图(统一曝光 vs 自动曝光对比)</div><p class="step">问题 1 · 曝光一致性</p><h3>HDR 统一后处理</h3><p>统一曝光让暗部死黑,自动曝光让同区域帧间不一致。思路:HDR 采集 → exposure 调整 → tone mapping 压缩动态范围 → gamma / sRGB 转换。</p></div>
-      <div class="col"><div class="ph">图片占位 — 待补:probe 采集路径示意图(后拉前 / 后拉后)</div><p class="step">问题 2 · 采集路径</p><h3>probe 后拉</h3><p>部分 probe 点离墙面过近影响重建;按 probe 特性把点整体向后拉,先采完暗区场景再统一对齐,预计还需几轮迭代。</p></div>
+    <p class="kick">04 · 前沿探索 · 动机与灵感</p>
+    <h2>为什么做 Physical GS</h2>
+    <p class="lead">扫描重建把真实场景搬进了引擎,但 3DGS 只有外观、没有物理——场景是死的。要让重建体能烧、能冒烟、能被交互,就得把物理直接长在高斯上。灵感来自三篇研究:</p>
+    <div style="display:flex;flex-direction:column;gap:12px;margin-block:auto">
+      <div style="display:flex;gap:36px;align-items:center;border-top:1px solid var(--line);padding-top:12px">
+        <img class="fig" style="width:620px;flex:none;aspect-ratio:1412/337;object-fit:contain;margin:0" src="assets/img/pgs-ilm.webp" alt="ILM 2009:可导演的电影级 GPU 火焰(点击放大)">
+        <p style="font-size:16.5px;line-height:1.6;color:#c9c0ae;margin:0"><b style="color:var(--accent);font-weight:600">ILM · TOG 2009 — 可导演的电影级火焰。</b>粗粒子定大形,再按视向在高分辨率网格切片上精修,GPU 出片——效果是行业标杆,但离线出帧,网格分辨率就是成本天花板。</p>
+      </div>
+      <div style="display:flex;gap:36px;align-items:center;border-top:1px solid var(--line);padding-top:12px">
+        <img class="fig" style="width:400px;flex:none;aspect-ratio:720/280;object-fit:contain;margin:0" src="assets/img/pgs-gfree.webp" alt="Gaussian Fluids:同一涡对,网格法耗散、高斯表示贴住 Ground Truth(点击放大)">
+        <p style="font-size:16.5px;line-height:1.6;color:#c9c0ae;margin:0"><b style="color:var(--accent);font-weight:600">Gaussian Fluids · SIGGRAPH 2025 — 高斯本身就能当求解器。</b>速度场写成一组高斯的加权和,免网格解 Navier-Stokes。左图同一涡对:网格法把涡耗散掉了,高斯表示几乎贴住 Ground Truth——高斯不只是渲染基元,也能是模拟基元。</p>
+      </div>
+      <div style="display:flex;gap:36px;align-items:center;border-top:1px solid var(--line);padding-top:12px">
+        <img class="fig" style="width:550px;flex:none;aspect-ratio:1174/327;object-fit:contain;margin:0" src="assets/img/pgs-fiery.webp" alt="FieryGS:多视角输入,重建场景物理地烧起来(点击放大)">
+        <p style="font-size:16.5px;line-height:1.6;color:#c9c0ae;margin:0"><b style="color:var(--accent);font-weight:600">FieryGS · ICLR 2026 — 重建场景可以物理地烧。</b>在 3DGS 重建的真实场景里做燃烧:LLM 推材质、体积燃烧仿真、火与 splat 统一渲染。但仿真仍要先体素化成网格,2.37 s / 帧,离实时还远。</p>
+      </div>
     </div>
-    <div class="foot"><span>当前重建质量还不够好,瓶颈集中在这两处,仍在迭代。</span></div>
+    <div class="foot"><span>灵感拼图:电影级可导演 × 无网格高斯求解 × 烧在重建场景里 —— 三者合到同一个点基元并做到实时,就是下一页的 VortexGaussians</span><span style="margin-left:auto;color:var(--accent)">→</span></div>
   </div>` },
 
 { label:"VortexGaussians", html:`
