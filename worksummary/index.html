@@ -379,14 +379,14 @@ const SLIDES = [
   <div class="sl">
     <p class="kick">01 · AI PCG 编辑器</p>
     <h2>世界模型自动化管线</h2>
-    <p class="lead">产物按数据集契约交付 —— 原为世界模型训练数据设计,方向未采纳,批量与自动化能力沉淀回白盒管线。</p>
+    <p class="lead">PCG 白盒场景之后的三步:自动相机漫游 → MRQ 渲染 → 编码输出,把一座白盒变成带精确位姿与深度的视频数据。</p>
     <img class="fig" style="aspect-ratio:1863/351;margin:22px 0 0;object-fit:contain;background:#f4f1fa" src="assets/img/flow-strip.webp" alt="六步全链:LLM 提示词组合 → AI 三图生成 → PCG 场景白盒 → 自动相机漫游 → MRQ 渲染 → 编码输出">
     <div class="cols media">
-      <div class="col"><p class="step">STAGE 1 · 2</p><h3>程序化运镜</h3><p>建筑群包围盒定轨道,orbit / dolly / crane 模版按 job 随机;内参与对焦显式固定,位姿按轨迹参数解析重算,无采样误差。</p></div>
-      <div class="col"><p class="step">STAGE 3</p><h3>MRQ 无损渲染</h3><p>固定曝光、关运动模糊、空间采样抗锯齿;RGB 之外输出 32 位深度与法线,逐帧位姿写入 cameras.json 作数据真源。</p></div>
-      <div class="col"><p class="step">STAGE 4 · 5</p><h3>坐标转换与打包</h3><p>UE 约定转 OpenCV 相机约定并以合成位姿单测;深度换米、内参换算 K;产物校验后按目录契约落盘,下游直接组装。</p></div>
+      <div class="col"><p class="step">④ 自动相机漫游</p><h3>解析轨迹,不采样</h3><p>建筑群包围盒定轨道半径(地形刻意不并入,否则 8 km 地形会把轨道推上天),orbit / dolly / crane 模板按 job 随机;相机高度对地形做射线检测,内参与对焦显式固定。位姿按轨迹参数逐帧解析重算——不是从物理相机采样,天然无累积误差。</p></div>
+      <div class="col"><p class="step">⑤ MRQ 渲染</p><h3>把不确定性逐条关掉</h3><p>Movie Render Queue 离线渲染:手动固定曝光、关运动模糊(否则亮度时序漂移),空间采样抗锯齿替代 TAA 避免拖影;RGB 之外经后处理材质输出 32 位 EXR 深度与世界法线,逐帧位姿与内参写入 cameras.json 作数据真源。</p></div>
+      <div class="col"><p class="step">⑥ 编码输出</p><h3>换约定,再验证</h3><p>UE 左手系(厘米)变换到 OpenCV 相机约定(米),用合成已知位姿做单元测试;深度声明为沿光轴 z-depth 并换米,内参换算成 K;帧序列编码为视频,全部产物校验后按目录契约落盘,下游直接组装。</p></div>
     </div>
-    <div class="foot"><span>rgb / depth / normal / cameras.json / capture_meta —— 目录 schema 即交付契约</span><a class="chip" style="margin-left:auto" href="${L_WM}"${EXT}>流程与视频 ↗</a></div>
+    <div class="foot"><span>rgb / depth / normal / cameras.json / capture_meta —— 目录 schema 即交付契约 · 原为世界模型训练数据设计,方向未采纳,能力沉淀回白盒管线</span><a class="chip" style="margin-left:auto" href="${L_WM}"${EXT}>流程与视频 ↗</a></div>
   </div>` },
 
 { label:"47.5 s", html:`
