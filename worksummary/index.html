@@ -331,32 +331,30 @@ const SLIDES = [
     ["05","总结 — 三个月做了什么","里程碑时间线 · 有可交互 Demo 可供体验",13]] },
 
 { label:"01 白盒生成管线", html:`
-  <div class="sl">
-    <p class="kick">01 · AI PCG 编辑器</p>
-    <h2 style="font-size:58px">白盒生成管线 — Create PCG Data</h2>
-    <div style="display:grid;grid-template-columns:520px 1fr;gap:52px;margin-block:auto;align-items:start">
+  <div class="sl" style="padding-top:44px;padding-bottom:44px">
+    <p class="kick" style="margin-bottom:8px">01 · AI PCG 编辑器</p>
+    <h2 style="font-size:54px;margin-bottom:14px">白盒生成管线 — Create PCG Data</h2>
+    <div style="display:grid;grid-template-columns:1fr 470px;gap:44px;margin-block:auto;align-items:start">
       <div>
-        <div class="cmp" id="cmp-wb" style="width:520px;height:520px">
-          <img class="a" src="assets/img/wb-photoreal.webp" alt="写实顶视原图">
-          <img class="b" src="assets/img/wb-semantic.webp" alt="对比图层">
-          <div class="bar"><div class="knob">⇄</div></div>
-          <span class="tag tagL">写实原图</span><span class="tag tagR" id="cmp-wb-tag">语义分块</span>
-        </div>
-        <div style="display:flex;gap:9px;margin-top:12px;align-items:center">
-          <span style="font-size:14px;color:var(--muted)">对比图层:</span>
-          <button class="st on" data-cmp="cmp-wb" data-src="assets/img/wb-semantic.webp" data-name="语义分块">语义分块</button>
-          <button class="st" data-cmp="cmp-wb" data-src="assets/img/wb-height.webp" data-name="高度估计">高度估计</button>
-          <button class="st" data-cmp="cmp-wb" data-src="assets/img/wb-massing.webp" data-name="白盒落地">白盒落地</button>
-        </div>
+        <img class="fig" style="aspect-ratio:1650/925;margin-bottom:14px" src="assets/img/wb-graph.webp" alt="白盒管线节点图 — Image Loader → 写实图 → 语义图 / 高度图(Blur) → Image To Layout Data / Spawn Objects → Create PCG Data(点击放大)">
+        <p style="font-size:16.5px;line-height:1.6;color:#c9c0ae"><b style="color:var(--accent);font-weight:600">① 生图</b> 文生图产写实航拍 / 语义分块 / 灰度高度三图,提示词锁定 90° 正交顶视　<b style="color:var(--accent);font-weight:600">② 矢量化</b> 语义图按色提取轮廓成布局数据,角色比例节点推算真实尺度　<b style="color:var(--accent);font-weight:600">③ 落地</b> 高度图写入 Landscape,布局生成街区与建筑白盒,统一摆放植物 / 围墙 / 道路</p>
       </div>
       <div>
-        <p class="lead" style="font-size:21.5px;margin-bottom:20px">一张概念图进,一个可游走的白盒关卡出:「生图 — 矢量化 — 落地」三段数据流,全链可在无界面的编辑器进程里执行。拖动左侧分割线,对比同一场景的原图与各阶段产物。</p>
-        <p style="font-size:18px;line-height:1.66;color:#c9c0ae;border-top:1px solid var(--line);padding-top:13px"><b style="color:var(--accent);font-weight:600">生图。</b>文生图双通道产写实航拍、语义分块、灰度高度三图;提示词模板锁定 90° 正交顶视,支持笔刷蒙版 + 文字指令局部重绘。</p>
-        <p style="font-size:18px;line-height:1.66;color:#c9c0ae;border-top:1px solid var(--line);padding-top:13px;margin-top:13px"><b style="color:var(--accent);font-weight:600">矢量化。</b>按语义色提取建筑 / 道路 / 植被 / 水体轮廓,精度优先通路直接产内存布局文档;角色比例节点推算真实尺度。</p>
-        <p style="font-size:18px;line-height:1.66;color:#c9c0ae;border-top:1px solid var(--line);padding-top:13px;margin-top:13px"><b style="color:var(--accent);font-weight:600">落地。</b>高度图写入 Landscape,布局生成街区与建筑白盒;统一摆放节点生成植物、围墙与道路,地形街区共用同一标定。</p>
+        <div class="cmp" id="cmp-wb" style="width:470px;height:470px">
+          <img class="a" src="assets/img/wb-photoreal.webp" alt="写实顶视原图">
+          <img class="b" src="assets/img/wb-height.webp" alt="对比图层">
+          <div class="bar"><div class="knob">⇄</div></div>
+          <span class="tag tagL" style="font-size:12.5px;padding:4px 10px">写实原图</span><span class="tag tagR" id="cmp-wb-tag" style="font-size:12.5px;padding:4px 10px">高度估计</span>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:10px;align-items:center;flex-wrap:wrap">
+          <span style="font-size:13px;color:var(--muted)">对比:</span>
+          <button class="st" style="padding:6px 13px;font-size:14px" data-cmp="cmp-wb" data-src="assets/img/wb-semantic.webp" data-name="语义分块">语义分块</button>
+          <button class="st on" style="padding:6px 13px;font-size:14px" data-cmp="cmp-wb" data-src="assets/img/wb-height.webp" data-name="高度估计">高度估计</button>
+          <button class="st" style="padding:6px 13px;font-size:14px" data-cmp="cmp-wb" data-src="assets/img/wb-massing.webp" data-name="白盒落地">白盒落地</button>
+        </div>
       </div>
     </div>
-    <div class="foot"><span>分帧执行 · 统一标定 · 失败隔离 · 统一摆放</span><a class="chip" style="margin-left:auto" href="${L_WB}"${EXT}>专题页:白盒生成管线 ↗</a></div>
+    <div class="foot" style="margin-top:14px"><span>分帧执行 · 统一标定 · 失败隔离 · 统一摆放</span><a class="chip" style="margin-left:auto" href="${L_WB}"${EXT}>专题页:白盒生成管线 ↗</a></div>
   </div>` },
 
 { label:"批量白盒生产", html:`
