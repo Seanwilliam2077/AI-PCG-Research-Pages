@@ -387,15 +387,15 @@ const SLIDES = [
     <div class="foot"><span>rgb / depth / normal / cameras.json / capture_meta —— 目录 schema 即交付契约 · 原为世界模型训练数据设计,方向未采纳,能力沉淀回白盒管线</span><a class="chip" style="margin-left:auto" href="${L_WM}"${EXT}>流程与视频 ↗</a></div>
   </div>` },
 
-{ label:"47.5 s", html:`
+{ label:"全链一键成片", html:`
   <div class="sl">
     <p class="kick">01 · AI PCG 编辑器</p>
+    <h2 style="font-size:56px">全链一键成片 — 生图 → 白盒 → 运镜 → 成片</h2>
     <div style="display:grid;grid-template-columns:1fr 640px;gap:60px;align-items:center;flex:1;min-height:0">
       <div>
-        <p class="heroN" style="font-size:180px">47.5 s</p>
-        <p class="lead" style="margin-top:18px;font-size:22px">单场景「生图 → 白盒 → 运镜 → 成片」全链耗时——离屏无人值守实测(2026.07.22)。</p>
-        <p style="margin-top:24px;font-size:19px;line-height:1.7;color:#c9c0ae;border-top:1px solid var(--line);padding-top:14px"><b style="color:var(--accent);font-weight:600">输入。</b>一句场景风格提示词 + 运镜时长与 fps——右例 take_004:walkthrough 运镜 · 15 s · 30 fps。</p>
-        <p style="margin-top:14px;font-size:19px;line-height:1.7;color:#c9c0ae;border-top:1px solid var(--line);padding-top:14px"><b style="color:var(--accent);font-weight:600">输出。</b>RGB / Depth / Normal 三通道帧序列(450 帧)、逐帧相机位姿 cameras.json、编码成片 mp4,按数据集契约落盘。</p>
+        <p style="font-size:20px;line-height:1.72;color:#c9c0ae;border-top:1px solid var(--line);padding-top:16px"><b style="color:var(--accent);font-weight:600">输入。</b>一句场景风格提示词 + 运镜时长与 fps——右例 take_004:walkthrough 运镜 · 15 s · 30 fps。</p>
+        <p style="font-size:20px;line-height:1.72;color:#c9c0ae;border-top:1px solid var(--line);padding-top:16px;margin-top:16px"><b style="color:var(--accent);font-weight:600">输出。</b>RGB / Depth / Normal 三通道帧序列(450 帧)、逐帧相机位姿 cameras.json、编码成片 mp4,按数据集契约落盘。</p>
+        <p style="font-size:20px;line-height:1.72;color:#c9c0ae;border-top:1px solid var(--line);padding-top:16px;margin-top:16px"><b style="color:var(--accent);font-weight:600">耗时。</b>单场景全链 <b style="font-family:var(--serif);font-size:38px;color:var(--accent);font-weight:600">47.5 s</b> ——离屏无人值守实测(2026.07.22),批产通道就此打通。</p>
       </div>
       <div>
         <video src="assets/wm-triptych.mp4" poster="assets/wm-triptych-poster.webp" controls preload="none" playsinline style="width:100%;aspect-ratio:16/9;border-radius:10px;border:1px solid var(--line);background:#000"></video>
