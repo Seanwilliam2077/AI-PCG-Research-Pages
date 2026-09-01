@@ -325,7 +325,7 @@ const SLIDES = [
   </div>`, ov:[
     ["01","白盒生成管线 — 批量生产与数据采集","Create PCG Data · BatchPCG · 47.5 s 全链",3],
     ["02","GeoGen — 山体与植被生成","编辑器模式 · 近远景双路线",7],
-    ["03","AI PCG Scene — 单图到场景的端到端","三条实现 + 方法论 · 开源",10],
+    ["03","AI PCG Scene — 单图到场景的端到端","资产 AI 生成 · Blender 度量闭环 · 开源",10],
     ["04","3DGS — 场景重建与 VortexGaussians","probe 采集 · 原生 3DGS 火焰烟雾",13],
     ["05","总结与展望","实际产出与个人贡献 · 未来方向",15]] },
 
@@ -484,16 +484,11 @@ const SLIDES = [
 { label:"03 AI PCG Scene", html:`
   <div class="sl">
     <p class="kick">03 · 开源</p>
-    <h2>AI PCG Scene — 单图到场景的端到端</h2>
-    <p class="lead">同一个命题做三遍:给一张参考图,自动生成一个三维场景。三条互相独立的实现互相印证,全部开源。</p>
+    <h2 style="font-size:48px">AI PCG Scene — 单图到场景 · Blender 度量闭环</h2>
+    <p class="lead">一张参考图,自动生成可渲染的三维场景:资产由 AI 生成,搭建与「像不像」全部交给可测量的度量循环。</p>
     <div class="cols media">
-      <div class="col"><div class="cmp" style="width:100%;aspect-ratio:16/9;margin-bottom:14px">
-        <img class="a" src="assets/img/sc-ep-ref.webp" alt="参考图">
-        <img class="b" src="assets/img/sc-ep-recon.webp" alt="Blender Cycles 重建">
-        <div class="bar"><div class="knob">⇄</div></div>
-        <span class="tag tagL" style="font-size:12px;padding:4px 9px">参考图</span><span class="tag tagR" style="font-size:12px;padding:4px 9px">重建</span>
-      </div><p class="step">线 1 · UE5 资产库匹配</p><h3>AI 提案,规则裁决</h3><p>UE 5.5 内嵌 Python 前馈管线:标定 → 布局 → 材质 → 匹配装配;阶段间只交换 JSON、可断点续跑;失配退化代理盒。127 actors / 0 报错 / 21 库命中 + 9 代理盒。</p></div>
-      <div class="col"><img class="fig" style="aspect-ratio:16/8.5;object-fit:contain" src="assets/img/sc-assetlib.webp" alt="39 模块资产库总览 — 实测最长边全落在 75–118 cm 一条带"><p class="step">线 2 · three.js 程序化</p><h3>规则长出场景</h3><p>一张图拆成可生成的规则清单,几何与贴图全部运行时算出;同一份总平面被烘焙与摆放两处消费。44 897 构件 / 每帧 60 draw call,换个种子约 4 秒。</p></div>
+      <div class="col"><img class="fig" style="aspect-ratio:2086/1294;object-fit:contain" src="assets/img/sc-pipeline.webp" alt="管线四步:参考图 → VLM 检测打标 → 布局求解回投核对 → Cycles 渲染(点击放大)"><p class="step">① 整条管线怎么跑</p><h3>单图进,场景出</h3><p>参考图 → VLM 检测打标 → 消失点解出相机 → 布局求解(包围盒回投原图核对)→ Blender Cycles 渲染;阶段间只交换 JSON,每一步都能回看。</p></div>
+      <div class="col"><img class="fig" style="aspect-ratio:920/584;object-fit:contain" src="assets/img/sc-assetgen.webp" alt="资产生成:混元图生 3D 四视图转台 + 文生图 2D 贴图(点击放大)"><p class="step">② 资产怎么来</p><h3>3D 走混元,2D 走文生图</h3><p>三维资产用混元图生 3D 逐个生成、四视图转台逐个验收;海报和屏幕这类 2D 内容用文生图直出贴图、透视整流后贴回场景。全场 166 物体。</p></div>
       <div class="col">
       <div style="position:relative;margin-bottom:8px">
         <img class="fig" id="itImg" style="aspect-ratio:900/503;margin:0" src="assets/img/it1.webp" alt="九步迭代播片 — 点击放大当前帧">
@@ -504,14 +499,14 @@ const SLIDES = [
         <button class="st" id="itPlay" style="padding:3px 12px;font-size:13px">⏸ 暂停</button>
         <div style="display:flex;gap:5px" id="itDots"></div>
       </div>
-      <p class="step">线 3 · Blender 度量闭环</p><h3>像不像,可测量</h3><p>九轮「渲染 → 度量 → 定位病因 → 改」,边缘 F 0.260 → 0.650——上方播片即九步迭代实录,下一页拆它是怎么实现的。</p></div>
+      <p class="step">③ 迭代 · 度量闭环</p><h3>像不像,可测量</h3><p>九轮「渲染 → 度量 → 定位病因 → 改」,边缘 F 0.260 → 0.650——上方播片即九步迭代实录,下一页拆它是怎么实现的。</p></div>
     </div>
-    <div class="foot"><span>三份交互文档:拖动对比 · 逐步播放 · 图上探针 · 参数滑块</span><a class="chip" style="margin-left:auto" href="${L_SC}"${EXT}>仓库:github.com/Seanwilliam2077/AI-PCG-Scene ↗</a></div>
+    <div class="foot"><span>交互文档:逐步播放 · 图上探针 · 拖动对比</span><a class="chip" style="margin-left:auto" href="${L_SC}"${EXT}>仓库:github.com/Seanwilliam2077/AI-PCG-Scene ↗</a></div>
   </div>` },
 
 { label:"Blender 渲染 · 怎么实现", html:`
   <div class="sl">
-    <p class="kick">03 · 开源 · 线 3</p>
+    <p class="kick">03 · 开源 · 度量闭环</p>
     <h2 style="font-size:52px">Blender 渲染这条路是怎么实现的</h2>
     <div style="display:flex;gap:24px;margin-top:20px;align-items:flex-start;justify-content:center">
       <div style="width:392px;flex:none">
