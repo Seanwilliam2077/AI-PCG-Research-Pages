@@ -392,9 +392,10 @@ const SLIDES = [
     <p class="kick">01 · AI PCG 编辑器</p>
     <div style="display:grid;grid-template-columns:1fr 640px;gap:60px;align-items:center;flex:1;min-height:0">
       <div>
-        <p class="heroN" style="font-size:200px">47.5 s</p>
-        <p class="lead" style="margin-top:26px;font-size:25px">单场景「生图 → 白盒 → 运镜 → 成片」全链耗时——离屏无人值守实测(2026.07.22),48 帧 mp4 落盘、截图非黑,批产通道就此打通。</p>
-        <p class="lead" style="margin-top:14px;font-size:19.5px;color:var(--muted)">一键视频批产:浏览器输入 fps / 数量 / 时长即自动跑完全链;动态容量按质检现算,拍满即切、拍够即停。</p>
+        <p class="heroN" style="font-size:180px">47.5 s</p>
+        <p class="lead" style="margin-top:18px;font-size:22px">单场景「生图 → 白盒 → 运镜 → 成片」全链耗时——离屏无人值守实测(2026.07.22)。</p>
+        <p style="margin-top:24px;font-size:19px;line-height:1.7;color:#c9c0ae;border-top:1px solid var(--line);padding-top:14px"><b style="color:var(--accent);font-weight:600">输入。</b>一句场景风格提示词 + 运镜时长与 fps——右例 take_004:walkthrough 运镜 · 15 s · 30 fps。</p>
+        <p style="margin-top:14px;font-size:19px;line-height:1.7;color:#c9c0ae;border-top:1px solid var(--line);padding-top:14px"><b style="color:var(--accent);font-weight:600">输出。</b>RGB / Depth / Normal 三通道帧序列(450 帧)、逐帧相机位姿 cameras.json、编码成片 mp4,按数据集契约落盘。</p>
       </div>
       <div>
         <video src="assets/wm-triptych.mp4" poster="assets/wm-triptych-poster.webp" controls preload="none" playsinline style="width:100%;aspect-ratio:16/9;border-radius:10px;border:1px solid var(--line);background:#000"></video>
