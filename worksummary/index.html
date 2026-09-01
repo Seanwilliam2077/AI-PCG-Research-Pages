@@ -421,34 +421,17 @@ const SLIDES = [
     <div class="foot"><span>后两页展开:远景与山峰 · 植被五步</span><a class="chip" style="margin-left:auto" href="${L_GG}"${EXT}>专题页:GeoGen 山脉与植被 ↗</a></div>
   </div>` },
 
-{ label:"GeoGen · 远景与山峰", html:`
+{ label:"GeoGen · 山脉生成", html:`
   <div class="sl">
     <p class="kick">02 · AI PCG 编辑器</p>
-    <h2 style="font-size:54px">GeoGen — 远景与山峰</h2>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:24px">
-      <div>
-        <img class="fig" style="aspect-ratio:1.9;margin-bottom:8px" src="assets/img/gg-nearfield.webp" alt="近中景:一键生成(高度图 → 侵蚀 → 地形)与结果预览(点击放大)">
-        <p style="font-size:13.5px;color:var(--muted);text-align:center">近中景 · 一键生成与结果预览</p>
-      </div>
-      <div>
-        <img class="fig" style="aspect-ratio:1.9;margin-bottom:8px" src="assets/img/gg-far-mesh.webp" alt="远景一键生成的 mesh 山体(点击放大)">
-        <p style="font-size:13.5px;color:var(--muted);text-align:center">远景 · 一键生成 mesh 山体</p>
-      </div>
-      <div>
-        <img class="fig" style="aspect-ratio:1.9;margin-bottom:8px" src="assets/img/gg-spread.webp" alt="中远景按方位铺开(点击放大)">
-        <p style="font-size:13.5px;color:var(--muted);text-align:center">中远景铺开 · 方位 / 层数 / 面积</p>
-      </div>
-      <div>
-        <img class="fig" style="aspect-ratio:1.9;margin-bottom:8px" src="assets/img/gg-peaklib.webp" alt="山峰图库与生成的双峰(点击放大)">
-        <p style="font-size:13.5px;color:var(--muted);text-align:center">山峰图库 · 预设 / 参考图 / Heightmap</p>
-      </div>
+    <h2 style="font-size:58px">GeoGen — 山脉生成</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px 40px;margin-block:auto;justify-items:center">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><img class="fig" style="height:266px;width:auto;max-width:100%;object-fit:contain;border-radius:8px;border:1px solid var(--line);cursor:zoom-in" src="assets/img/gg-nearfield.webp" alt="近中景(点击放大)"><p style="font-size:15px;color:var(--muted);margin:0"><b style="color:var(--accent)">近中景</b> — 环绕参考图直出 Landscape</p></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><img class="fig" style="height:266px;width:auto;max-width:100%;object-fit:contain;border-radius:8px;border:1px solid var(--line);cursor:zoom-in" src="assets/img/gg-spread.webp" alt="中远景 · 按方位铺开(点击放大)"><p style="font-size:15px;color:var(--muted);margin:0"><b style="color:var(--accent)">中远景</b> — 按方位 / 层数 / 面积铺开</p></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><img class="fig" style="height:266px;width:auto;max-width:100%;object-fit:contain;border-radius:8px;border:1px solid var(--line);cursor:zoom-in" src="assets/img/gg-far-mesh.webp" alt="远景 · 一键生成 Mesh 山体(点击放大)"><p style="font-size:15px;color:var(--muted);margin:0"><b style="color:var(--accent)">远景</b> — 一键生成的可移动 Mesh 山体</p></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><img class="fig" style="height:266px;width:auto;max-width:100%;object-fit:contain;border-radius:8px;border:1px solid var(--line);cursor:zoom-in" src="assets/img/gg-peaklib.webp" alt="单体山峰 · 图库与生成(点击放大)"><p style="font-size:15px;color:var(--muted);margin:0"><b style="color:var(--accent)">单体山峰</b> — 图库 / 参考图 / Heightmap 生成</p></div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-block:auto">
-      <p style="font-size:16.5px;line-height:1.64;color:#c9c0ae;border-top:1px solid var(--line);padding-top:12px"><b style="color:var(--accent);font-weight:600">远景一键生成。</b>一张参考图、与近中景同一逻辑:俯视参考图 → 高度图 → 侵蚀 → 一键生成可自由移动 / 旋转 / 复制的 mesh 山体,高度倍率可调。</p>
-      <p style="font-size:16.5px;line-height:1.64;color:#c9c0ae;border-top:1px solid var(--line);padding-top:12px"><b style="color:var(--accent);font-weight:600">中远景铺开。</b>有近景地形即可铺:罗盘格自选方位,层数与面积自定;空方位以缓坡平原补齐。</p>
-      <p style="font-size:16.5px;line-height:1.64;color:#c9c0ae;border-top:1px solid var(--line);padding-top:12px"><b style="color:var(--accent);font-weight:600">山峰丰富边际线。</b>从预制库挑选或导入参考图 / Heightmap,生成独立山峰 mesh 散布地平线。</p>
-    </div>
-    <div class="foot"><span>远景默认烘成连续静态网格,移动 / 旋转 / 复制全是引擎原生行为</span><a class="chip" style="margin-left:auto" href="${L_GG}"${EXT}>专题页:GeoGen 山脉与植被 ↗</a></div>
+    <div class="foot"><span>四类景别,同一条山脉生成链 · 点图放大</span><a class="chip" style="margin-left:auto" href="${L_GG}"${EXT}>专题页:GeoGen 山脉与植被 ↗</a></div>
   </div>` },
 
 { label:"GeoGen · 植被五步", html:`
